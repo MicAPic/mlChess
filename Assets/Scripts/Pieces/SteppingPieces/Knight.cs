@@ -1,9 +1,6 @@
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace Pieces
+namespace Pieces.SteppingPieces
 {
-    public class Knight : Piece
+    public class Knight : SteppingPiece
     {
         //          noNoWe    noNoEa
         //             +19  +21
@@ -23,20 +20,6 @@ namespace Pieces
         {
             base.Start();
             Pattern = new[] {-21, -19, -12, -8, 8, 12, 19, 21};
-        }
-
-        protected override void GenerateMoves()
-        {
-            PossibleSquares = new List<GameObject>();
-
-            foreach (var destination in Pattern)
-            {
-                var square = GameManager.squareList[CurrentPos + destination];
-                if (square != null && square.transform.childCount == 0)
-                {
-                    PossibleSquares.Add(square);
-                }
-            }
         }
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Pieces
 {
-    public class Pawn : Piece
+    public class Pawn : Piece /* the pawn is kinda special, hence it inherits straight from Piece */
     {
         //               No
         //              +20

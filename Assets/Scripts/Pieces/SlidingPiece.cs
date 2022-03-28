@@ -3,24 +3,8 @@ using UnityEngine;
 
 namespace Pieces
 {
-    public class Rook : Piece
+    public abstract class SlidingPiece : Piece
     {
-        //           No
-        //          +10k
-        //           |  
-        // We -1k -->0<-- +1k Ea
-        //           |
-        //          -10k
-        //           So
-        //
-        // based on the source from: https://www.chessprogramming.org/
-        
-        protected override void Start()
-        {
-            base.Start();
-            Pattern = new[] {-10, -1, 1, 10};
-        }
-        
         protected override void GenerateMoves()
         {
             PossibleSquares = new List<GameObject>();
@@ -38,7 +22,7 @@ namespace Pieces
                     }
                     else
                     {
-                        // if the path is blocked, prevent it from generating new moves 
+                        // if the path is blocked, prevent the generation of new moves 
                         break;
                     }
                 }
