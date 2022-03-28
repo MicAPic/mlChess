@@ -15,8 +15,8 @@ public abstract class Piece : MonoBehaviour
 
     protected int[] Pattern;
     protected int CurrentPos;
-    protected GameManager GameManager;
-    public List<GameObject> PossibleSquares;
+    protected GameManager GameManager { get; private set; } //ENCAPSULATION
+    protected List<GameObject> PossibleSquares;
 
     // Start is called before the first frame update
     protected virtual void Start()
