@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
 
     void GenerateBoard()
     {
-        //makes a 10x12 board to account for the illegal moves
+        // makes a 10x12 board to account for the illegal moves
         squareList = new List<GameObject>();
         
         squareList.AddRange(Enumerable.Repeat<GameObject>(null, 21)); //adds a bottom border

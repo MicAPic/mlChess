@@ -140,3 +140,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a70ca1e2d85947c382c1e890cbee23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pieceColour: 1
+  PossibleSquares: []

@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed5af1cea47364263adced619786de55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pieceColour: 1
+  PossibleSquares: []
 --- !u!1 &921670881943333890
 GameObject:
   m_ObjectHideFlags: 0

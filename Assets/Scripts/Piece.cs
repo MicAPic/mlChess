@@ -1,16 +1,24 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Pieces;
 using UnityEngine;
 
 public abstract class Piece : MonoBehaviour
 {
+    public enum PieceColour
+    {
+        Black,
+        White
+    }
+    public PieceColour pieceColour;
+    
     protected int CurrentPos;
     protected GameManager GameManager;
     public List<GameObject> PossibleSquares;
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
         GameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         CurrentPos = GameManager.squareList.IndexOf(transform.parent.gameObject);
@@ -22,7 +30,7 @@ public abstract class Piece : MonoBehaviour
 
     }
 
-    public void MakeMove(GameObject possibleDestination)
+    public virtual void MakeMove(GameObject possibleDestination)
     {
         GenerateMoves();
 
@@ -36,7 +44,7 @@ public abstract class Piece : MonoBehaviour
         }
     }
 
-    //generates pseudo-legal moves, which ideally should be checked in MakeMove
+    // generates pseudo-legal moves, which ideally should be checked in MakeMove
     protected abstract void GenerateMoves();
 
 }

@@ -18,7 +18,7 @@ namespace Pieces
         //         soSoWe    soSoEa
         //
         // based on the source from: https://www.chessprogramming.org/
-
+        
         private readonly int[] _pattern = {-21, -19, -12, -8, 8, 12, 19, 21};
 
         protected override void GenerateMoves()

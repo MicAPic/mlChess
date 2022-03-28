@@ -3,21 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="8c687816-200a-4861-b89e-c38515377fe9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.mlChess/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.mlChess/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Black.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Black.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Black Pieces/bBishop.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Black Pieces/bBishop.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Black Pieces/bKing.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Black Pieces/bKing.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Black Pieces/bKnight.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Black Pieces/bKnight.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Black Pieces/bPawn.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Black Pieces/bPawn.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Black Pieces/bQueen.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Black Pieces/bQueen.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Black Pieces/bRook.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Black Pieces/bRook.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/White Pieces/wBishop.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/White Pieces/wBishop.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/White Pieces/wKing.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/White Pieces/wKing.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/White Pieces/wKnight.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/White Pieces/wKnight.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/White Pieces/wPawn.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/White Pieces/wPawn.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/White Pieces/wQueen.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/White Pieces/wQueen.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/White Pieces/wRook.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/White Pieces/wRook.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Piece.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Piece.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pieces/Knight.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pieces/Knight.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pieces/Pawn.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pieces/Pawn.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,6 +67,7 @@
       <updated>1648235149731</updated>
       <workItem from="1648235167780" duration="10219000" />
       <workItem from="1648366019251" duration="2652000" />
+      <workItem from="1648461033133" duration="2620000" />
     </task>
     <servers />
   </component>
