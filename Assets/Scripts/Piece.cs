@@ -12,7 +12,8 @@ public abstract class Piece : MonoBehaviour
         White
     }
     public PieceColour pieceColour;
-    
+
+    protected int[] Pattern;
     protected int CurrentPos;
     protected GameManager GameManager;
     public List<GameObject> PossibleSquares;
@@ -24,11 +25,11 @@ public abstract class Piece : MonoBehaviour
         CurrentPos = GameManager.squareList.IndexOf(transform.parent.gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    // // Update is called once per frame
+    // void Update()
+    // {
+    //
+    // }
 
     public virtual void MakeMove(GameObject possibleDestination)
     {

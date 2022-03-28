@@ -14,8 +14,7 @@ namespace Pieces
         //              >0<
         //
         // based on the source from: https://www.chessprogramming.org/
-            
-        private int[] _pattern;
+        
         private bool _madeFirstMove;
 
         protected override void Start()
@@ -23,7 +22,7 @@ namespace Pieces
             base.Start();
             
             //white and black pawn push in different directions 
-            _pattern = pieceColour == PieceColour.Black ? new[] {-10, -20} : new[] {10, 20};
+            Pattern = pieceColour == PieceColour.Black ? new[] {-10, -20} : new[] {10, 20};
         }
 
         public override void MakeMove(GameObject possibleDestination)
@@ -34,7 +33,7 @@ namespace Pieces
             if (!_madeFirstMove && PossibleSquares.Contains(possibleDestination))
             {
                 _madeFirstMove = true;
-                Array.Resize(ref _pattern, _pattern.Length - 1);
+                Array.Resize(ref Pattern, Pattern.Length - 1);
             }
         }
 
@@ -42,7 +41,7 @@ namespace Pieces
         {
             PossibleSquares = new List<GameObject>();
             
-            foreach (var destination in _pattern)
+            foreach (var destination in Pattern)
             {
                 var square = GameManager.squareList[CurrentPos + destination];
                 if (square != null && square.transform.childCount == 0)

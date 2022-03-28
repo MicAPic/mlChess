@@ -3,16 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="8c687816-200a-4861-b89e-c38515377fe9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.mlChess/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.mlChess/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/White Pieces/wBishop.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/White Pieces/wBishop.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/White Pieces/wKing.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/White Pieces/wKing.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/White Pieces/wKnight.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/White Pieces/wKnight.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/White Pieces/wPawn.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/White Pieces/wPawn.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/White Pieces/wQueen.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/White Pieces/wQueen.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/White Pieces/wRook.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/White Pieces/wRook.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Piece.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Piece.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pieces/Knight.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pieces/Knight.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pieces/Pawn.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pieces/Pawn.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pieces/Rook.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pieces/Rook.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +61,8 @@
       <updated>1648235149731</updated>
       <workItem from="1648235167780" duration="10219000" />
       <workItem from="1648366019251" duration="2652000" />
-      <workItem from="1648461033133" duration="2620000" />
+      <workItem from="1648461033133" duration="2786000" />
+      <workItem from="1648474288917" duration="915000" />
     </task>
     <servers />
   </component>
