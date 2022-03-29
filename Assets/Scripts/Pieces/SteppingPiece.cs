@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Pieces
 {
-    public class SteppingPiece : Piece
+    public abstract class SteppingPiece : Piece
     {
         protected override void GenerateMoves()
         {

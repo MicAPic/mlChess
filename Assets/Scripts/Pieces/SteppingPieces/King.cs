@@ -14,7 +14,7 @@ namespace Pieces.SteppingPieces
         protected override void Start()
         {
             base.Start();
-            Pattern = new[] {-10, -1, 1, 10};
+            Pattern = new[] {-11, -10, -9, -1, 1, 9, 10, 11};
         }
     }
 }
