@@ -30,7 +30,7 @@ namespace Pieces
             base.MakeMove(possibleDestination);
             
             // this makes the pawn's initial double-square move possible
-            if (!_madeFirstMove && PossibleSquares.Contains(possibleDestination))
+            if (!_madeFirstMove && PossibleDestinations.Contains(possibleDestination))
             {
                 _madeFirstMove = true;
                 Array.Resize(ref Pattern, Pattern.Length - 1);
@@ -39,14 +39,14 @@ namespace Pieces
 
         protected override void GenerateMoves()
         {
-            PossibleSquares = new List<GameObject>();
+            PossibleDestinations = new List<GameObject>();
             
             foreach (var destination in Pattern)
             {
                 var square = GameManager.squareList[CurrentPos + destination];
                 if (square != null && square.transform.childCount == 0)
                 {
-                    PossibleSquares.Add(square);
+                    PossibleDestinations.Add(square);
                 }
                 else
                 {

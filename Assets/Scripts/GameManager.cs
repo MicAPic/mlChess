@@ -61,17 +61,27 @@ public class GameManager : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             var clickedObject = hit.transform;
-            
-            if (clickedObject.parent.CompareTag("Piece")){
+
+            if (clickedObject.CompareTag("Square") && _selectedPiece)
+            {
+                _selectedPiece.MakeMove(clickedObject.gameObject);
+                _selectedPiece = null;
+                Debug.Log(clickedObject.name);
+            }
+            else if (clickedObject.parent.CompareTag("Piece"))
+            {
+                if (_selectedPiece)
+                {
+                    var square = clickedObject.parent.parent;
+                    _selectedPiece.MakeMove(square.gameObject);
+                    _selectedPiece = null;
+                    Debug.Log(square.name);
+                    return;
+                }
+                
                 var piece = clickedObject.parent.GetComponent<Piece>();
                 _selectedPiece = piece;
                 Debug.Log(piece.name);
-            }
-            else if (clickedObject.CompareTag("Square") && _selectedPiece != null)
-            {
-                Debug.Log(clickedObject.name);
-                _selectedPiece.MakeMove(clickedObject.gameObject);
-                _selectedPiece = null;
             }
         }
     }

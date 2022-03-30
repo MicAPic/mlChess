@@ -7,14 +7,14 @@ namespace Pieces
     {
         protected override void GenerateMoves()
         {
-            PossibleSquares = new List<GameObject>();
+            PossibleDestinations = new List<GameObject>();
 
             foreach (var destination in Pattern)
             {
                 var square = GameManager.squareList[CurrentPos + destination];
-                if (square != null && square.transform.childCount == 0)
+                if (square != null)
                 {
-                    PossibleSquares.Add(square);
+                    PossibleDestinations.Add(square);
                 }
             }
         }

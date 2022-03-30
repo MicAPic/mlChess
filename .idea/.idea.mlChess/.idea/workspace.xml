@@ -3,14 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="8c687816-200a-4861-b89e-c38515377fe9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.mlChess/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.mlChess/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Menu.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Piece.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Piece.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pieces/Pawn.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pieces/Pawn.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pieces/SlidingPiece.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pieces/SlidingPiece.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pieces/SteppingPiece.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pieces/SteppingPiece.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pieces/SteppingPieces/King.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pieces/SteppingPieces/King.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +68,10 @@
       <workItem from="1648541648142" duration="334000" />
       <workItem from="1648559889091" duration="336000" />
       <workItem from="1648560672812" duration="10000" />
+      <workItem from="1648586059147" duration="3894000" />
+      <workItem from="1648619721727" duration="464000" />
+      <workItem from="1648635729669" duration="475000" />
+      <workItem from="1648636699197" duration="46000" />
     </task>
     <servers />
   </component>

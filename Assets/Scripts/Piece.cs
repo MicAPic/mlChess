@@ -14,8 +14,8 @@ public abstract class Piece : MonoBehaviour
 
     protected int[] Pattern;
     protected int CurrentPos;
-    protected GameManager GameManager { get; private set; } //ENCAPSULATION
-    protected List<GameObject> PossibleSquares;
+    protected GameManager GameManager { get; private set; }
+    protected List<GameObject> PossibleDestinations;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -34,17 +34,29 @@ public abstract class Piece : MonoBehaviour
     {
         GenerateMoves();
 
-        if (PossibleSquares.Contains(possibleDestination))
+        if (PossibleDestinations.Contains(possibleDestination))
         {
+            if (possibleDestination.transform.childCount != 0)
+            {
+                // attack the piece of an opposite colour
+                var target = possibleDestination.GetComponentInChildren<Piece>();
+                if (target.pieceColour != pieceColour) 
+                {
+                    Destroy(target.gameObject);
+                }
+                else return;
+            }
+
             CurrentPos = GameManager.squareList.IndexOf(possibleDestination);
+            // move the piece object in the game world
+            var objectTransform = transform;
+            Vector3 localCoordinates = objectTransform.localPosition; //required to move the piece
+            objectTransform.parent = possibleDestination.transform;
+            objectTransform.localPosition = localCoordinates;
             
-            Vector3 localCoordinates = transform.localPosition; //required to move the piece
-            transform.parent = possibleDestination.transform;
-            transform.localPosition = localCoordinates;
         }
     }
 
     // generates pseudo-legal moves, which ideally should be checked in MakeMove
     protected abstract void GenerateMoves();
-
 }
