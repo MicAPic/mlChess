@@ -14,15 +14,17 @@ namespace Pieces
         //              >0<
         //
         // based on the source from: https://www.chessprogramming.org/
-        
+
+        private int[] _attackPattern;
         private bool _madeFirstMove;
 
         protected override void Start()
         {
             base.Start();
             
-            //white and black pawn push in different directions 
-            Pattern = pieceColour == PieceColour.Black ? new[] {-10, -20} : new[] {10, 20};
+            // white and black pawn push in different directions 
+            // attack pattern is checked first, then the movement pattern
+            Pattern = pieceColour == PieceColour.Black ? new[] {-9, -11, -10, -20} : new[] {9, 11, 10, 20};
         }
 
         public override void MakeMove(GameObject possibleDestination)
@@ -44,14 +46,24 @@ namespace Pieces
             foreach (var destination in Pattern)
             {
                 var square = GameManager.squareList[CurrentPos + destination];
-                if (square != null && square.transform.childCount == 0)
+                // not good code...
+                if (square != null)
                 {
-                    PossibleDestinations.Add(square);
-                }
-                else
-                {
-                    // if the piece is blocked, prevent it from making a double-square move 
-                    break;
+                    if (destination % 10 == 0)
+                    {
+                        if (square.transform.childCount == 0)
+                        {
+                            PossibleDestinations.Add(square);
+                        }
+                        else break; // if the piece is blocked, prevent it from making a double-square move 
+                    }
+                    else 
+                    {
+                        if (square.transform.childCount != 0) 
+                        {
+                            PossibleDestinations.Add(square);
+                        }
+                    }
                 }
             }
         }

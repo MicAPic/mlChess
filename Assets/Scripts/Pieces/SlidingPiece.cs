@@ -13,9 +13,14 @@ namespace Pieces
             {
                 var k = 1;
                 var square = GameManager.squareList[CurrentPos + destination];
-                while (square != null && square.transform.childCount == 0) // if the path is blocked, prevent the generation of new moves 
+                while (square != null/* && square.transform.childCount == 0*/) 
                 {
                     PossibleDestinations.Add(square);
+                    if (square.transform.childCount != 0)
+                    {
+                        // if the path is blocked, prevent the generation of new moves 
+                        break;
+                    }
                     k++;
                     square = GameManager.squareList[CurrentPos + destination * k];
                 }
