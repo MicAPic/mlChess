@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Transactions;
 using UnityEngine;
 
 namespace Pieces
@@ -14,9 +15,9 @@ namespace Pieces
         //              >0<
         //
         // based on the source from: https://www.chessprogramming.org/
-
-        private int[] _attackPattern;
+        
         private bool _madeFirstMove;
+        
 
         protected override void Start()
         {
@@ -24,7 +25,7 @@ namespace Pieces
             
             // white and black pawn push in different directions 
             // attack pattern is checked first, then the movement pattern
-            Pattern = pieceColour == PieceColour.Black ? new[] {-9, -11, -10, -20} : new[] {9, 11, 10, 20};
+            Pattern = pieceColour == PieceColour.black ? new[] {-9, -11, -10, -20} : new[] {9, 11, 10, 20};
         }
 
         public override void MakeMove(GameObject possibleDestination)
@@ -36,6 +37,10 @@ namespace Pieces
             {
                 _madeFirstMove = true;
                 Array.Resize(ref Pattern, Pattern.Length - 1);
+            }
+            else if (possibleDestination.GetComponent<Square>().promotionSquare)
+            {
+                GameManager.AskForPromotion(this, possibleDestination);
             }
         }
 

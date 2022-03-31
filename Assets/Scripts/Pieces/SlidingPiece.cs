@@ -13,7 +13,7 @@ namespace Pieces
             {
                 var k = 1;
                 var square = GameManager.squareList[CurrentPos + destination];
-                while (square != null/* && square.transform.childCount == 0*/) 
+                while (square != null) 
                 {
                     PossibleDestinations.Add(square);
                     if (square.transform.childCount != 0)

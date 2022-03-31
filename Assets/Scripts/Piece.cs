@@ -7,8 +7,8 @@ public abstract class Piece : MonoBehaviour
 {
     public enum PieceColour
     {
-        Black,
-        White
+        black,
+        white
     }
     public PieceColour pieceColour;
 

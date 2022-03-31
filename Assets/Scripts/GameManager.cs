@@ -3,16 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using Pieces;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Debug = UnityEngine.Debug;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Utility")]
+    public UI ui;
     public List<GameObject> squareList;
+    public string promoteTo = "Queen";
 
     private Piece _selectedPiece;
     [SerializeField]
     private Camera activeCamera;
+    [SerializeField] 
+    private GameObject promotionPopup;
     
     void Awake()
     {
@@ -27,6 +34,26 @@ public class GameManager : MonoBehaviour
             HandleSelection();
         }
     }
+
+    // this code handles promotion of pawns  
+    private Pawn _pawnToPromote;
+    private GameObject _promotionLocation;
+    
+    public void AskForPromotion(Pawn pawn, GameObject square)
+    {
+        ui.ToggleSubmenu(promotionPopup);
+        _pawnToPromote = pawn;
+        _promotionLocation = square;
+    }
+    
+    public void PromotePawn()
+    {
+        var promotedPieceName = _pawnToPromote.pieceColour.ToString()[0] + promoteTo;
+        Instantiate(Resources.Load("Prefabs/" + promotedPieceName), 
+                    _promotionLocation.transform);
+        Destroy(_pawnToPromote.gameObject);
+    }
+    //
 
     void GenerateBoard()
     {
