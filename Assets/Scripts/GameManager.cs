@@ -45,14 +45,13 @@ public class GameManager : MonoBehaviour
     public void UpdateMoves()
     {
         //updates list of moves for each piece on the board
-        foreach (var piece in whitePieces)
+        foreach (var piece in whitePieces.Union(blackPieces))
         {
             piece.GenerateMoves();
-        }
-
-        foreach (var piece in blackPieces)
-        {
-            piece.GenerateMoves();
+            if (piece.movesSinceDoubleMove != null)
+            {
+                piece.movesSinceDoubleMove++;
+            }
         }
     }
 

@@ -11,6 +11,7 @@ public abstract class Piece : MonoBehaviour
         white
     }
     public PieceColour pieceColour;
+    public int? movesSinceDoubleMove = null; //needed to prevent bugs in en passant
 
     protected int[] Pattern;
     protected int CurrentPos;

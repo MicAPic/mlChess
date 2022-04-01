@@ -16,8 +16,7 @@ namespace Pieces
         //
         // based on the source from: https://www.chessprogramming.org/
         private bool _madeFirstMove;
-        private readonly int[] _enPassantCheckPattern = {-1, 1}; 
-        
+        private readonly int[] _enPassantCheckPattern = {-1, 1};
 
         protected override void Start()
         {
@@ -31,11 +30,12 @@ namespace Pieces
         public override void MakeMove(GameObject possibleDestination)
         {
             base.MakeMove(possibleDestination);
-            
+
             var square = GameManager.squareList[CurrentPos - Pattern[2]]; // ±10, one square behind
             if (!_madeFirstMove) // this makes the pawn's initial double-square move possible
             {
                 _madeFirstMove = true;
+                movesSinceDoubleMove = 0;
                 Array.Resize(ref Pattern, Pattern.Length - 1);
                 GenerateMoves(); // update moves with the new pattern; might come up with a better solution later
 
@@ -57,7 +57,10 @@ namespace Pieces
             else if (square.GetComponentInChildren<Pawn>())
             {
                 // en passant BABY
-                Destroy(square.transform.GetChild(0).gameObject);
+                if (square.GetComponentInChildren<Pawn>().movesSinceDoubleMove == 1)
+                {
+                    Destroy(square.transform.GetChild(0).gameObject);
+                }
             }
         }
 
