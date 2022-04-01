@@ -141,7 +141,7 @@ public class GameManager : MonoBehaviour
             }
             else if (clickedObject.parent.CompareTag("Piece"))
             {
-                // the next nast if clause allows easy piece changing mid-move, if the player needs so 
+                // the next nasty if clause allows easy piece changing mid-move, if the player needs so 
                 if (_selectedPiece && 
                     _selectedPiece.pieceColour != clickedObject.parent.GetComponent<Piece>().pieceColour) 
                 {

@@ -54,9 +54,9 @@ namespace Pieces
                 // promotion
                 GameManager.AskForPromotion(this, possibleDestination);
             }
-            else if (square.transform.childCount != 0)
+            else if (square.GetComponentInChildren<Pawn>())
             {
-                // en passant
+                // en passant BABY
                 Destroy(square.transform.GetChild(0).gameObject);
             }
         }
