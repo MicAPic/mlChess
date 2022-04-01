@@ -5,13 +5,13 @@ namespace Pieces
 {
     public abstract class SteppingPiece : Piece
     {
-        protected override void GenerateMoves()
+        public override void GenerateMoves()
         {
             PossibleDestinations = new List<GameObject>();
 
-            foreach (var destination in Pattern)
+            foreach (var index in Pattern)
             {
-                var square = GameManager.squareList[CurrentPos + destination];
+                var square = GameManager.squareList[CurrentPos + index];
                 if (square != null)
                 {
                     PossibleDestinations.Add(square);

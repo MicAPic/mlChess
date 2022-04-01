@@ -5,14 +5,14 @@ namespace Pieces
 {
     public abstract class SlidingPiece : Piece
     {
-        protected override void GenerateMoves()
+        public override void GenerateMoves()
         {
             PossibleDestinations = new List<GameObject>();
 
-            foreach (var destination in Pattern)
+            foreach (var index in Pattern)
             {
                 var k = 1;
-                var square = GameManager.squareList[CurrentPos + destination];
+                var square = GameManager.squareList[CurrentPos + index];
                 while (square != null) 
                 {
                     PossibleDestinations.Add(square);
@@ -22,7 +22,7 @@ namespace Pieces
                         break;
                     }
                     k++;
-                    square = GameManager.squareList[CurrentPos + destination * k];
+                    square = GameManager.squareList[CurrentPos + index * k];
                 }
             }
         }

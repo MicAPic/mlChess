@@ -180,10 +180,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Queen
+  m_text: "\u2654Queen"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f5bb83f121d854e27ab52c4ba87afce4, type: 2}
+  m_sharedMaterial: {fileID: 6276479973138435380, guid: f5bb83f121d854e27ab52c4ba87afce4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -2, y: 4, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -686,8 +686,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Submit
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f5bb83f121d854e27ab52c4ba87afce4, type: 2}
+  m_sharedMaterial: {fileID: 6276479973138435380, guid: f5bb83f121d854e27ab52c4ba87afce4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2128,7 +2128,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Option A
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f5bb83f121d854e27ab52c4ba87afce4, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2192,7 +2192,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &312043182
@@ -3863,7 +3863,7 @@ GameObject:
   - component: {fileID: 795698105}
   - component: {fileID: 795698104}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: 'Title Text '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3883,10 +3883,10 @@ RectTransform:
   m_Father: {fileID: 1408058701}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 50, y: -37.5}
+  m_SizeDelta: {x: 200, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &795698104
 MonoBehaviour:
@@ -3910,8 +3910,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Promote to:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f5bb83f121d854e27ab52c4ba87afce4, type: 2}
+  m_sharedMaterial: {fileID: 6276479973138435380, guid: f5bb83f121d854e27ab52c4ba87afce4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4014,9 +4014,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf7422d22025648908d1651cf77a2318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  promoteTo: Queen
+  ui: {fileID: 1094604976}
   squareList: []
+  promoteTo: Queen
   activeCamera: {fileID: 689863203}
+  promotionPopup: {fileID: 2044065083}
 --- !u!4 &796271163
 Transform:
   m_ObjectHideFlags: 0
@@ -4065,9 +4067,9 @@ RectTransform:
   m_Father: {fileID: 1408058701}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 50, y: -102.5}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &913372016
@@ -4113,7 +4115,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 913372017}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1094604976}
+        m_TargetAssemblyTypeName: UI, Assembly-CSharp
+        m_MethodName: ToggleSubmenu
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2044065083}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 796271162}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: PromotePawn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &913372017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4615,6 +4641,7 @@ GameObject:
   - component: {fileID: 1094604974}
   - component: {fileID: 1094604973}
   - component: {fileID: 1094604972}
+  - component: {fileID: 1094604976}
   m_Layer: 5
   m_Name: InGameUI
   m_TagString: Untagged
@@ -4703,6 +4730,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1094604976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1094604971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af60574ef8910426b8b07278c509dd9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pieceDropdown: {fileID: 1846491066}
 --- !u!1 &1102258496
 GameObject:
   m_ObjectHideFlags: 0
@@ -8119,9 +8159,9 @@ RectTransform:
   m_Father: {fileID: 1408058701}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 50, y: -72.5}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1846491066
@@ -8174,17 +8214,29 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: Queen
+    - m_Text: "\u2654Queen"
       m_Image: {fileID: 0}
-    - m_Text: Rook
+    - m_Text: "\u2656Rook"
       m_Image: {fileID: 0}
-    - m_Text: Bishop
+    - m_Text: "\u2657Bishop"
       m_Image: {fileID: 0}
-    - m_Text: Knight
+    - m_Text: "\u2658Knight"
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1094604976}
+        m_TargetAssemblyTypeName: UI, Assembly-CSharp
+        m_MethodName: ChangePieceForPromoting
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &1846491067
 MonoBehaviour:
@@ -9996,7 +10048,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2044065084
 RectTransform:
   m_ObjectHideFlags: 0

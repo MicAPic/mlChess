@@ -1,11 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using Pieces;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Debug = UnityEngine.Debug;
 
 public class GameManager : MonoBehaviour
@@ -13,6 +11,8 @@ public class GameManager : MonoBehaviour
     [Header("Utility")]
     public UI ui;
     public List<GameObject> squareList;
+    public List<Piece> whitePieces;
+    public List<Piece> blackPieces;
     public string promoteTo = "Queen";
 
     private Piece _selectedPiece;
@@ -27,11 +27,32 @@ public class GameManager : MonoBehaviour
     }
 
     // Update is called once per frame
+    private bool _isFirstFrame = true;
     void Update()
     {
+        if (_isFirstFrame) // update on the first frame (after awake & start)
+        {
+            UpdateMoves();
+            _isFirstFrame = false;
+        }
+        
         if (Input.GetMouseButtonDown(0))
         {
             HandleSelection();
+        }
+    }
+    
+    public void UpdateMoves()
+    {
+        //updates list of moves for each piece on the board
+        foreach (var piece in whitePieces)
+        {
+            piece.GenerateMoves();
+        }
+
+        foreach (var piece in blackPieces)
+        {
+            piece.GenerateMoves();
         }
     }
 
@@ -49,9 +70,20 @@ public class GameManager : MonoBehaviour
     public void PromotePawn()
     {
         var promotedPieceName = _pawnToPromote.pieceColour.ToString()[0] + promoteTo;
-        Instantiate(Resources.Load("Prefabs/" + promotedPieceName), 
-                    _promotionLocation.transform);
+        var newPiece = Resources.Load("Prefabs/" + promotedPieceName) as GameObject;
+        Instantiate(newPiece, _promotionLocation.transform);
         Destroy(_pawnToPromote.gameObject);
+        
+        if (_pawnToPromote.pieceColour == Piece.PieceColour.black)
+        {
+            blackPieces.Remove(_pawnToPromote);
+            blackPieces.Add(newPiece.GetComponent<Piece>());
+        }
+        else
+        {
+            whitePieces.Remove(_pawnToPromote);
+            whitePieces.Add(newPiece.GetComponent<Piece>());
+        }
     }
     //
 
@@ -66,11 +98,23 @@ public class GameManager : MonoBehaviour
         GameObject chessBoard = GameObject.Find("Chess Board");
         foreach (Transform child in chessBoard.transform)
         {
-            if (child.CompareTag("Square"))
+            // if (child.CompareTag("Square")) // all children of chess board are supposed to be squares
             {
                 squareList.Add(child.gameObject);
+                if (child.childCount != 0)
+                {
+                    var piece = child.GetChild(0).GetComponent<Piece>(); // child[0] is always a piece 
+                    if (piece.pieceColour == Piece.PieceColour.white)
+                    {
+                        whitePieces.Add(piece);
+                    }
+                    else
+                    {
+                        blackPieces.Add(piece);
+                    }
+                }
             }
-            
+
             counter++;
             if (counter % 8 == 0)
             {
@@ -80,7 +124,7 @@ public class GameManager : MonoBehaviour
         
         squareList.AddRange(Enumerable.Repeat<GameObject>(null, 19)); //adds a top border
     }
-    
+
     void HandleSelection()
     {
         var ray = activeCamera.ScreenPointToRay(Input.mousePosition);
@@ -97,7 +141,9 @@ public class GameManager : MonoBehaviour
             }
             else if (clickedObject.parent.CompareTag("Piece"))
             {
-                if (_selectedPiece)
+                // the next nast if clause allows easy piece changing mid-move, if the player needs so 
+                if (_selectedPiece && 
+                    _selectedPiece.pieceColour != clickedObject.parent.GetComponent<Piece>().pieceColour) 
                 {
                     var square = clickedObject.parent.parent;
                     _selectedPiece.MakeMove(square.gameObject);

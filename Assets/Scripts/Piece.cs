@@ -15,7 +15,7 @@ public abstract class Piece : MonoBehaviour
     protected int[] Pattern;
     protected int CurrentPos;
     protected GameManager GameManager { get; private set; }
-    protected List<GameObject> PossibleDestinations;
+    public List<GameObject> PossibleDestinations;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -32,8 +32,6 @@ public abstract class Piece : MonoBehaviour
 
     public virtual void MakeMove(GameObject possibleDestination)
     {
-        GenerateMoves();
-
         if (PossibleDestinations.Contains(possibleDestination))
         {
             if (possibleDestination.transform.childCount != 0)
@@ -43,6 +41,15 @@ public abstract class Piece : MonoBehaviour
                 if (target.pieceColour != pieceColour) 
                 {
                     Destroy(target.gameObject);
+                    
+                    if (target.pieceColour == PieceColour.black)
+                    {
+                        GameManager.blackPieces.Remove(target);
+                    }
+                    else
+                    {
+                        GameManager.whitePieces.Remove(target);
+                    }
                 }
                 else return;
             }
@@ -54,9 +61,10 @@ public abstract class Piece : MonoBehaviour
             objectTransform.parent = possibleDestination.transform;
             objectTransform.localPosition = localCoordinates;
             
+            GameManager.UpdateMoves();
         }
     }
 
     // generates pseudo-legal moves, which ideally should be checked in MakeMove
-    protected abstract void GenerateMoves();
+    public abstract void GenerateMoves();
 }
