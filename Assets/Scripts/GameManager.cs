@@ -48,10 +48,10 @@ public class GameManager : MonoBehaviour
         foreach (var piece in whitePieces.Union(blackPieces))
         {
             piece.GenerateMoves();
-            if (piece.movesSinceDoubleMove != null)
-            {
-                piece.movesSinceDoubleMove++;
-            }
+            // if (piece.movesSinceDoubleMove != null)
+            // {
+            //     piece.movesSinceDoubleMove++;
+            // }
         }
     }
 
@@ -69,19 +69,19 @@ public class GameManager : MonoBehaviour
     public void PromotePawn()
     {
         var promotedPieceName = _pawnToPromote.pieceColour.ToString()[0] + promoteTo;
-        var newPiece = Resources.Load("Prefabs/" + promotedPieceName) as GameObject;
-        Instantiate(newPiece, _promotionLocation.transform);
+        var instance = Instantiate(Resources.Load("Prefabs/" + promotedPieceName) as GameObject,
+                                            _promotionLocation.transform);
         Destroy(_pawnToPromote.gameObject);
         
         if (_pawnToPromote.pieceColour == Piece.PieceColour.black)
         {
             blackPieces.Remove(_pawnToPromote);
-            blackPieces.Add(newPiece.GetComponent<Piece>());
+            blackPieces.Add(instance.GetComponent<Piece>());
         }
         else
         {
             whitePieces.Remove(_pawnToPromote);
-            whitePieces.Add(newPiece.GetComponent<Piece>());
+            whitePieces.Add(instance.GetComponent<Piece>());
         }
     }
     //

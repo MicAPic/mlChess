@@ -141,4 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pieceColour: 1
-  PossibleSquares: []
+  PossibleDestinations: []
+  inCheck: 0
+  leftRook: {fileID: 0}
+  rightRook: {fileID: 0}

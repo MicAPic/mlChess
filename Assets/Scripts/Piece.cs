@@ -11,10 +11,12 @@ public abstract class Piece : MonoBehaviour
         white
     }
     public PieceColour pieceColour;
-    public int? movesSinceDoubleMove = null; //needed to prevent bugs in en passant
+    // public int? movesSinceDoubleMove = null; //needed to prevent bugs in en passant
 
     protected int[] Pattern;
+    protected int PreviousPos;
     protected int CurrentPos;
+    protected internal bool HasMoved;
     protected GameManager GameManager { get; private set; }
     public List<GameObject> PossibleDestinations;
 
@@ -24,12 +26,6 @@ public abstract class Piece : MonoBehaviour
         GameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         CurrentPos = GameManager.squareList.IndexOf(transform.parent.gameObject);
     }
-
-    // // Update is called once per frame
-    // void Update()
-    // {
-    //
-    // }
 
     public virtual void MakeMove(GameObject possibleDestination)
     {
@@ -54,7 +50,13 @@ public abstract class Piece : MonoBehaviour
                 }
                 else return;
             }
+            
+            if (!HasMoved)
+            {
+                HasMoved = true;
+            }
 
+            PreviousPos = CurrentPos;
             CurrentPos = GameManager.squareList.IndexOf(possibleDestination);
             // move the piece object in the game world
             var objectTransform = transform;

@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Pieces.SlidingPieces
 {
     public class Rook : SlidingPiece
@@ -11,12 +13,11 @@ namespace Pieces.SlidingPieces
         //           So
         //
         // based on the source from: https://www.chessprogramming.org/
-        
+
         protected override void Start()
         {
             base.Start();
             Pattern = new[] {-10, -1, 1, 10};
         }
-        
     }
 }

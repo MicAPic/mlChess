@@ -35,7 +35,7 @@ namespace Pieces
             if (!_madeFirstMove) // this makes the pawn's initial double-square move possible
             {
                 _madeFirstMove = true;
-                movesSinceDoubleMove = 0;
+                // movesSinceDoubleMove = 0;
                 Array.Resize(ref Pattern, Pattern.Length - 1);
                 GenerateMoves(); // update moves with the new pattern; might come up with a better solution later
 
@@ -57,7 +57,8 @@ namespace Pieces
             else if (square.GetComponentInChildren<Pawn>())
             {
                 // en passant BABY
-                if (square.GetComponentInChildren<Pawn>().movesSinceDoubleMove == 1)
+                var pawn = square.GetComponentInChildren<Pawn>();
+                if (Mathf.Abs(pawn.CurrentPos - pawn.PreviousPos) == 20) // if the enemy pawn just made the double move
                 {
                     Destroy(square.transform.GetChild(0).gameObject);
                 }
