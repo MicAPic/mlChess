@@ -38,7 +38,7 @@ namespace Pieces.SteppingPieces
             var positionIndexDiff = CurrentPos - PreviousPos;
             if (Mathf.Abs(positionIndexDiff) == 2) // if this king just castled 
             {
-                Debug.Log("wtf");
+               
                 // move the corresponding rook too 
                 if (positionIndexDiff > 0) 
                 {

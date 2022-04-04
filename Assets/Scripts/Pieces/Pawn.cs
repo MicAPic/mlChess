@@ -35,9 +35,8 @@ namespace Pieces
             if (!_madeFirstMove) // this makes the pawn's initial double-square move possible
             {
                 _madeFirstMove = true;
-                // movesSinceDoubleMove = 0;
                 Array.Resize(ref Pattern, Pattern.Length - 1);
-                GenerateMoves(); // update moves with the new pattern; might come up with a better solution later
+                GenerateMoves(); // this will not be needed when the pieces will move one at a time 
 
                 // add possibility of en passant for nearby pawns
                 foreach (var index in _enPassantCheckPattern)
@@ -45,7 +44,11 @@ namespace Pieces
                     var pawn = GameManager.squareList[CurrentPos + index].GetComponentInChildren<Pawn>();
                     if (pawn != null && pawn.pieceColour != pieceColour)
                     {
-                        pawn.PossibleDestinations.Add(square);
+                        // check if pawn is pinned:
+                        if (pawn.pinDirection % (GameManager.squareList.IndexOf(square) - CurrentPos) == 0)
+                        {
+                            pawn.PossibleDestinations.Add(square);
+                        }
                     }
                 }
             }
@@ -73,22 +76,21 @@ namespace Pieces
             {
                 var square = GameManager.squareList[CurrentPos + index];
                 // not good code...
-                if (square != null)
+                if (square != null && pinDirection % index == 0)
                 {
                     if (index % 10 == 0)
                     {
                         if (square.transform.childCount == 0)
                         {
                             PossibleDestinations.Add(square);
+                            GiveCheck(square);
                         }
                         else break; // if the piece is blocked, prevent it from making a double-square move 
                     }
-                    else 
+                    else if (square.transform.childCount != 0)
                     {
-                        if (square.transform.childCount != 0) 
-                        {
-                            PossibleDestinations.Add(square);
-                        }
+                        PossibleDestinations.Add(square);
+                        GiveCheck(square);
                     }
                 }
             }

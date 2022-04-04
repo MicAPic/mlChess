@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pieceColour: 1
-  PossibleSquares: []
+  hisMajesty: {fileID: 0}
+  PossibleDestinations: []
 --- !u!1 &7636357689870895867
 GameObject:
   m_ObjectHideFlags: 0

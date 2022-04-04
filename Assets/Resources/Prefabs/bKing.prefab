@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pieceColour: 0
+  hisMajesty: {fileID: 0}
   PossibleDestinations: []
   inCheck: 0
   leftRook: {fileID: 0}

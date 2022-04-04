@@ -12,9 +12,10 @@ namespace Pieces
             foreach (var index in Pattern)
             {
                 var square = GameManager.squareList[CurrentPos + index];
-                if (square != null)
+                if (square != null && pinDirection % index == 0)
                 {
                     PossibleDestinations.Add(square);
+                    GiveCheck(square);
                 }
             }
         }

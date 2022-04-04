@@ -48,10 +48,6 @@ public class GameManager : MonoBehaviour
         foreach (var piece in whitePieces.Union(blackPieces))
         {
             piece.GenerateMoves();
-            // if (piece.movesSinceDoubleMove != null)
-            // {
-            //     piece.movesSinceDoubleMove++;
-            // }
         }
     }
 

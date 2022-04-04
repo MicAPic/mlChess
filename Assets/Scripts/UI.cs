@@ -11,6 +11,9 @@ using UnityEditor;
 
 public class UI : MonoBehaviour
 {
+    public GameObject blackCheckPopup;
+    public GameObject whiteCheckPopup;
+    
     [SerializeField]
     private TMP_Dropdown pieceDropdown;
 
