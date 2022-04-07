@@ -3,18 +3,28 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Pieces;
+using Pieces.SteppingPieces;
 using UnityEngine;
 using Debug = UnityEngine.Debug;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Kings")] 
+    [SerializeField] 
+    private King whiteKing;
+    [SerializeField] 
+    private King blackKing;
+    
+    [Header("Game Rules & Logic")]
+    public Piece.PieceColour turnOf = Piece.PieceColour.white;
+    public string promoteTo = "Queen";
+    
     [Header("Utility")]
-    public UI ui;
     public List<GameObject> squareList;
     public List<Piece> whitePieces;
     public List<Piece> blackPieces;
-    public string promoteTo = "Queen";
 
+    public UI ui;
     private Piece _selectedPiece;
     [SerializeField]
     private Camera activeCamera;
@@ -41,14 +51,16 @@ public class GameManager : MonoBehaviour
             HandleSelection();
         }
     }
-    
-    public void UpdateMoves()
+
+    public void ChangeTurn()
     {
-        //updates list of moves for each piece on the board
-        foreach (var piece in whitePieces.Union(blackPieces))
+        UpdateMoves();
+        if (whiteKing.checkingEnemies.Count > 1 || blackKing.checkingEnemies.Count > 1)
         {
-            piece.GenerateMoves();
+            // prevents bugs in multi-checks 
+            UpdateMoves(); 
         }
+        turnOf = Piece.Next(turnOf);
     }
 
     // this code handles promotion of pawns  
@@ -81,6 +93,15 @@ public class GameManager : MonoBehaviour
         }
     }
     //
+    
+    void UpdateMoves()
+    {
+        //updates list of moves for each piece on the board
+        foreach (var piece in whitePieces.Union(blackPieces))
+        {
+            piece.GenerateMoves();
+        }
+    }
 
     void GenerateBoard()
     {
@@ -130,7 +151,7 @@ public class GameManager : MonoBehaviour
 
             if (clickedObject.CompareTag("Square") && _selectedPiece)
             {
-                _selectedPiece.MakeMove(clickedObject.gameObject);
+                _selectedPiece.StartTurn(clickedObject.gameObject);
                 _selectedPiece = null;
                 Debug.Log(clickedObject.name);
             }
@@ -141,7 +162,7 @@ public class GameManager : MonoBehaviour
                     _selectedPiece.pieceColour != clickedObject.parent.GetComponent<Piece>().pieceColour) 
                 {
                     var square = clickedObject.parent.parent;
-                    _selectedPiece.MakeMove(square.gameObject);
+                    _selectedPiece.StartTurn(square.gameObject);
                     _selectedPiece = null;
                     Debug.Log(square.name);
                     return;

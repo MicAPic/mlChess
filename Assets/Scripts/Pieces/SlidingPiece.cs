@@ -24,13 +24,19 @@ namespace Pieces
             {
                 var k = 1;
                 var square = GameManager.squareList[CurrentPos + index];
-                while (square != null && pinDirection % index == 0) // add squares
+                while (square != null && pinDirection % index == 0 && HisMajesty.checkingEnemies.Count < 2) // add squares
                 {
-                    PossibleDestinations.Add(square);
+                    PossibleDestinations.Add(square); 
                     GiveCheck(square);
                     if (square.transform.childCount != 0)
                     {
-                        // if the path is blocked, prevent the generation of new moves 
+                        if (square.GetComponentInChildren<Piece>().pieceColour == pieceColour ||
+                            square.GetComponentInChildren<King>())
+                        {
+                            // don't add pieces of the same colour to the move list
+                            PossibleDestinations.RemoveAt(PossibleDestinations.Count - 1);
+                        }
+                        // if the path is blocked, prevent the generation of new moves
                         break;
                     }
                     k++;
@@ -44,7 +50,8 @@ namespace Pieces
                         _piecesAhead.Add(square.GetComponentInChildren<Piece>());
                         
                         if (square.GetComponentInChildren<King>() &&
-                            square.GetComponentInChildren<Piece>().pieceColour != pieceColour)
+                            square.GetComponentInChildren<Piece>().pieceColour != pieceColour &&
+                            _piecesAhead.Count > 1)
                         {
                             isPinningAPiece = true;
                             break;
@@ -84,7 +91,7 @@ namespace Pieces
                     }
                     else
                     {
-                        _piecesAhead = new List<Piece>();
+                        _piecesAhead.Clear();
                     }
                 }
             }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Pieces.SlidingPieces;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -14,7 +15,7 @@ namespace Pieces.SteppingPieces
         //            -10
         //             So
         // based on the source from: https://www.chessprogramming.org/
-        public bool inCheck;
+        public List<Piece> checkingEnemies;
         
         // the following is used in castling
         [SerializeField]
@@ -29,53 +30,64 @@ namespace Pieces.SteppingPieces
         {
             base.Start();
             Pattern = new[] {-11, -10, -9, -1, 1, 9, 10, 11};
-        }
-
-        public override void MakeMove(GameObject possibleDestination)
-        {
-            base.MakeMove(possibleDestination);
-
-            var positionIndexDiff = CurrentPos - PreviousPos;
-            if (Mathf.Abs(positionIndexDiff) == 2) // if this king just castled 
-            {
-               
-                // move the corresponding rook too 
-                if (positionIndexDiff > 0) 
-                {
-                    var square = GameManager.squareList[CurrentPos - 1]; // to the left (kingside)
-                    rightRook.PossibleDestinations.Add(square);
-                    rightRook.MakeMove(square);
-                }
-                else
-                {
-                    var square = GameManager.squareList[CurrentPos + 1]; // to the right (queenside)
-                    leftRook.PossibleDestinations.Add(square);
-                    leftRook.MakeMove(square);
-                }
-            }
+            checkingEnemies = new List<Piece>();
         }
 
         public override void GenerateMoves()
         {
             base.GenerateMoves();
-            
-            // left castling check
-            if (!HasMoved && !leftRook.HasMoved && !inCheck)
+            if (!HasMoved && checkingEnemies.Count == 0)
             {
-                if (CastlingPossibilityCheck(_leftCastlingCheckPattern))
+                // left castling check
+                if (!leftRook.HasMoved)
                 {
-                    PossibleDestinations.Add(GameManager.squareList[CurrentPos - 2]);
+                    if (CastlingPossibilityCheck(_leftCastlingCheckPattern))
+                    {
+                        PossibleDestinations.Add(GameManager.squareList[CurrentPos - 2]);
+                    }
+                }
+
+                // right castling check
+                if (!rightRook.HasMoved)
+                {
+                    if (CastlingPossibilityCheck(_rightCastlingCheckPattern))
+                    {
+                        PossibleDestinations.Add(GameManager.squareList[CurrentPos + 2]);
+                    }
+                }
+                
+            }
+            
+        }
+        
+        protected override void MakeMove(GameObject destination)
+        {
+            base.MakeMove(destination);
+
+            var positionIndexDiff = CurrentPos - PreviousPos;
+            if (Mathf.Abs(positionIndexDiff) == 2) // if this king just castled 
+            {
+                // move the corresponding rook too 
+                if (positionIndexDiff > 0) 
+                {
+                    var square = GameManager.squareList[CurrentPos - 1]; // to the left (kingside)
+                    rightRook.PossibleDestinations.Add(square);
+                    rightRook.StartTurn(square);
+                }
+                else
+                {
+                    var square = GameManager.squareList[CurrentPos + 1]; // to the right (queenside)
+                    leftRook.PossibleDestinations.Add(square);
+                    leftRook.StartTurn(square);
                 }
             }
 
-            // right castling check
-            if (!HasMoved && !rightRook.HasMoved && !inCheck)
+            foreach (var enemy in checkingEnemies)
             {
-                if (CastlingPossibilityCheck(_rightCastlingCheckPattern))
-                {
-                    PossibleDestinations.Add(GameManager.squareList[CurrentPos + 2]);
-                }
+                enemy.IsGivingCheck = false;
             }
+
+            checkingEnemies.Clear();
         }
 
         private bool CastlingPossibilityCheck(int[] pattern)

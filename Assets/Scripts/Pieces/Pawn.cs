@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Transactions;
+using Pieces.SteppingPieces;
 using UnityEngine;
 
 namespace Pieces
@@ -27,9 +28,41 @@ namespace Pieces
             Pattern = pieceColour == PieceColour.black ? new[] {-9, -11, -10, -20} : new[] {9, 11, 10, 20};
         }
 
-        public override void MakeMove(GameObject possibleDestination)
+        public override void GenerateMoves()
         {
-            base.MakeMove(possibleDestination);
+            PossibleDestinations = new List<GameObject>();
+            
+            foreach (var index in Pattern)
+            {
+                var square = GameManager.squareList[CurrentPos + index];
+                // not good code...; rewrite later
+                if (square != null && pinDirection % index == 0 && HisMajesty.checkingEnemies.Count < 2)
+                {
+                    if (index % 10 == 0)
+                    {
+                        if (square.transform.childCount == 0)
+                        {
+                            PossibleDestinations.Add(square);
+                            GiveCheck(square);
+                        }
+                        else break; // if the piece is blocked, prevent it from making a double-square move 
+                    }
+                    else if (square.transform.childCount != 0 && 
+                             square.GetComponentInChildren<Piece>().pieceColour != pieceColour)
+                    {
+                        if (!square.GetComponentInChildren<King>())
+                        {
+                            PossibleDestinations.Add(square);
+                        }
+                        GiveCheck(square);
+                    }
+                }
+            }
+        }
+        
+        protected override void MakeMove(GameObject destination)
+        {
+            base.MakeMove(destination);
 
             var square = GameManager.squareList[CurrentPos - Pattern[2]]; // ±10, one square behind
             if (!_madeFirstMove) // this makes the pawn's initial double-square move possible
@@ -55,7 +88,7 @@ namespace Pieces
             else if (GetComponentInParent<Square>().promotionSquare)
             {
                 // promotion
-                GameManager.AskForPromotion(this, possibleDestination);
+                GameManager.AskForPromotion(this, destination);
             }
             else if (square.GetComponentInChildren<Pawn>())
             {
@@ -64,34 +97,6 @@ namespace Pieces
                 if (Mathf.Abs(pawn.CurrentPos - pawn.PreviousPos) == 20) // if the enemy pawn just made the double move
                 {
                     Destroy(square.transform.GetChild(0).gameObject);
-                }
-            }
-        }
-
-        public override void GenerateMoves()
-        {
-            PossibleDestinations = new List<GameObject>();
-            
-            foreach (var index in Pattern)
-            {
-                var square = GameManager.squareList[CurrentPos + index];
-                // not good code...
-                if (square != null && pinDirection % index == 0)
-                {
-                    if (index % 10 == 0)
-                    {
-                        if (square.transform.childCount == 0)
-                        {
-                            PossibleDestinations.Add(square);
-                            GiveCheck(square);
-                        }
-                        else break; // if the piece is blocked, prevent it from making a double-square move 
-                    }
-                    else if (square.transform.childCount != 0)
-                    {
-                        PossibleDestinations.Add(square);
-                        GiveCheck(square);
-                    }
                 }
             }
         }
