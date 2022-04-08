@@ -28,21 +28,25 @@ public abstract class Piece : MonoBehaviour
         }
     }
     //
-    
+    [Header("Attributes")]
     public PieceColour pieceColour;
-    
-    protected King HisMajesty;
-    protected int[] Pattern;
+
+    [Header("Utility")]
     public int pinDirection;
+    protected int[] Pattern;
     protected internal int PreviousPos;
     protected internal int CurrentPos;
     protected internal bool HasMoved;
     protected internal bool IsGivingCheck;
     protected GameManager GameManager { get; private set; }
     public List<GameObject> PossibleDestinations;
+    
+    [Header("Kings")]
+    protected King HisMajesty;
+    protected King PeskyEnemyKing;
 
     // Start is called before the first frame update
-    protected virtual void Start()
+    public virtual void Start()
     {
         GameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         CurrentPos = GameManager.squareList.IndexOf(transform.parent.gameObject);
@@ -51,15 +55,18 @@ public abstract class Piece : MonoBehaviour
         HisMajesty = GameObject.Find(kingsName).GetComponent<King>();
     }
 
+    // generates pseudo-legal moves, which ideally should be checked in MakeMove
+    public abstract void GenerateMoves();
+
     public void StartTurn(GameObject possibleDestination)
     {
         if (PossibleDestinations.Contains(possibleDestination))
         {
-            StartCoroutine(AttemptCapture(possibleDestination));
+            StartCoroutine(AttemptCapture(possibleDestination, true));
         }
     }
     
-    IEnumerator AttemptCapture(GameObject destination)
+    protected IEnumerator AttemptCapture(GameObject destination, bool isMoving)
     {
         if (destination.transform.childCount != 0)
         {
@@ -78,15 +85,24 @@ public abstract class Piece : MonoBehaviour
                 GameManager.whitePieces.Remove(target);
             }
         }
-            
-        MakeMove(destination);
+
+        if (isMoving)
+        {
+            MakeMove(destination);
+        }
+        else
+        {
+            GameManager.UpdateMoves();
+        }
     }
 
     protected virtual void MakeMove(GameObject destination)
     {
-        if (!HasMoved)
+        HasMoved = true;
+
+        if (IsGivingCheck)
         {
-            HasMoved = true;
+            Uncheck(PeskyEnemyKing);
         }
 
         PreviousPos = CurrentPos;
@@ -102,10 +118,6 @@ public abstract class Piece : MonoBehaviour
         GameManager.ChangeTurn();
     }
 
-
-    // generates pseudo-legal moves, which ideally should be checked in MakeMove
-    public abstract void GenerateMoves();
-
     protected void GiveCheck(GameObject square)
     {
         if (square.GetComponentInChildren<King>())
@@ -113,11 +125,22 @@ public abstract class Piece : MonoBehaviour
             var king = square.GetComponentInChildren<King>();
             if (king.pieceColour != pieceColour && !IsGivingCheck)
             {
+                PeskyEnemyKing = king;
                 king.checkingEnemies.Add(this); 
                 IsGivingCheck = true;
                 GameManager.ui.statusBar.SetActive(true);
             }
         }
+    }
+
+    protected void Uncheck(King king)
+    {
+        foreach (var enemy in king.checkingEnemies)
+        {
+            enemy.IsGivingCheck = false;
+        }
+
+        king.checkingEnemies.Clear();
     }
 
     protected void TogglePin(Piece target, int direction)

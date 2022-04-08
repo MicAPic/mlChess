@@ -14,6 +14,7 @@ namespace Pieces
             var pinnedPieceSet = false;
         
             PossibleDestinations = new List<GameObject>();
+
             if (_piecesAhead.Count != 0)
             {
                 TogglePin(_piecesAhead[0], 0);

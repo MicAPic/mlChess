@@ -8,7 +8,7 @@ namespace Pieces.SlidingPieces
         //
         // based on the source from: https://www.chessprogramming.org/
         
-        protected override void Start()
+        public override void Start()
         {
             base.Start();
             Pattern = new[] {-11, -9, 9, 11};

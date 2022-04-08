@@ -19,7 +19,7 @@ namespace Pieces
         private bool _madeFirstMove;
         private readonly int[] _enPassantCheckPattern = {-1, 1};
 
-        protected override void Start()
+        public override void Start()
         {
             base.Start();
             
@@ -31,7 +31,7 @@ namespace Pieces
         public override void GenerateMoves()
         {
             PossibleDestinations = new List<GameObject>();
-            
+
             foreach (var index in Pattern)
             {
                 var square = GameManager.squareList[CurrentPos + index];
@@ -74,7 +74,10 @@ namespace Pieces
                 // add possibility of en passant for nearby pawns
                 foreach (var index in _enPassantCheckPattern)
                 {
-                    var pawn = GameManager.squareList[CurrentPos + index].GetComponentInChildren<Pawn>();
+                    var squareWithEnemy = GameManager.squareList[CurrentPos + index];
+                    if (squareWithEnemy == null) continue;
+                    
+                    var pawn = squareWithEnemy.GetComponentInChildren<Pawn>();
                     if (pawn != null && pawn.pieceColour != pieceColour)
                     {
                         // check if pawn is pinned:
@@ -96,7 +99,7 @@ namespace Pieces
                 var pawn = square.GetComponentInChildren<Pawn>();
                 if (Mathf.Abs(pawn.CurrentPos - pawn.PreviousPos) == 20) // if the enemy pawn just made the double move
                 {
-                    Destroy(square.transform.GetChild(0).gameObject);
+                    StartCoroutine(AttemptCapture(square, false));
                 }
             }
         }

@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     [Header("Game Rules & Logic")]
     public Piece.PieceColour turnOf = Piece.PieceColour.white;
     public string promoteTo = "Queen";
+    [SerializeField]
+    private GameObject promotionPiecePool;
     
     [Header("Utility")]
     public List<GameObject> squareList;
@@ -76,25 +78,31 @@ public class GameManager : MonoBehaviour
     
     public void PromotePawn()
     {
+        // don't use resources.load; rewrite later
         var promotedPieceName = _pawnToPromote.pieceColour.ToString()[0] + promoteTo;
-        var instance = Instantiate(Resources.Load("Prefabs/" + promotedPieceName) as GameObject,
+        var instance = Instantiate(promotionPiecePool.transform.Find(promotedPieceName),
                                             _promotionLocation.transform);
+        var piece = instance.GetComponent<Piece>();
+        // this is required because the new piece can give check
+        piece.Start();
+        piece.GenerateMoves();
+        //
         Destroy(_pawnToPromote.gameObject);
         
         if (_pawnToPromote.pieceColour == Piece.PieceColour.black)
         {
             blackPieces.Remove(_pawnToPromote);
-            blackPieces.Add(instance.GetComponent<Piece>());
+            blackPieces.Add(piece);
         }
         else
         {
             whitePieces.Remove(_pawnToPromote);
-            whitePieces.Add(instance.GetComponent<Piece>());
+            whitePieces.Add(piece);
         }
     }
     //
     
-    void UpdateMoves()
+    public void UpdateMoves()
     {
         //updates list of moves for each piece on the board
         foreach (var piece in whitePieces.Union(blackPieces))

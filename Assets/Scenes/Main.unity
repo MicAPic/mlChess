@@ -2543,7 +2543,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &426481860
@@ -3681,6 +3681,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8325954618956386790, guid: 1fba6e72292b146cc84bce040e30a540, type: 3}
+      propertyPath: debug
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8325954618956386790, guid: 1fba6e72292b146cc84bce040e30a540, type: 3}
       propertyPath: hisMajesty
       value: 
       objectReference: {fileID: 1365828496}
@@ -4357,12 +4361,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf7422d22025648908d1651cf77a2318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  whiteKing: {fileID: 1365828496}
+  blackKing: {fileID: 1698236346}
   turnOf: 1
-  ui: {fileID: 1094604976}
+  promoteTo: Queen
   squareList: []
   whitePieces: []
   blackPieces: []
-  promoteTo: Queen
+  ui: {fileID: 1094604976}
   activeCamera: {fileID: 689863203}
   promotionPopup: {fileID: 2044065083}
 --- !u!4 &796271163
@@ -8349,6 +8355,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1343deeb24b554d47b710f5ac9478fee, type: 3}
+--- !u!114 &1698236346 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6468127276620165068, guid: 955b11f40348c494e808038b9af98734, type: 3}
+  m_PrefabInstance: {fileID: 4774883001104085542}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a70ca1e2d85947c382c1e890cbee23d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1721587356
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11401,7 +11418,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &2140799015

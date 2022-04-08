@@ -16,7 +16,7 @@ namespace Pieces.SteppingPieces
         //
         // based on the source from: https://www.chessprogramming.org/
 
-        protected override void Start()
+        public override void Start()
         {
             base.Start();
             Pattern = new[] {-21, -19, -12, -8, 8, 12, 19, 21};

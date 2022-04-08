@@ -26,7 +26,7 @@ namespace Pieces.SteppingPieces
         private readonly int[] _rightCastlingCheckPattern = {1, 2};
         
 
-        protected override void Start()
+        public override void Start()
         {
             base.Start();
             Pattern = new[] {-11, -10, -9, -1, 1, 9, 10, 11};
@@ -81,13 +81,8 @@ namespace Pieces.SteppingPieces
                     leftRook.StartTurn(square);
                 }
             }
-
-            foreach (var enemy in checkingEnemies)
-            {
-                enemy.IsGivingCheck = false;
-            }
-
-            checkingEnemies.Clear();
+            
+            Uncheck(this);
         }
 
         private bool CastlingPossibilityCheck(int[] pattern)
