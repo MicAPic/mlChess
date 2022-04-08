@@ -2,9 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Pieces.SteppingPieces;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public abstract class Piece : MonoBehaviour
 {
@@ -66,7 +64,7 @@ public abstract class Piece : MonoBehaviour
         }
     }
     
-    protected IEnumerator AttemptCapture(GameObject destination, bool isMoving)
+    protected IEnumerator AttemptCapture(GameObject destination, bool moveAfterwards)
     {
         if (destination.transform.childCount != 0)
         {
@@ -86,11 +84,11 @@ public abstract class Piece : MonoBehaviour
             }
         }
 
-        if (isMoving)
+        if (moveAfterwards)
         {
             MakeMove(destination);
         }
-        else
+        else // used in en passant
         {
             GameManager.UpdateMoves();
         }

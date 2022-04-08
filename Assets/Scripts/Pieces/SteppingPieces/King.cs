@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Pieces.SlidingPieces;
 using UnityEngine;
@@ -36,6 +37,9 @@ namespace Pieces.SteppingPieces
         public override void GenerateMoves()
         {
             base.GenerateMoves();
+
+            RemoveIllegalMoves();
+
             if (!HasMoved && checkingEnemies.Count == 0)
             {
                 // left castling check
@@ -58,6 +62,22 @@ namespace Pieces.SteppingPieces
                 
             }
             
+        }
+
+        public void RemoveIllegalMoves()
+        {
+            // don't get in check
+            for (int i = PossibleDestinations.Count - 1; i >= 0; i--)
+            {
+                var square = PossibleDestinations[i].GetComponent<Square>();
+                var direction = GameManager.squareList.IndexOf(PossibleDestinations[i]) - CurrentPos; 
+                if (square.AttackedBy[Next(pieceColour)] || 
+                    pinDirection != 0 && direction % pinDirection == 0) // required to prevent bugs
+                {
+                    Debug.Log(pinDirection + " " + direction + square.name);
+                    PossibleDestinations.RemoveAt(i);
+                }
+            }
         }
         
         protected override void MakeMove(GameObject destination)
@@ -85,7 +105,7 @@ namespace Pieces.SteppingPieces
             Uncheck(this);
         }
 
-        private bool CastlingPossibilityCheck(int[] pattern)
+        bool CastlingPossibilityCheck(int[] pattern)
         {
             // check if castling to the left/right is possible
             foreach (var index in pattern)

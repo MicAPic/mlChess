@@ -5,6 +5,7 @@ using System.Linq;
 using Pieces;
 using Pieces.SteppingPieces;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using Debug = UnityEngine.Debug;
 
 public class GameManager : MonoBehaviour
@@ -56,12 +57,12 @@ public class GameManager : MonoBehaviour
 
     public void ChangeTurn()
     {
+        UpdateSquares();
         UpdateMoves();
-        if (whiteKing.checkingEnemies.Count > 1 || blackKing.checkingEnemies.Count > 1)
-        {
-            // prevents bugs in multi-checks 
-            UpdateMoves(); 
-        }
+
+        whiteKing.RemoveIllegalMoves(); 
+        blackKing.RemoveIllegalMoves();
+        
         turnOf = Piece.Next(turnOf);
     }
 
@@ -104,10 +105,22 @@ public class GameManager : MonoBehaviour
     
     public void UpdateMoves()
     {
-        //updates list of moves for each piece on the board
+        // updates list of moves for each piece on the board
         foreach (var piece in whitePieces.Union(blackPieces))
         {
             piece.GenerateMoves();
+        }
+    }
+
+    void UpdateSquares()
+    {
+        // resets the properties of board squares
+        foreach (var squareGameObject in squareList)
+        {
+            if (squareGameObject == null) continue;
+            var square = squareGameObject.GetComponent<Square>();
+            square.AttackedBy[Piece.PieceColour.white] = false;
+            square.AttackedBy[Piece.PieceColour.black] = false;
         }
     }
 
@@ -122,23 +135,20 @@ public class GameManager : MonoBehaviour
         GameObject chessBoard = GameObject.Find("Chess Board");
         foreach (Transform child in chessBoard.transform)
         {
-            // if (child.CompareTag("Square")) // all children of chess board are supposed to be squares
+            squareList.Add(child.gameObject);
+            if (child.childCount != 0)
             {
-                squareList.Add(child.gameObject);
-                if (child.childCount != 0)
+                var piece = child.GetChild(0).GetComponent<Piece>(); // child[0] is always a piece 
+                if (piece.pieceColour == Piece.PieceColour.white)
                 {
-                    var piece = child.GetChild(0).GetComponent<Piece>(); // child[0] is always a piece 
-                    if (piece.pieceColour == Piece.PieceColour.white)
-                    {
-                        whitePieces.Add(piece);
-                    }
-                    else
-                    {
-                        blackPieces.Add(piece);
-                    }
+                    whitePieces.Add(piece);
+                }
+                else
+                {
+                    blackPieces.Add(piece);
                 }
             }
-
+            
             counter++;
             if (counter % 8 == 0)
             {

@@ -14,8 +14,9 @@ namespace Pieces
             foreach (var index in Pattern)
             {
                 var square = GameManager.squareList[CurrentPos + index];
-                if (square != null && pinDirection % index == 0 && 
-                    (HisMajesty.checkingEnemies.Count < 2 || gameObject.GetComponent<King>()))
+                if (square != null && 
+                    (HisMajesty.checkingEnemies.Count < 2 || gameObject.GetComponent<King>()) &&
+                    (pinDirection == 0 || index % pinDirection == 0))
                 {
                     if (square.GetComponentInChildren<Piece>() &&
                         square.GetComponentInChildren<Piece>().pieceColour == pieceColour)
@@ -25,6 +26,7 @@ namespace Pieces
                     if (!square.GetComponentInChildren<King>())
                     {
                         PossibleDestinations.Add(square);
+                        square.GetComponent<Square>().AttackedBy[pieceColour] = true;
                     }
                     GiveCheck(square);
                 }

@@ -25,10 +25,13 @@ namespace Pieces
             {
                 var k = 1;
                 var square = GameManager.squareList[CurrentPos + index];
-                while (square != null && pinDirection % index == 0 && HisMajesty.checkingEnemies.Count < 2) // add squares
+                while (square != null && HisMajesty.checkingEnemies.Count < 2 &&
+                       (pinDirection == 0 || index % pinDirection == 0))
                 {
-                    PossibleDestinations.Add(square); 
+                    PossibleDestinations.Add(square);
                     GiveCheck(square);
+                    square.GetComponent<Square>().AttackedBy[pieceColour] = true;
+
                     if (square.transform.childCount != 0)
                     {
                         if (square.GetComponentInChildren<Piece>().pieceColour == pieceColour ||
@@ -36,6 +39,7 @@ namespace Pieces
                         {
                             // don't add pieces of the same colour to the move list
                             PossibleDestinations.RemoveAt(PossibleDestinations.Count - 1);
+                            square.GetComponent<Square>().AttackedBy[pieceColour] = false;
                         }
                         // if the path is blocked, prevent the generation of new moves
                         break;
@@ -51,8 +55,8 @@ namespace Pieces
                         _piecesAhead.Add(square.GetComponentInChildren<Piece>());
                         
                         if (square.GetComponentInChildren<King>() &&
-                            square.GetComponentInChildren<Piece>().pieceColour != pieceColour &&
-                            _piecesAhead.Count > 1)
+                            square.GetComponentInChildren<Piece>().pieceColour != pieceColour /*&&
+                            _piecesAhead.Count > 1*/)
                         {
                             isPinningAPiece = true;
                             break;

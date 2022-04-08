@@ -36,7 +36,8 @@ namespace Pieces
             {
                 var square = GameManager.squareList[CurrentPos + index];
                 // not good code...; rewrite later
-                if (square != null && pinDirection % index == 0 && HisMajesty.checkingEnemies.Count < 2)
+                if (square != null && HisMajesty.checkingEnemies.Count < 2 &&
+                    (pinDirection == 0 || index % pinDirection == 0))
                 {
                     if (index % 10 == 0)
                     {
@@ -53,6 +54,7 @@ namespace Pieces
                         if (!square.GetComponentInChildren<King>())
                         {
                             PossibleDestinations.Add(square);
+                            square.GetComponent<Square>().AttackedBy[pieceColour] = true;
                         }
                         GiveCheck(square);
                     }
