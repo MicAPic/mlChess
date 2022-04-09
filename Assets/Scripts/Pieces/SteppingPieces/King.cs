@@ -48,6 +48,7 @@ namespace Pieces.SteppingPieces
                     if (CastlingPossibilityCheck(_leftCastlingCheckPattern))
                     {
                         PossibleDestinations.Add(GameManager.squareList[CurrentPos - 2]);
+                        GameManager.moveCount[pieceColour]++;
                     }
                 }
 
@@ -57,14 +58,14 @@ namespace Pieces.SteppingPieces
                     if (CastlingPossibilityCheck(_rightCastlingCheckPattern))
                     {
                         PossibleDestinations.Add(GameManager.squareList[CurrentPos + 2]);
+                        GameManager.moveCount[pieceColour]++;
                     }
                 }
-                
             }
             
         }
 
-        public void RemoveIllegalMoves()
+        public override void RemoveIllegalMoves()
         {
             // don't get in check
             for (int i = PossibleDestinations.Count - 1; i >= 0; i--)
@@ -72,10 +73,10 @@ namespace Pieces.SteppingPieces
                 var square = PossibleDestinations[i].GetComponent<Square>();
                 var direction = GameManager.squareList.IndexOf(PossibleDestinations[i]) - CurrentPos; 
                 if (square.AttackedBy[Next(pieceColour)] || 
-                    pinDirection != 0 && direction % pinDirection == 0) // required to prevent bugs
+                    pinDirection != 0 && direction % pinDirection == 0 && square.transform.childCount == 0) 
                 {
-                    Debug.Log(pinDirection + " " + direction + square.name);
                     PossibleDestinations.RemoveAt(i);
+                    GameManager.moveCount[pieceColour]--;
                 }
             }
         }

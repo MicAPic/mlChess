@@ -12,6 +12,7 @@ using UnityEditor;
 public class UI : MonoBehaviour
 {
     public GameObject statusBar;
+    public GameObject endgamePopup;
     
     [SerializeField]
     private TMP_Dropdown pieceDropdown;
@@ -33,6 +34,12 @@ public class UI : MonoBehaviour
     public void ToggleSubmenu(GameObject submenu)
     {
         submenu.SetActive(!submenu.activeInHierarchy);
+    }
+
+    public IEnumerator ShowEndgameScreen()
+    {
+        yield return new WaitForSeconds(2);
+        endgamePopup.SetActive(true);
     }
 
     public void ChangePieceForPromoting()

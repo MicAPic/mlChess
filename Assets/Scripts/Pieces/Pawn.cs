@@ -36,11 +36,28 @@ namespace Pieces
             {
                 var square = GameManager.squareList[CurrentPos + index];
                 // not good code...; rewrite later
-                if (square != null && HisMajesty.checkingEnemies.Count < 2 &&
-                    (pinDirection == 0 || index % pinDirection == 0))
+                if (square != null && HisMajesty.checkingEnemies.Count < 2)
                 {
-                    if (index % 10 == 0)
+                    if (index % 10 != 0) // those indices correspond to attack patterns
                     {
+                        square.GetComponent<Square>().AttackedBy[pieceColour] = true;
+                        
+                        if (square.transform.childCount != 0 && 
+                            square.GetComponentInChildren<Piece>().pieceColour != pieceColour &&
+                            !square.GetComponentInChildren<King>())
+                        {
+                            PossibleDestinations.Add(square);
+                        }
+                        
+                        GiveCheck(square);
+                    }
+                    else
+                    {
+                        if (HisMajesty.checkingEnemies.Count > 0 && !EnemyBlockingCheck(square))
+                        {
+                            // if the piece's king is under check and you're not shielding him
+                            continue;
+                        }
                         if (square.transform.childCount == 0)
                         {
                             PossibleDestinations.Add(square);
@@ -48,18 +65,10 @@ namespace Pieces
                         }
                         else break; // if the piece is blocked, prevent it from making a double-square move 
                     }
-                    else if (square.transform.childCount != 0 && 
-                             square.GetComponentInChildren<Piece>().pieceColour != pieceColour)
-                    {
-                        if (!square.GetComponentInChildren<King>())
-                        {
-                            PossibleDestinations.Add(square);
-                            square.GetComponent<Square>().AttackedBy[pieceColour] = true;
-                        }
-                        GiveCheck(square);
-                    }
                 }
             }
+
+            GameManager.moveCount[pieceColour] += PossibleDestinations.Count;
         }
         
         protected override void MakeMove(GameObject destination)
@@ -71,7 +80,7 @@ namespace Pieces
             {
                 _madeFirstMove = true;
                 Array.Resize(ref Pattern, Pattern.Length - 1);
-                GenerateMoves(); // this will not be needed when the pieces will move one at a time 
+                // GenerateMoves(); // this will not be needed when the pieces will move one at a time 
 
                 // add possibility of en passant for nearby pawns
                 foreach (var index in _enPassantCheckPattern)

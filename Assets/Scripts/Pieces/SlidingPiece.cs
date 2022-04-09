@@ -25,17 +25,22 @@ namespace Pieces
             {
                 var k = 1;
                 var square = GameManager.squareList[CurrentPos + index];
-                while (square != null && HisMajesty.checkingEnemies.Count < 2 &&
-                       (pinDirection == 0 || index % pinDirection == 0))
+                while (square != null && HisMajesty.checkingEnemies.Count < 2 /*&&
+                       (pinDirection == 0 || index % pinDirection == 0)*/)
                 {
-                    PossibleDestinations.Add(square);
+                    if (HisMajesty.checkingEnemies.Count == 0 ||
+                        HisMajesty.checkingEnemies.Count > 0 && (square.transform.childCount != 0 || EnemyBlockingCheck(square)))
+                    {
+                        PossibleDestinations.Add(square);
+                    }
                     GiveCheck(square);
                     square.GetComponent<Square>().AttackedBy[pieceColour] = true;
 
                     if (square.transform.childCount != 0)
                     {
                         if (square.GetComponentInChildren<Piece>().pieceColour == pieceColour ||
-                            square.GetComponentInChildren<King>())
+                            square.GetComponentInChildren<King>() ||
+                            HisMajesty.checkingEnemies.Count > 0 && !square.GetComponentInChildren<Piece>().IsGivingCheck)
                         {
                             // don't add pieces of the same colour to the move list
                             PossibleDestinations.RemoveAt(PossibleDestinations.Count - 1);
@@ -55,8 +60,7 @@ namespace Pieces
                         _piecesAhead.Add(square.GetComponentInChildren<Piece>());
                         
                         if (square.GetComponentInChildren<King>() &&
-                            square.GetComponentInChildren<Piece>().pieceColour != pieceColour /*&&
-                            _piecesAhead.Count > 1*/)
+                            square.GetComponentInChildren<Piece>().pieceColour != pieceColour)
                         {
                             isPinningAPiece = true;
                             break;
@@ -65,7 +69,7 @@ namespace Pieces
                         // this whole thing is required to prevent bugs w/ en passant
                         if (_piecesAhead.Count == 2)
                         {
-                            if (square.GetComponentInChildren<Pawn>())
+                            if (square.GetComponentInChildren<Pawn>() && _piecesAhead[0].GetComponent<Pawn>())
                             {
                                 var pawn = square.GetComponentInChildren<Pawn>();
                                 if (pawn.pieceColour != pieceColour ||
@@ -100,6 +104,8 @@ namespace Pieces
                     }
                 }
             }
+            
+            GameManager.moveCount[pieceColour] += PossibleDestinations.Count;
         }
     }
 }

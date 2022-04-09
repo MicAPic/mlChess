@@ -5,7 +5,6 @@ using System.Linq;
 using Pieces;
 using Pieces.SteppingPieces;
 using UnityEngine;
-using UnityEngine.Assertions.Must;
 using Debug = UnityEngine.Debug;
 
 public class GameManager : MonoBehaviour
@@ -26,6 +25,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> squareList;
     public List<Piece> whitePieces;
     public List<Piece> blackPieces;
+    public Dictionary<Piece.PieceColour, int> moveCount; // amount of moves available for each side
 
     public UI ui;
     private Piece _selectedPiece;
@@ -37,6 +37,11 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         GenerateBoard();
+        moveCount = new Dictionary<Piece.PieceColour, int>()
+        {
+            {Piece.PieceColour.white, 0},
+            {Piece.PieceColour.black, 0}
+        };
     }
 
     // Update is called once per frame
@@ -60,10 +65,19 @@ public class GameManager : MonoBehaviour
         UpdateSquares();
         UpdateMoves();
 
+        if (whiteKing.checkingEnemies.Count > 0 || blackKing.checkingEnemies.Count > 0)
+        {
+            UpdateMoves();
+        }
+
         whiteKing.RemoveIllegalMoves(); 
         blackKing.RemoveIllegalMoves();
         
         turnOf = Piece.Next(turnOf);
+        if (moveCount[turnOf] == 0)
+        {
+            StartCoroutine(ui.ShowEndgameScreen());
+        }
     }
 
     // this code handles promotion of pawns  
@@ -106,7 +120,10 @@ public class GameManager : MonoBehaviour
     public void UpdateMoves()
     {
         // updates list of moves for each piece on the board
-        foreach (var piece in whitePieces.Union(blackPieces))
+        moveCount[Piece.PieceColour.white] = 0;
+        moveCount[Piece.PieceColour.black] = 0;
+
+            foreach (var piece in whitePieces.Union(blackPieces))
         {
             piece.GenerateMoves();
         }
@@ -187,8 +204,11 @@ public class GameManager : MonoBehaviour
                 }
                 
                 var piece = clickedObject.parent.GetComponent<Piece>();
-                _selectedPiece = piece;
-                Debug.Log(piece.name);
+                if (piece.pieceColour == turnOf)
+                {
+                    _selectedPiece = piece;
+                    Debug.Log(piece.name);
+                }
             }
         }
     }
