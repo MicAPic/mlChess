@@ -36,10 +36,11 @@ public class UI : MonoBehaviour
         submenu.SetActive(!submenu.activeInHierarchy);
     }
 
-    public IEnumerator ShowEndgameScreen()
+    public IEnumerator ShowEndgameScreen(string text)
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1.5f);
         endgamePopup.SetActive(true);
+        endgamePopup.GetComponentsInChildren<TMP_Text>()[0].text = text;
     }
 
     public void ChangePieceForPromoting()

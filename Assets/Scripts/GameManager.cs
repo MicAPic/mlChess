@@ -9,38 +9,42 @@ using Debug = UnityEngine.Debug;
 
 public class GameManager : MonoBehaviour
 {
-    [Header("Kings")] 
-    [SerializeField] 
-    private King whiteKing;
-    [SerializeField] 
-    private King blackKing;
-    
     [Header("Game Rules & Logic")]
     public Piece.PieceColour turnOf = Piece.PieceColour.white;
+    public int halfmoveClock = 0;
     public string promoteTo = "Queen";
     [SerializeField]
     private GameObject promotionPiecePool;
-    
-    [Header("Utility")]
+
+    [Header("Utility")] 
+    public bool isPaused;
     public List<GameObject> squareList;
     public List<Piece> whitePieces;
     public List<Piece> blackPieces;
     public Dictionary<Piece.PieceColour, int> moveCount; // amount of moves available for each side
 
     public UI ui;
-    private Piece _selectedPiece;
     [SerializeField]
     private Camera activeCamera;
     [SerializeField] 
     private GameObject promotionPopup;
     
+    private Piece _selectedPiece;
+    private Dictionary<Piece.PieceColour, King> _kings;
+
     void Awake()
     {
         GenerateBoard();
-        moveCount = new Dictionary<Piece.PieceColour, int>()
+        moveCount = new Dictionary<Piece.PieceColour, int>
         {
             {Piece.PieceColour.white, 0},
             {Piece.PieceColour.black, 0}
+        };
+        
+        _kings = new Dictionary<Piece.PieceColour, King>
+        {
+            {Piece.PieceColour.white, GameObject.Find("wKing").GetComponent<King>()},
+            {Piece.PieceColour.black, GameObject.Find("bKing").GetComponent<King>()}
         };
     }
 
@@ -65,18 +69,33 @@ public class GameManager : MonoBehaviour
         UpdateSquares();
         UpdateMoves();
 
-        if (whiteKing.checkingEnemies.Count > 0 || blackKing.checkingEnemies.Count > 0)
+        if (_kings[Piece.PieceColour.white].checkingEnemies.Count > 0 || 
+            _kings[Piece.PieceColour.black].checkingEnemies.Count > 0)
         {
             UpdateMoves();
         }
 
-        whiteKing.RemoveIllegalMoves(); 
-        blackKing.RemoveIllegalMoves();
+        foreach (var king in _kings.Values)
+        {
+            king.RemoveIllegalMoves();
+        }
         
         turnOf = Piece.Next(turnOf);
         if (moveCount[turnOf] == 0)
         {
-            StartCoroutine(ui.ShowEndgameScreen());
+            // declare checkmate or stalemate
+            isPaused = true;
+            StartCoroutine(_kings[turnOf].checkingEnemies.Count > 0
+                ? ui.ShowEndgameScreen("Checkmate")
+                : ui.ShowEndgameScreen("Stalemate"));
+            return;
+        }
+
+        if (halfmoveClock >= 100 || ObviousDrawCheck())
+        {
+            isPaused = true;
+            // declare draw 
+            StartCoroutine(ui.ShowEndgameScreen("Draw"));
         }
     }
 
@@ -86,6 +105,7 @@ public class GameManager : MonoBehaviour
     
     public void AskForPromotion(Pawn pawn, GameObject square)
     {
+        isPaused = true;
         ui.ToggleSubmenu(promotionPopup);
         _pawnToPromote = pawn;
         _promotionLocation = square;
@@ -93,7 +113,6 @@ public class GameManager : MonoBehaviour
     
     public void PromotePawn()
     {
-        // don't use resources.load; rewrite later
         var promotedPieceName = _pawnToPromote.pieceColour.ToString()[0] + promoteTo;
         var instance = Instantiate(promotionPiecePool.transform.Find(promotedPieceName),
                                             _promotionLocation.transform);
@@ -114,6 +133,8 @@ public class GameManager : MonoBehaviour
             whitePieces.Remove(_pawnToPromote);
             whitePieces.Add(piece);
         }
+
+        isPaused = false;
     }
     //
     
@@ -180,7 +201,7 @@ public class GameManager : MonoBehaviour
     {
         var ray = activeCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit) && !isPaused)
         {
             var clickedObject = hit.transform;
 
@@ -211,5 +232,10 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    bool ObviousDrawCheck()
+    {
+        return false;
     }
 }

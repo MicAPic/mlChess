@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pieceColour: 1
-  PossibleSquares: []
+  pinDirection: 0
+  PossibleDestinations: []
 --- !u!1 &921670881943333890
 GameObject:
   m_ObjectHideFlags: 0

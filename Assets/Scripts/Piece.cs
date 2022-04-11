@@ -97,8 +97,13 @@ public abstract class Piece : MonoBehaviour
             {
                 GameManager.whitePieces.Remove(target);
             }
-
+            
+            GameManager.halfmoveClock = 0; // capturing resets the halfmove clock
             Uncheck(HisMajesty);
+        }
+        else
+        {
+            GameManager.halfmoveClock++;
         }
 
         if (moveAfterwards)

@@ -141,4 +141,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pieceColour: 1
-  PossibleSquares: []
+  pinDirection: 0
+  PossibleDestinations: []
+  _piecesAhead: []

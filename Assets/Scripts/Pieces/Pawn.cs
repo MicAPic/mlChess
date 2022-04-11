@@ -74,13 +74,13 @@ namespace Pieces
         protected override void MakeMove(GameObject destination)
         {
             base.MakeMove(destination);
+            GameManager.halfmoveClock = 0; // pawn movement resets the halfmove clock
 
             var square = GameManager.squareList[CurrentPos - Pattern[2]]; // ±10, one square behind
             if (!_madeFirstMove) // this makes the pawn's initial double-square move possible
             {
                 _madeFirstMove = true;
                 Array.Resize(ref Pattern, Pattern.Length - 1);
-                // GenerateMoves(); // this will not be needed when the pieces will move one at a time 
 
                 // add possibility of en passant for nearby pawns
                 foreach (var index in _enPassantCheckPattern)

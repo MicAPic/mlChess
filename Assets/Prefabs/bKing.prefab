@@ -141,8 +141,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pieceColour: 0
-  hisMajesty: {fileID: 0}
+  pinDirection: 0
   PossibleDestinations: []
-  inCheck: 0
+  checkingEnemies: []
   leftRook: {fileID: 0}
   rightRook: {fileID: 0}
