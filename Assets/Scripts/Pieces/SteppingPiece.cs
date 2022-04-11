@@ -9,13 +9,13 @@ namespace Pieces
         // public bool debug;
         public override void GenerateMoves()
         {
-            PossibleDestinations = new List<GameObject>();
+            possibleDestinations = new List<GameObject>();
 
             foreach (var index in Pattern)
             {
                 var square = GameManager.squareList[CurrentPos + index];
                 if (square != null && (gameObject.GetComponent<King>() ||
-                    HisMajesty.checkingEnemies.Count < 2  /*&& (pinDirection == 0 || index % pinDirection == 0)*/))
+                    HisMajesty.checkingEnemies.Count < 2))
                 {
                     if (square.GetComponentInChildren<Piece>() && 
                         square.GetComponentInChildren<Piece>().pieceColour == pieceColour)
@@ -34,14 +34,15 @@ namespace Pieces
                     
                     if (!square.GetComponentInChildren<King>())
                     {
-                        PossibleDestinations.Add(square);
+                        possibleDestinations.Add(square);
                         square.GetComponent<Square>().AttackedBy[pieceColour] = true;
                     }
                     GiveCheck(square);
                 }
             }
             
-            GameManager.moveCount[pieceColour] += PossibleDestinations.Count;
+            GameManager.MoveCount[pieceColour] += possibleDestinations.Count;
+            RemoveIllegalMoves();
         }
     }
 }

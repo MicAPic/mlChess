@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using Pieces.SlidingPieces;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Pieces.SteppingPieces
 {
@@ -47,8 +45,10 @@ namespace Pieces.SteppingPieces
                 {
                     if (CastlingPossibilityCheck(_leftCastlingCheckPattern))
                     {
-                        PossibleDestinations.Add(GameManager.squareList[CurrentPos - 2]);
-                        GameManager.moveCount[pieceColour]++;
+                        possibleDestinations.Add(GameManager.squareList[CurrentPos - 2]);
+                        GameManager.MoveCount[pieceColour]++;
+                        // denote that left castling was possible on this turn:
+                        GameManager.currentPosition += "lc";
                     }
                 }
 
@@ -57,8 +57,10 @@ namespace Pieces.SteppingPieces
                 {
                     if (CastlingPossibilityCheck(_rightCastlingCheckPattern))
                     {
-                        PossibleDestinations.Add(GameManager.squareList[CurrentPos + 2]);
-                        GameManager.moveCount[pieceColour]++;
+                        possibleDestinations.Add(GameManager.squareList[CurrentPos + 2]);
+                        GameManager.MoveCount[pieceColour]++;
+                        // denote that right castling was possible on this turn:
+                        GameManager.currentPosition += "rc";
                     }
                 }
             }
@@ -68,22 +70,22 @@ namespace Pieces.SteppingPieces
         public override void RemoveIllegalMoves()
         {
             // don't get in check
-            for (int i = PossibleDestinations.Count - 1; i >= 0; i--)
+            for (int i = possibleDestinations.Count - 1; i >= 0; i--)
             {
-                var square = PossibleDestinations[i].GetComponent<Square>();
-                var direction = GameManager.squareList.IndexOf(PossibleDestinations[i]) - CurrentPos; 
+                var square = possibleDestinations[i].GetComponent<Square>();
+                var direction = GameManager.squareList.IndexOf(possibleDestinations[i]) - CurrentPos; 
                 if (square.AttackedBy[Next(pieceColour)] || 
                     pinDirection != 0 && direction % pinDirection == 0 && square.transform.childCount == 0) 
                 {
-                    PossibleDestinations.RemoveAt(i);
-                    GameManager.moveCount[pieceColour]--;
+                    possibleDestinations.RemoveAt(i);
+                    GameManager.MoveCount[pieceColour]--;
                 }
             }
         }
         
-        protected override void MakeMove(GameObject destination)
+        protected internal override void MakeMove(GameObject destination, bool changeTurnAfterwards)
         {
-            base.MakeMove(destination);
+            base.MakeMove(destination, changeTurnAfterwards);
 
             var positionIndexDiff = CurrentPos - PreviousPos;
             if (Mathf.Abs(positionIndexDiff) == 2) // if this king just castled 
@@ -92,15 +94,17 @@ namespace Pieces.SteppingPieces
                 if (positionIndexDiff > 0) 
                 {
                     var square = GameManager.squareList[CurrentPos - 1]; // to the left (kingside)
-                    rightRook.PossibleDestinations.Add(square);
-                    rightRook.StartTurn(square);
+                    rightRook.possibleDestinations.Add(square);
+                    rightRook.MakeMove(square, false);
                 }
                 else
                 {
                     var square = GameManager.squareList[CurrentPos + 1]; // to the right (queenside)
-                    leftRook.PossibleDestinations.Add(square);
-                    leftRook.StartTurn(square);
+                    leftRook.possibleDestinations.Add(square);
+                    leftRook.MakeMove(square, false);
                 }
+                
+                GameManager.positionHistory.Clear(); // castling also means that previous positions can't be repeated
             }
             
             Uncheck(this);

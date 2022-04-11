@@ -1,27 +1,31 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Pieces;
+using Pieces.SlidingPieces;
 using Pieces.SteppingPieces;
 using UnityEngine;
-using Debug = UnityEngine.Debug;
 
 public class GameManager : MonoBehaviour
 {
     [Header("Game Rules & Logic")]
     public Piece.PieceColour turnOf = Piece.PieceColour.white;
-    public int halfmoveClock = 0;
+    public int halfmoveClock;
     public string promoteTo = "Queen";
     [SerializeField]
     private GameObject promotionPiecePool;
 
-    [Header("Utility")] 
+    [Header("Utility")]
     public bool isPaused;
+    
+    public string currentPosition;
+    public List<string> positionHistory;
+    
     public List<GameObject> squareList;
     public List<Piece> whitePieces;
     public List<Piece> blackPieces;
-    public Dictionary<Piece.PieceColour, int> moveCount; // amount of moves available for each side
+    public Dictionary<Piece.PieceColour, King> Kings;
+    public Dictionary<Piece.PieceColour, int> MoveCount; // amount of moves available for each side
 
     public UI ui;
     [SerializeField]
@@ -30,18 +34,17 @@ public class GameManager : MonoBehaviour
     private GameObject promotionPopup;
     
     private Piece _selectedPiece;
-    private Dictionary<Piece.PieceColour, King> _kings;
 
     void Awake()
     {
         GenerateBoard();
-        moveCount = new Dictionary<Piece.PieceColour, int>
+        MoveCount = new Dictionary<Piece.PieceColour, int>
         {
             {Piece.PieceColour.white, 0},
             {Piece.PieceColour.black, 0}
         };
         
-        _kings = new Dictionary<Piece.PieceColour, King>
+        Kings = new Dictionary<Piece.PieceColour, King>
         {
             {Piece.PieceColour.white, GameObject.Find("wKing").GetComponent<King>()},
             {Piece.PieceColour.black, GameObject.Find("bKing").GetComponent<King>()}
@@ -54,7 +57,7 @@ public class GameManager : MonoBehaviour
     {
         if (_isFirstFrame) // update on the first frame (after awake & start)
         {
-            UpdateMoves();
+            UpdateMoves(true);
             _isFirstFrame = false;
         }
         
@@ -67,34 +70,32 @@ public class GameManager : MonoBehaviour
     public void ChangeTurn()
     {
         UpdateSquares();
-        UpdateMoves();
+        UpdateMoves(true);
 
-        if (_kings[Piece.PieceColour.white].checkingEnemies.Count > 0 || 
-            _kings[Piece.PieceColour.black].checkingEnemies.Count > 0)
+        if (Kings[Piece.PieceColour.white].checkingEnemies.Count > 0 || 
+            Kings[Piece.PieceColour.black].checkingEnemies.Count > 0)
         {
-            UpdateMoves();
+            UpdateMoves(false);
         }
 
-        foreach (var king in _kings.Values)
+        foreach (var king in Kings.Values)
         {
             king.RemoveIllegalMoves();
         }
         
         turnOf = Piece.Next(turnOf);
-        if (moveCount[turnOf] == 0)
+        if (MoveCount[turnOf] == 0)
         {
             // declare checkmate or stalemate
             isPaused = true;
-            StartCoroutine(_kings[turnOf].checkingEnemies.Count > 0
+            StartCoroutine(Kings[turnOf].checkingEnemies.Count > 0
                 ? ui.ShowEndgameScreen("Checkmate")
                 : ui.ShowEndgameScreen("Stalemate"));
-            return;
         }
-
-        if (halfmoveClock >= 100 || ObviousDrawCheck())
+        else if (halfmoveClock >= 100 || ThreefoldRepetitionCheck())
         {
+            // declare a draw 
             isPaused = true;
-            // declare draw 
             StartCoroutine(ui.ShowEndgameScreen("Draw"));
         }
     }
@@ -138,15 +139,85 @@ public class GameManager : MonoBehaviour
     }
     //
     
-    public void UpdateMoves()
+    public void UpdateMoves(bool isRecordingPositions)
     {
         // updates list of moves for each piece on the board
-        moveCount[Piece.PieceColour.white] = 0;
-        moveCount[Piece.PieceColour.black] = 0;
+        MoveCount[Piece.PieceColour.white] = 0;
+        MoveCount[Piece.PieceColour.black] = 0;
 
-            foreach (var piece in whitePieces.Union(blackPieces))
+        currentPosition = "";
+        
+        foreach (var piece in whitePieces.Union(blackPieces))
         {
             piece.GenerateMoves();
+            if (isRecordingPositions)
+            {
+                var temp = piece.transform.position;
+                currentPosition += $"({Math.Round(temp.x)}, {Math.Round(temp.z)})";
+            }
+        }
+        
+        if (isRecordingPositions)
+        {
+            // record piece positions
+            positionHistory.Add(currentPosition);
+        }
+    }
+    
+    public void ObviousDrawCheck()
+    {
+        // awful if-else nightmare that checks for insufficient material draws; executed rarely
+        
+        bool isDraw = false;
+        
+        if (blackPieces.Count < 3 && whitePieces.Count < 3)
+        {
+            if (whitePieces.Count == blackPieces.Count)
+            {
+                if (whitePieces.Count == 1)
+                {
+                    // bKing & wKing
+                    isDraw = true;
+                }
+
+                var bBishop = blackPieces.Find(piece => piece.GetComponent<Bishop>());
+                var wBishop = whitePieces.Find(piece => piece.GetComponent<Bishop>());
+                if (bBishop != null && wBishop != null && 
+                    bBishop.GetComponentInParent<Square>().squareColour == wBishop.GetComponentInParent<Square>().squareColour)
+                {
+                    // bKing & wKing & Bishops on the squares of the same colour on both sides 
+                    isDraw = true;
+                }
+            }
+            else if (whitePieces.Count > blackPieces.Count)
+            {
+                var wKnight = whitePieces.Find(piece => piece.GetComponent<Knight>());
+                var wBishop = whitePieces.Find(piece => piece.GetComponent<Bishop>());
+
+                if (wKnight != null || wBishop != null)
+                {
+                    // wKing & wKnight | wBishop 
+                    isDraw = true;
+                }
+            }
+            else
+            {
+                var bKnight = blackPieces.Find(piece => piece.GetComponent<Knight>());
+                var bBishop = blackPieces.Find(piece => piece.GetComponent<Bishop>());
+
+                if (bKnight != null || bBishop != null)
+                {
+                    // bKing & bKnight | bBishop
+                    isDraw = true;
+                }
+            }
+        }
+
+        if (isDraw)
+        {
+            // declare a draw 
+            isPaused = true;
+            StartCoroutine(ui.ShowEndgameScreen("Draw"));
         }
     }
 
@@ -169,8 +240,8 @@ public class GameManager : MonoBehaviour
         
         squareList.AddRange(Enumerable.Repeat<GameObject>(null, 21)); //adds a bottom border
 
-        int counter = 0;
-        GameObject chessBoard = GameObject.Find("Chess Board");
+        var counter = 0;
+        var chessBoard = GameObject.Find("Chess Board");
         foreach (Transform child in chessBoard.transform)
         {
             squareList.Add(child.gameObject);
@@ -200,8 +271,8 @@ public class GameManager : MonoBehaviour
     void HandleSelection()
     {
         var ray = activeCamera.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit) && !isPaused)
+        
+        if (Physics.Raycast(ray, out var hit) && !isPaused)
         {
             var clickedObject = hit.transform;
 
@@ -228,14 +299,28 @@ public class GameManager : MonoBehaviour
                 if (piece.pieceColour == turnOf)
                 {
                     _selectedPiece = piece;
-                    Debug.Log(piece.name);
+                    Debug.Log(piece.name + piece.transform.position);
                 }
             }
         }
     }
 
-    bool ObviousDrawCheck()
+    bool ThreefoldRepetitionCheck()
     {
-        return false;
+        var repeatedRecords = new Dictionary<string, int>();
+
+        foreach (var record in positionHistory)
+        {
+            if (!repeatedRecords.ContainsKey(record))
+            {
+                repeatedRecords[record] = 1;
+            }
+            else
+            {
+                repeatedRecords[record]++;
+            }
+        }
+
+        return repeatedRecords.ContainsValue(3);
     }
 }

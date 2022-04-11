@@ -37,7 +37,7 @@ public abstract class Piece : MonoBehaviour
     protected internal bool HasMoved;
     protected internal bool IsGivingCheck;
     protected GameManager GameManager { get; private set; }
-    public List<GameObject> PossibleDestinations;
+    public List<GameObject> possibleDestinations;
     
     [Header("Kings")]
     protected King HisMajesty;
@@ -48,9 +48,9 @@ public abstract class Piece : MonoBehaviour
     {
         GameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         CurrentPos = GameManager.squareList.IndexOf(transform.parent.gameObject);
-
-        var kingsName = pieceColour.ToString()[0] + "King";
-        HisMajesty = GameObject.Find(kingsName).GetComponent<King>();
+        
+        HisMajesty = GameManager.Kings[pieceColour];
+        PeskyEnemyKing = GameManager.Kings[Next(pieceColour)];
     }
 
     // generates pseudo-legal moves, which ideally should be checked in MakeMove
@@ -58,7 +58,7 @@ public abstract class Piece : MonoBehaviour
 
     public void StartTurn(GameObject possibleDestination)
     {
-        if (PossibleDestinations.Contains(possibleDestination))
+        if (possibleDestinations.Contains(possibleDestination))
         {
             StartCoroutine(AttemptCapture(possibleDestination, true));
         }
@@ -66,15 +66,18 @@ public abstract class Piece : MonoBehaviour
 
     public virtual void RemoveIllegalMoves()
     {
-        for (int i = PossibleDestinations.Count - 1; i >= 0; i--)
+        if (pinDirection != 0) 
         {
-            var direction = GameManager.squareList.IndexOf(PossibleDestinations[i]) - CurrentPos;
-            if (pinDirection != 0 && (direction % pinDirection != 0 || 
-                                      Math.Abs(pinDirection) == 1 && Math.Abs(direction) >= 8)) // prevent bugs if pinDir == 1
+            for (int i = possibleDestinations.Count - 1; i >= 0; i--)
             {
-                // remove moves that leave the king in check
-                PossibleDestinations.RemoveAt(i);
-                GameManager.moveCount[pieceColour]--;
+                var direction = GameManager.squareList.IndexOf(possibleDestinations[i]) - CurrentPos;
+                if (direction % pinDirection != 0 ||
+                    Math.Abs(pinDirection) == 1 && Math.Abs(direction) >= 8)
+                {
+                    // remove moves that leave the king in check
+                    possibleDestinations.RemoveAt(i);
+                    GameManager.MoveCount[pieceColour]--;
+                }
             }
         }
     }
@@ -99,6 +102,8 @@ public abstract class Piece : MonoBehaviour
             }
             
             GameManager.halfmoveClock = 0; // capturing resets the halfmove clock
+            GameManager.positionHistory.Clear(); // it also means that previous positions can't be repeated
+            GameManager.ObviousDrawCheck();
             Uncheck(HisMajesty);
         }
         else
@@ -108,15 +113,15 @@ public abstract class Piece : MonoBehaviour
 
         if (moveAfterwards)
         {
-            MakeMove(destination);
+            MakeMove(destination, true);
         }
         else // used in en passant
         {
-            GameManager.UpdateMoves();
+            GameManager.UpdateMoves(false);
         }
     }
 
-    protected virtual void MakeMove(GameObject destination)
+    protected internal virtual void MakeMove(GameObject destination, bool changeTurnAfterwards)
     {
         HasMoved = true;
 
@@ -135,7 +140,14 @@ public abstract class Piece : MonoBehaviour
             
         Debug.Log(destination.GetComponentInChildren<Piece>().name);
 
-        GameManager.ChangeTurn();
+        if (changeTurnAfterwards)
+        {
+            GameManager.ChangeTurn();
+        }
+        else
+        {
+            GameManager.UpdateMoves(false);
+        }
     }
 
     protected void GiveCheck(GameObject square)
@@ -145,7 +157,6 @@ public abstract class Piece : MonoBehaviour
             var king = square.GetComponentInChildren<King>();
             if (king.pieceColour != pieceColour && !IsGivingCheck)
             {
-                PeskyEnemyKing = king;
                 king.checkingEnemies.Add(this); 
                 IsGivingCheck = true;
                 GameManager.ui.statusBar.SetActive(true);

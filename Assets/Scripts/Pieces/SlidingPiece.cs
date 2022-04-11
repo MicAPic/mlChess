@@ -13,7 +13,7 @@ namespace Pieces
             var isPinningAPiece = false;
             var pinnedPieceSet = false;
         
-            PossibleDestinations = new List<GameObject>();
+            possibleDestinations = new List<GameObject>();
 
             if (_piecesAhead.Count != 0)
             {
@@ -31,7 +31,7 @@ namespace Pieces
                     if (HisMajesty.checkingEnemies.Count == 0 ||
                         HisMajesty.checkingEnemies.Count > 0 && (square.transform.childCount != 0 || EnemyBlockingCheck(square)))
                     {
-                        PossibleDestinations.Add(square);
+                        possibleDestinations.Add(square);
                     }
                     GiveCheck(square);
                     square.GetComponent<Square>().AttackedBy[pieceColour] = true;
@@ -43,7 +43,7 @@ namespace Pieces
                             HisMajesty.checkingEnemies.Count > 0 && !square.GetComponentInChildren<Piece>().IsGivingCheck)
                         {
                             // don't add pieces of the same colour to the move list
-                            PossibleDestinations.RemoveAt(PossibleDestinations.Count - 1);
+                            possibleDestinations.RemoveAt(possibleDestinations.Count - 1);
                             square.GetComponent<Square>().AttackedBy[pieceColour] = false;
                         }
                         // if the path is blocked, prevent the generation of new moves
@@ -105,7 +105,8 @@ namespace Pieces
                 }
             }
             
-            GameManager.moveCount[pieceColour] += PossibleDestinations.Count;
+            GameManager.MoveCount[pieceColour] += possibleDestinations.Count;
+            RemoveIllegalMoves();
         }
     }
 }

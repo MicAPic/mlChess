@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace Pieces.SlidingPieces
 {
     public class Rook : SlidingPiece

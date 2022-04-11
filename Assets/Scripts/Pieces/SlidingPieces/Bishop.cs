@@ -7,7 +7,7 @@ namespace Pieces.SlidingPieces
         // SoWe -11k /     \ -9k   SoEa
         //
         // based on the source from: https://www.chessprogramming.org/
-        
+
         public override void Start()
         {
             base.Start();
