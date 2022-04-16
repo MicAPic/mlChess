@@ -28,6 +28,8 @@ public abstract class Piece : MonoBehaviour
     //
     [Header("Attributes")]
     public PieceColour pieceColour;
+    [SerializeField] 
+    public string pieceIcon;
 
     [Header("Utility")]
     public int pinDirection;
@@ -60,6 +62,9 @@ public abstract class Piece : MonoBehaviour
     {
         if (possibleDestinations.Contains(possibleDestination))
         {
+            // In LAN, move record starts with a piece icon/initial letter and the origin square
+            // if this is a pawn, pieceIcon[0] == ' ', as pawn icons aren't showed in this notation
+            GameManager.ui.statusBarText.text = pieceIcon[0] + GameManager.squareList[CurrentPos].name.ToLower();
             StartCoroutine(AttemptCapture(possibleDestination, true));
         }
     }
@@ -100,7 +105,9 @@ public abstract class Piece : MonoBehaviour
             {
                 GameManager.whitePieces.Remove(target);
             }
-            
+
+            GameManager.ui.UpdateTakenPiecesList(pieceColour, target.pieceIcon[target.pieceIcon.Length - 1]);
+            GameManager.ui.statusBarText.text += "x"; // LAN
             GameManager.halfmoveClock = 0; // capturing resets the halfmove clock
             GameManager.positionHistory.Clear(); // it also means that previous positions can't be repeated
             GameManager.ObviousDrawCheck();
@@ -113,7 +120,7 @@ public abstract class Piece : MonoBehaviour
 
         if (moveAfterwards)
         {
-            MakeMove(destination, true);
+            MakeMove(destination, false);
         }
         else // used in en passant
         {
@@ -121,7 +128,7 @@ public abstract class Piece : MonoBehaviour
         }
     }
 
-    protected internal virtual void MakeMove(GameObject destination, bool changeTurnAfterwards)
+    protected internal virtual void MakeMove(GameObject destination, bool isCastling)
     {
         HasMoved = true;
 
@@ -134,14 +141,15 @@ public abstract class Piece : MonoBehaviour
         CurrentPos = GameManager.squareList.IndexOf(destination);
         // move the piece object in the game world
         var objectTransform = transform;
-        Vector3 localCoordinates = objectTransform.localPosition; //required to move the piece
+        Vector3 localCoordinates = objectTransform.localPosition; // required to move the piece
         objectTransform.parent = destination.transform;
         objectTransform.localPosition = localCoordinates;
             
         Debug.Log(destination.GetComponentInChildren<Piece>().name);
 
-        if (changeTurnAfterwards)
+        if (!isCastling)
         {
+            GameManager.ui.statusBarText.text += destination.name.ToLower(); // LAN
             GameManager.ChangeTurn();
         }
         else
@@ -159,7 +167,6 @@ public abstract class Piece : MonoBehaviour
             {
                 king.checkingEnemies.Add(this); 
                 IsGivingCheck = true;
-                GameManager.ui.statusBar.SetActive(true);
             }
         }
     }

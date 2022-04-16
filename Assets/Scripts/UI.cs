@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,11 +9,18 @@ using UnityEditor;
 
 public class UI : MonoBehaviour
 {
-    public GameObject statusBar;
+    public Dictionary<Piece.PieceColour, TMP_Text> TakenPiecesListsUI;
+    public TMP_Text statusBarText;
     public GameObject endgamePopup;
     
     [SerializeField]
     private TMP_Dropdown pieceDropdown;
+    private Dictionary<Piece.PieceColour, List<char>> _takenPiecesLists = new Dictionary<Piece.PieceColour, List<char>>
+    {
+        // Set of pieces taken
+        {Piece.PieceColour.white, new List<char>()},
+        {Piece.PieceColour.black, new List<char>()}
+    };
 
     public void SceneLoad(string sceneName)
     {
@@ -33,11 +41,12 @@ public class UI : MonoBehaviour
         submenu.SetActive(!submenu.activeInHierarchy);
     }
 
-    public IEnumerator ShowEndgameScreen(string text)
+    public IEnumerator ShowEndgameScreen(string titleText, string statusText)
     {
         yield return new WaitForSeconds(1.5f);
         endgamePopup.SetActive(true);
-        endgamePopup.GetComponentsInChildren<TMP_Text>()[0].text = text;
+        endgamePopup.GetComponentsInChildren<TMP_Text>()[0].text = titleText;
+        statusBarText.text = statusText;
     }
 
     public void ChangePieceForPromoting()
@@ -47,5 +56,13 @@ public class UI : MonoBehaviour
         string newPieceForPromoting = pieceDropdown.options[index].text.Substring(1); // get the substring that doesn't include the piece symbol
         
         gameManager.promoteTo = newPieceForPromoting;
+    }
+
+    public void UpdateTakenPiecesList(Piece.PieceColour thisPieceColour, char takenPieceIcon)
+    {
+        // adds the taken piece to the taken piece list on the side of the screen
+        _takenPiecesLists[thisPieceColour].Add(takenPieceIcon);
+        _takenPiecesLists[thisPieceColour].Sort();
+        TakenPiecesListsUI[thisPieceColour].text = string.Join("", _takenPiecesLists[thisPieceColour]);
     }
 }

@@ -95,13 +95,15 @@ namespace Pieces.SteppingPieces
                 {
                     var square = GameManager.squareList[CurrentPos - 1]; // to the left (kingside)
                     rightRook.possibleDestinations.Add(square);
-                    rightRook.MakeMove(square, false);
+                    rightRook.MakeMove(square, true);
+                    GameManager.ui.statusBarText.text = "0-0";
                 }
                 else
                 {
                     var square = GameManager.squareList[CurrentPos + 1]; // to the right (queenside)
                     leftRook.possibleDestinations.Add(square);
-                    leftRook.MakeMove(square, false);
+                    leftRook.MakeMove(square, true);
+                    GameManager.ui.statusBarText.text = "0-0-0";
                 }
                 
                 GameManager.positionHistory.Clear(); // castling also means that previous positions can't be repeated

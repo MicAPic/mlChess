@@ -110,7 +110,7 @@ namespace Pieces
             else if (GetComponentInParent<Square>().promotionSquare)
             {
                 // promotion
-                GameManager.AskForPromotion(this, destination);
+                GameManager.StartPromotion(this, destination);
             }
             else if (square.GetComponentInChildren<Pawn>())
             {

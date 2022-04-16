@@ -3,17 +3,42 @@
   <component name="ChangeListManager">
     <list default="true" id="8c687816-200a-4861-b89e-c38515377fe9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.mlChess/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.mlChess/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Black.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Black.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/bBishop.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/bBishop.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/bKing.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/bKing.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/bKnight.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/bKnight.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/bPawn.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/bPawn.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/bQueen.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/bQueen.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/bRook.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/bRook.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/wBishop.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/wBishop.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/wKing.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/wKing.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/wKnight.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/wKnight.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/wPawn.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/wPawn.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/wQueen.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/wQueen.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/wRook.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/wRook.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main/LightingData.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main/LightingData.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main/ReflectionProbe-0.exr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main/ReflectionProbe-0.exr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Menu.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Menu.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Menu.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Menu/LightingData.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Menu/LightingData.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Menu/ReflectionProbe-0.exr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Menu/ReflectionProbe-0.exr.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Piece.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Piece.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pieces/Pawn.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pieces/Pawn.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pieces/SlidingPiece.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pieces/SlidingPiece.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pieces/SlidingPieces/Bishop.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pieces/SlidingPieces/Bishop.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pieces/SlidingPieces/Rook.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pieces/SlidingPieces/Rook.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pieces/SteppingPiece.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pieces/SteppingPiece.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pieces/SteppingPieces/King.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pieces/SteppingPieces/King.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Square.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Square.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/NotoSans SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/NotoSans SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +130,9 @@
       <workItem from="1649433133790" duration="7696000" />
       <workItem from="1649508343121" duration="14584000" />
       <workItem from="1649674022208" duration="3693000" />
-      <workItem from="1649686384368" duration="9772000" />
+      <workItem from="1649686384368" duration="10115000" />
+      <workItem from="1649943935205" duration="1049000" />
+      <workItem from="1650113064094" duration="7922000" />
     </task>
     <servers />
   </component>

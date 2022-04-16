@@ -4,6 +4,7 @@ using System.Linq;
 using Pieces;
 using Pieces.SlidingPieces;
 using Pieces.SteppingPieces;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -35,6 +36,13 @@ public class GameManager : MonoBehaviour
     
     private Piece _selectedPiece;
 
+    private readonly Dictionary<Piece.PieceColour, string> _winText = new Dictionary<Piece.PieceColour, string>
+    {
+        // LAN; text that appears when the opposite side wins 
+        {Piece.PieceColour.white, "0–1"},
+        {Piece.PieceColour.black, "1–0"}
+    };
+
     void Awake()
     {
         GenerateBoard();
@@ -48,6 +56,12 @@ public class GameManager : MonoBehaviour
         {
             {Piece.PieceColour.white, GameObject.Find("wKing").GetComponent<King>()},
             {Piece.PieceColour.black, GameObject.Find("bKing").GetComponent<King>()}
+        };
+
+        ui.TakenPiecesListsUI = new Dictionary<Piece.PieceColour, TMP_Text>
+        {
+            {Piece.PieceColour.white, GameObject.Find("Pieces taken by White").GetComponent<TMP_Text>()},
+            {Piece.PieceColour.black, GameObject.Find("Pieces taken by Black").GetComponent<TMP_Text>()}
         };
     }
 
@@ -72,10 +86,16 @@ public class GameManager : MonoBehaviour
         UpdateSquares();
         UpdateMoves(true);
 
+        var isInCheck = Kings[Piece.Next(turnOf)].checkingEnemies.Count > 0;
+
         if (Kings[Piece.PieceColour.white].checkingEnemies.Count > 0 || 
             Kings[Piece.PieceColour.black].checkingEnemies.Count > 0)
         {
             UpdateMoves(false);
+            if (isInCheck)
+            {
+                ui.statusBarText.text += "+"; // LAN
+            }
         }
 
         foreach (var king in Kings.Values)
@@ -88,23 +108,31 @@ public class GameManager : MonoBehaviour
         {
             // declare checkmate or stalemate
             isPaused = true;
-            StartCoroutine(Kings[turnOf].checkingEnemies.Count > 0
-                ? ui.ShowEndgameScreen("Checkmate")
-                : ui.ShowEndgameScreen("Stalemate"));
+            if (isInCheck)
+            {
+                var statusText = ui.statusBarText.text;
+                // LAN; substitute "+" (check sign) for "#" (checkmate sign)
+                ui.statusBarText.text = statusText.Remove(statusText.Length - 1, 1) + "#";
+                StartCoroutine(ui.ShowEndgameScreen("Checkmate", _winText[turnOf]));
+            }
+            else
+            {
+                StartCoroutine(ui.ShowEndgameScreen("Stalemate", "½–½"));
+            }
         }
         else if (halfmoveClock >= 100 || ThreefoldRepetitionCheck())
         {
             // declare a draw 
             isPaused = true;
-            StartCoroutine(ui.ShowEndgameScreen("Draw"));
+            StartCoroutine(ui.ShowEndgameScreen("Draw", "½–½"));
         }
     }
 
-    // this code handles promotion of pawns  
+    // the following code handles promotion of pawns  
     private Pawn _pawnToPromote;
     private GameObject _promotionLocation;
     
-    public void AskForPromotion(Pawn pawn, GameObject square)
+    public void StartPromotion(Pawn pawn, GameObject square) // used in scripts
     {
         isPaused = true;
         ui.ToggleSubmenu(promotionPopup);
@@ -112,7 +140,7 @@ public class GameManager : MonoBehaviour
         _promotionLocation = square;
     }
     
-    public void PromotePawn()
+    public void PromotePawn() // used in editor
     {
         var promotedPieceName = _pawnToPromote.pieceColour.ToString()[0] + promoteTo;
         var instance = Instantiate(promotionPiecePool.transform.Find(promotedPieceName),
@@ -135,6 +163,7 @@ public class GameManager : MonoBehaviour
             whitePieces.Add(piece);
         }
 
+        ui.statusBarText.text += piece.pieceIcon;
         isPaused = false;
     }
     //
@@ -217,7 +246,7 @@ public class GameManager : MonoBehaviour
         {
             // declare a draw 
             isPaused = true;
-            StartCoroutine(ui.ShowEndgameScreen("Draw"));
+            StartCoroutine(ui.ShowEndgameScreen("Draw", "½–½"));
         }
     }
 
