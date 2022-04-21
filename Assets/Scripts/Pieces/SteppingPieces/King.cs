@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Pieces.SlidingPieces;
 using UnityEngine;
@@ -75,7 +76,8 @@ namespace Pieces.SteppingPieces
                 var square = possibleDestinations[i].GetComponent<Square>();
                 var direction = GameManager.squareList.IndexOf(possibleDestinations[i]) - CurrentPos; 
                 if (square.AttackedBy[Next(pieceColour)] || 
-                    pinDirection != 0 && direction % pinDirection == 0 && square.transform.childCount == 0) 
+                    (Math.Abs(pinDirection) > 1 || Math.Abs(pinDirection) == 1 && Math.Abs(direction) < 8) &&
+                    direction % pinDirection == 0 && square.transform.childCount == 0) 
                 {
                     possibleDestinations.RemoveAt(i);
                     GameManager.MoveCount[pieceColour]--;

@@ -79,6 +79,11 @@ public class GameManager : MonoBehaviour
         {
             HandleSelection();
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ui.ToggleSubmenu(ui.pauseScreen);
+        }
     }
 
     public void ChangeTurn()
