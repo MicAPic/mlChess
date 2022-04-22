@@ -4113,7 +4113,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 6
-  far clip plane: 16
+  far clip plane: 18
   field of view: 50
   orthographic: 1
   orthographic size: 5
@@ -13359,10 +13359,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: wPawn
       objectReference: {fileID: 0}
-    - target: {fileID: 2314663967947837105, guid: 1343deeb24b554d47b710f5ac9478fee, type: 3}
-      propertyPath: hisMajesty
-      value: 
-      objectReference: {fileID: 1365828496}
     - target: {fileID: 9066011546271170370, guid: 1343deeb24b554d47b710f5ac9478fee, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -13483,10 +13479,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1853657416}
     m_Modifications:
-    - target: {fileID: 2010319003413721477, guid: ef5b159753f2d4a5d950be29de90252b, type: 3}
-      propertyPath: hisMajesty
-      value: 
-      objectReference: {fileID: 1365828496}
     - target: {fileID: 2451386256195410529, guid: ef5b159753f2d4a5d950be29de90252b, type: 3}
       propertyPath: m_Name
       value: wBishop
@@ -14032,10 +14024,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3531889901772339991, guid: 8a920c0ed8b7a4121ac417748453b21d, type: 3}
-      propertyPath: hisMajesty
-      value: 
-      objectReference: {fileID: 1365828496}
     - target: {fileID: 6561411727198090252, guid: 8a920c0ed8b7a4121ac417748453b21d, type: 3}
       propertyPath: m_Name
       value: wRook
@@ -14049,10 +14037,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 307095087}
     m_Modifications:
-    - target: {fileID: 4490783316738976719, guid: 0b9d78784ef1f459d9ff36aa8f3f6cc4, type: 3}
-      propertyPath: hisMajesty
-      value: 
-      objectReference: {fileID: 1365828496}
     - target: {fileID: 7454172979548931414, guid: 0b9d78784ef1f459d9ff36aa8f3f6cc4, type: 3}
       propertyPath: m_Name
       value: wQueen
