@@ -30,9 +30,9 @@ public class UI : MonoBehaviour
     public void GameQuit()
     {
         #if UNITY_EDITOR
-            EditorApplication.ExitPlaymode();
+        EditorApplication.ExitPlaymode();
         #else
-            Application.Quit;
+        Application.Quit();
         #endif
     } 
     

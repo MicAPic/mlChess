@@ -338,7 +338,7 @@ public class GameManager : MonoBehaviour
                 {
                     if (_selectedPiece != null)
                     {
-                        _selectedPiece.GetComponent<Outline>().enabled = false;
+                        ToggleOutline();
                     }
                     _selectedPiece = piece;
                     ToggleOutline(); // on
@@ -351,6 +351,10 @@ public class GameManager : MonoBehaviour
     void ToggleOutline()
     {
         _selectedPiece.GetComponent<Outline>().enabled = !_selectedPiece.GetComponent<Outline>().enabled;
+        foreach (var square in _selectedPiece.possibleDestinations)
+        {
+            square.GetComponent<Square>().Next();
+        }
     }
     //
 
