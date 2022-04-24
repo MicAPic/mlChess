@@ -116,7 +116,8 @@ namespace Pieces
             {
                 // en passant BABY
                 var pawn = square.GetComponentInChildren<Pawn>();
-                if (Mathf.Abs(pawn.CurrentPos - pawn.PreviousPos) == 20) // if the enemy pawn just made the double move
+                if (pawn.pieceColour != pieceColour &&
+                    Mathf.Abs(pawn.CurrentPos - pawn.PreviousPos) == 20) // if the enemy pawn just made the double move
                 {
                     StartCoroutine(AttemptCapture(square, false));
                 }

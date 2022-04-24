@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4818407064032897612}
   - component: {fileID: 8325954618956386790}
+  - component: {fileID: -2564710340950649171}
   m_Layer: 0
   m_Name: wKnight
   m_TagString: Piece
@@ -48,6 +49,24 @@ MonoBehaviour:
   pieceIcon: "\u2658"
   pinDirection: 0
   possibleDestinations: []
+--- !u!114 &-2564710340950649171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424018874927029861}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 0.8745098, b: 0, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!65 &9096270546276076722
 BoxCollider:
   m_ObjectHideFlags: 0

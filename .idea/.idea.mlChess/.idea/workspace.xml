@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="8c687816-200a-4861-b89e-c38515377fe9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.mlChess/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.mlChess/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Black.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Black.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/White.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/White.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/bBishop.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/bBishop.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/bKing.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/bKing.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/bKnight.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/bKnight.prefab" afterDir="false" />
@@ -16,7 +19,11 @@
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/wQueen.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/wQueen.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/wRook.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/wRook.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pieces/Pawn.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pieces/Pawn.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scenes/Main.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/InputManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/InputManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +119,8 @@
       <workItem from="1649943935205" duration="1049000" />
       <workItem from="1650113064094" duration="8307000" />
       <workItem from="1650544473227" duration="8915000" />
-      <workItem from="1650639864908" duration="1824000" />
+      <workItem from="1650639864908" duration="1974000" />
+      <workItem from="1650812393785" duration="3794000" />
     </task>
     <servers />
   </component>
@@ -122,6 +130,17 @@
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>

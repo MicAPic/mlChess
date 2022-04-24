@@ -35,6 +35,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3215923078321343532}
   - component: {fileID: 3531889901772339991}
+  - component: {fileID: 6474429656401960275}
   m_Layer: 0
   m_Name: wRook
   m_TagString: Piece
@@ -74,6 +75,24 @@ MonoBehaviour:
   pinDirection: 0
   possibleDestinations: []
   _piecesAhead: []
+--- !u!114 &6474429656401960275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6561411727198090252}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 0.8745098, b: 0, a: 1}
+  outlineWidth: 4
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &4281804429687549110
 PrefabInstance:
   m_ObjectHideFlags: 0

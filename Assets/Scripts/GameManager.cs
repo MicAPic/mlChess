@@ -33,8 +33,6 @@ public class GameManager : MonoBehaviour
     private Camera activeCamera;
     [SerializeField] 
     private GameObject promotionPopup;
-    
-    private Piece _selectedPiece;
 
     private readonly Dictionary<Piece.PieceColour, string> _winText = new Dictionary<Piece.PieceColour, string>
     {
@@ -302,7 +300,10 @@ public class GameManager : MonoBehaviour
         
         squareList.AddRange(Enumerable.Repeat<GameObject>(null, 19)); //adds a top border
     }
-
+    
+    // this block handles piece selection
+    private Piece _selectedPiece;
+    
     void HandleSelection()
     {
         var ray = activeCamera.ScreenPointToRay(Input.mousePosition);
@@ -313,6 +314,7 @@ public class GameManager : MonoBehaviour
 
             if (clickedObject.CompareTag("Square") && _selectedPiece)
             {
+                ToggleOutline(); // off
                 _selectedPiece.StartTurn(clickedObject.gameObject);
                 _selectedPiece = null;
                 Debug.Log(clickedObject.name);
@@ -324,6 +326,7 @@ public class GameManager : MonoBehaviour
                     _selectedPiece.pieceColour != clickedObject.parent.GetComponent<Piece>().pieceColour) 
                 {
                     var square = clickedObject.parent.parent;
+                    ToggleOutline(); // off
                     _selectedPiece.StartTurn(square.gameObject);
                     _selectedPiece = null;
                     Debug.Log(square.name);
@@ -333,12 +336,23 @@ public class GameManager : MonoBehaviour
                 var piece = clickedObject.parent.GetComponent<Piece>();
                 if (piece.pieceColour == turnOf)
                 {
+                    if (_selectedPiece != null)
+                    {
+                        _selectedPiece.GetComponent<Outline>().enabled = false;
+                    }
                     _selectedPiece = piece;
+                    ToggleOutline(); // on
                     Debug.Log(piece.name + piece.transform.position);
                 }
             }
         }
     }
+
+    void ToggleOutline()
+    {
+        _selectedPiece.GetComponent<Outline>().enabled = !_selectedPiece.GetComponent<Outline>().enabled;
+    }
+    //
 
     bool ThreefoldRepetitionCheck()
     {

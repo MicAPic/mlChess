@@ -180,7 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u2654Queen"
+  m_text: "\u2655Queen"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f5bb83f121d854e27ab52c4ba87afce4, type: 2}
   m_sharedMaterial: {fileID: 6276479973138435380, guid: f5bb83f121d854e27ab52c4ba87afce4, type: 2}
