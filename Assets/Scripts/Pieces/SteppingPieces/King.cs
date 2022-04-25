@@ -42,7 +42,7 @@ namespace Pieces.SteppingPieces
             if (!HasMoved && checkingEnemies.Count == 0)
             {
                 // left castling check
-                if (!leftRook.HasMoved)
+                if (leftRook != null && !leftRook.HasMoved)
                 {
                     if (CastlingPossibilityCheck(_leftCastlingCheckPattern))
                     {
@@ -54,7 +54,7 @@ namespace Pieces.SteppingPieces
                 }
 
                 // right castling check
-                if (!rightRook.HasMoved)
+                if (rightRook != null && !rightRook.HasMoved)
                 {
                     if (CastlingPossibilityCheck(_rightCastlingCheckPattern))
                     {
