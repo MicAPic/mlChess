@@ -14,6 +14,8 @@ namespace Pieces
         //              >0<
         //
         // based on the source from: https://www.chessprogramming.org/
+        public bool canEnPassant = true;
+        
         private bool _madeFirstMove;
         private readonly int[] _enPassantCheckPattern = {-1, 1};
 
@@ -73,7 +75,7 @@ namespace Pieces
 
             GameManager.MoveCount[pieceColour] += possibleDestinations.Count;
             RemoveIllegalMoves();
-        }
+        } 
         
         protected internal override void MakeMove(GameObject destination, bool changeTurnAfterwards)
         {
@@ -98,7 +100,8 @@ namespace Pieces
                     if (pawn != null && pawn.pieceColour != pieceColour)
                     {
                         // check if pawn is pinned:
-                        if (pawn.pinDirection % (GameManager.squareList.IndexOf(square) - CurrentPos) == 0)
+                        if (pawn.pinDirection % (GameManager.squareList.IndexOf(square) - CurrentPos) == 0 && 
+                            pawn.canEnPassant)
                         {
                             pawn.possibleDestinations.Add(square);
                             // denote that en passant was possible on this turn:

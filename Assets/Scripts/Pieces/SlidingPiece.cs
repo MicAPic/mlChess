@@ -8,6 +8,8 @@ namespace Pieces
     {
         public List<Piece> _piecesAhead;
 
+        public Pawn _pawnWithDisabledEnPassant;
+
         public override void GenerateMoves()
         {
             var isPinningAPiece = false;
@@ -20,6 +22,11 @@ namespace Pieces
                 TogglePin(_piecesAhead[0], 0);
             }
             _piecesAhead = new List<Piece>();
+            if (_pawnWithDisabledEnPassant != null)
+            {
+                _pawnWithDisabledEnPassant.canEnPassant = true;
+                _pawnWithDisabledEnPassant = null;
+            }
             
             foreach (var index in Pattern)
             {
@@ -62,23 +69,26 @@ namespace Pieces
                         if (square.GetComponentInChildren<King>() &&
                             square.GetComponentInChildren<Piece>().pieceColour != pieceColour)
                         {
-                            isPinningAPiece = true;
+                            if (_pawnWithDisabledEnPassant != null)
+                            {
+                                _pawnWithDisabledEnPassant.canEnPassant = false;
+                            }
+                            
+                            if (_piecesAhead.Count < 3)
+                            {
+                                isPinningAPiece = true;
+                            }
                             break;
                         }
                         
                         // this whole thing is required to prevent bugs w/ en passant
-                        if (_piecesAhead.Count == 2)
+                        if (square.GetComponentInChildren<Pawn>())
                         {
-                            if (square.GetComponentInChildren<Pawn>() && _piecesAhead[0].GetComponent<Pawn>())
+                            var pawn = square.GetComponentInChildren<Pawn>();
+                            if (pawn.pieceColour != pieceColour) // disable en passant
                             {
-                                var pawn = square.GetComponentInChildren<Pawn>();
-                                if (pawn.pieceColour != pieceColour ||
-                                    Mathf.Abs(pawn.CurrentPos - pawn.PreviousPos) != 20) // just made a double move
-                                {
-                                    break;
-                                }
+                                _pawnWithDisabledEnPassant = pawn;
                             }
-                            else break;
                         }
                         //
                     }

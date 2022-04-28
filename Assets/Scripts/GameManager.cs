@@ -89,13 +89,12 @@ public class GameManager : MonoBehaviour
     {
         UpdateSquares();
         UpdateMoves(true);
-
+        UpdateMoves(false);
         var isInCheck = Kings[Piece.Next(turnOf)].checkingEnemies.Count > 0;
 
         if (Kings[Piece.PieceColour.white].checkingEnemies.Count > 0 || 
             Kings[Piece.PieceColour.black].checkingEnemies.Count > 0)
         {
-            UpdateMoves(false);
             if (isInCheck)
             {
                 ui.statusBarText.text += "+"; // LAN
