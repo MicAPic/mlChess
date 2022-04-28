@@ -8,7 +8,8 @@ namespace Pieces
     {
         public List<Piece> _piecesAhead;
 
-        public Pawn _pawnWithDisabledEnPassant;
+        private Pawn _pseudoPinnedPawn; // used to disable en passant if required
+        private int _pinningDirection;
 
         public override void GenerateMoves()
         {
@@ -19,21 +20,20 @@ namespace Pieces
 
             if (_piecesAhead.Count != 0)
             {
-                TogglePin(_piecesAhead[0], 0);
+                TogglePin(_piecesAhead[0], _pinningDirection);
             }
             _piecesAhead = new List<Piece>();
-            if (_pawnWithDisabledEnPassant != null)
+            if (_pseudoPinnedPawn != null)
             {
-                _pawnWithDisabledEnPassant.canEnPassant = true;
-                _pawnWithDisabledEnPassant = null;
+                _pseudoPinnedPawn.canEnPassant = true;
+                _pseudoPinnedPawn = null;
             }
             
             foreach (var index in Pattern)
             {
                 var k = 1;
                 var square = GameManager.squareList[CurrentPos + index];
-                while (square != null && HisMajesty.checkingEnemies.Count < 2 /*&&
-                       (pinDirection == 0 || index % pinDirection == 0)*/)
+                while (square != null && HisMajesty.checkingEnemies.Count < 2)
                 {
                     if (HisMajesty.checkingEnemies.Count == 0 ||
                         HisMajesty.checkingEnemies.Count > 0 && (square.transform.childCount != 0 || EnemyBlockingCheck(square)))
@@ -69,9 +69,9 @@ namespace Pieces
                         if (square.GetComponentInChildren<King>() &&
                             square.GetComponentInChildren<Piece>().pieceColour != pieceColour)
                         {
-                            if (_pawnWithDisabledEnPassant != null)
+                            if (_pseudoPinnedPawn != null)
                             {
-                                _pawnWithDisabledEnPassant.canEnPassant = false;
+                                _pseudoPinnedPawn.canEnPassant = false;
                             }
                             
                             if (_piecesAhead.Count < 3)
@@ -87,7 +87,7 @@ namespace Pieces
                             var pawn = square.GetComponentInChildren<Pawn>();
                             if (pawn.pieceColour != pieceColour) // disable en passant
                             {
-                                _pawnWithDisabledEnPassant = pawn;
+                                _pseudoPinnedPawn = pawn;
                             }
                         }
                         //
@@ -105,6 +105,7 @@ namespace Pieces
                         if (target.pieceColour != pieceColour) 
                         {
                             TogglePin(target, index);
+                            _pinningDirection = index;
                         }
                         pinnedPieceSet = true;
                     }

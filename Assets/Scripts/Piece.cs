@@ -32,10 +32,10 @@ public abstract class Piece : MonoBehaviour
     public string pieceIcon;
 
     [Header("Utility")]
-    public int pinDirection;
+    public List<int> pinDirections;
     protected int[] Pattern;
-    protected internal int PreviousPos;
-    protected internal int CurrentPos;
+    protected int PreviousPos;
+    protected int CurrentPos;
     protected internal bool HasMoved;
     protected internal bool IsGivingCheck;
     protected GameManager GameManager { get; private set; }
@@ -50,6 +50,7 @@ public abstract class Piece : MonoBehaviour
     {
         GameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         CurrentPos = GameManager.squareList.IndexOf(transform.parent.gameObject);
+        pinDirections = new List<int>();
         
         HisMajesty = GameManager.Kings[pieceColour];
         PeskyEnemyKing = GameManager.Kings[Next(pieceColour)];
@@ -71,17 +72,20 @@ public abstract class Piece : MonoBehaviour
 
     public virtual void RemoveIllegalMoves()
     {
-        if (pinDirection != 0) 
+        foreach (var pinDirection in pinDirections)
         {
-            for (int i = possibleDestinations.Count - 1; i >= 0; i--)
+            if (pinDirection != 0)
             {
-                var direction = GameManager.squareList.IndexOf(possibleDestinations[i]) - CurrentPos;
-                if (direction % pinDirection != 0 ||
-                    Math.Abs(pinDirection) == 1 && Math.Abs(direction) >= 8)
+                for (int i = possibleDestinations.Count - 1; i >= 0; i--)
                 {
-                    // remove moves that leave the king in check
-                    possibleDestinations.RemoveAt(i);
-                    GameManager.MoveCount[pieceColour]--;
+                    var direction = GameManager.squareList.IndexOf(possibleDestinations[i]) - CurrentPos;
+                    if (direction % pinDirection != 0 ||
+                        Math.Abs(pinDirection) == 1 && Math.Abs(direction) >= 8)
+                    {
+                        // remove moves that leave the king in check
+                        possibleDestinations.RemoveAt(i);
+                        GameManager.MoveCount[pieceColour]--;
+                    }
                 }
             }
         }
@@ -179,38 +183,48 @@ public abstract class Piece : MonoBehaviour
         }
 
         king.checkingEnemies.Clear();
-        king.pinDirection = 0;
+        king.pinDirections.Clear();
     }
 
     protected void TogglePin(Piece target, int direction)
     {
-        target.pinDirection = direction;
+        if (target.pinDirections.Contains(direction))
+        {
+            target.pinDirections.Remove(direction);
+        }
+        else
+        {
+            target.pinDirections.Add(direction);
+        }
         target.RemoveIllegalMoves();
     }
 
     protected bool EnemyBlockingCheck(GameObject destination)
     {
-        var direction = -HisMajesty.pinDirection; // we go in the opposite direction
-        if (direction == 0) return false; // this is to prevent inf loops
-        
-        var index = GameManager.squareList.IndexOf(destination);
-        var k = 0;
-
-        while (destination != null)
+        foreach (var negativeDirection in HisMajesty.pinDirections)
         {
-            if (destination.transform.childCount != 0)
-            {
-                var piece = destination.GetComponentInChildren<Piece>();
-                if (piece.pieceColour != pieceColour && piece.IsGivingCheck)
-                {
-                    return true;
-                }
-                
-                return false;
-            }
+            var direction = -negativeDirection; // we go in the opposite direction
+            if (direction == 0) return false; // this is to prevent inf loops
 
-            k++;
-            destination = GameManager.squareList[index + direction * k];
+            var index = GameManager.squareList.IndexOf(destination);
+            var k = 0;
+
+            while (destination != null)
+            {
+                if (destination.transform.childCount != 0)
+                {
+                    var piece = destination.GetComponentInChildren<Piece>();
+                    if (piece.pieceColour != pieceColour && piece.IsGivingCheck)
+                    {
+                        return true;
+                    }
+
+                    return false;
+                }
+
+                k++;
+                destination = GameManager.squareList[index + direction * k];
+            }
         }
 
         return false;

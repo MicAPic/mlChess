@@ -11,13 +11,6 @@ public class Interactable : MonoBehaviour
     private Vector3 _awakePos;
     private const float VerticalMovementDuration = .15f; // in seconds
     private const float VerticalMovementDistance = .15f; // in apples, i guess...
-    private bool _canMove = true;
-
-    private Dictionary<int, bool> _isMoving = new Dictionary<int, bool>
-    {
-        {1, false}, // up
-        {-1, false} // down
-    };
 
     // Start is called before the first frame update
     void Start()
@@ -26,45 +19,20 @@ public class Interactable : MonoBehaviour
         _asleepPos = transform.localPosition;
         _awakePos = _asleepPos + Vector3.up * VerticalMovementDistance;
         _pieceColour = GetComponentInParent<Piece>().pieceColour;
+        
+        
     }
-    
-    // // Update is called once per frame
-    // void Update()
-    // {
-    //     
-    // }
-    
+
     private void OnMouseEnter()
     {
         if (_gameManager.turnOf == _pieceColour && !_gameManager.isPaused)
         {
-            StartCoroutine(WaitUntilCanMove(1));
+            StartCoroutine(MoveVertically(1));
         }
-    }
-
-    private void OnMouseExit()
-    {
-        if (transform.localPosition != _asleepPos){
-            StartCoroutine(WaitUntilCanMove(-1));
-        }
-    }
-
-    IEnumerator WaitUntilCanMove(int direction)
-    {
-        if (_isMoving[direction])
-        {
-            yield break;
-        }
-        yield return new WaitUntil(() => _canMove);
-        StartCoroutine(MoveVertically(direction));
     }
 
     IEnumerator MoveVertically(int direction /* up (1) or down (-1) */)
     {
-        // lock movement
-        _canMove = false; 
-        _isMoving[direction] = true;
-        
         float timeElapsed = 0;
         var startPos = transform.localPosition;
         var targetPos = direction == 1 ? _awakePos : _asleepPos;
@@ -78,8 +46,23 @@ public class Interactable : MonoBehaviour
 
         transform.localPosition = targetPos; // prevents bugs
 
-        // unlock movement
-        _canMove = true;
-        _isMoving[direction] = false;
+        if (direction == 1)
+        {
+            StartCoroutine(CheckForMouseExit());
+        }
+    }
+
+    IEnumerator CheckForMouseExit()
+    {
+        yield return new WaitForSeconds(0.5f);
+     
+        var ray = _gameManager.activeCamera.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out var hit) && hit.collider.gameObject == gameObject)
+        {
+            StartCoroutine(CheckForMouseExit());
+            yield break;
+        }
+        
+        StartCoroutine(MoveVertically(-1));
     }
 }

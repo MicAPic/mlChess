@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
 
     public UI ui;
     [SerializeField]
-    private Camera activeCamera;
+    internal Camera activeCamera;
     [SerializeField] 
     private GameObject promotionPopup;
 
@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        Application.targetFrameRate = 30; // prevent the game from targeting billion fps 
+
         GenerateBoard();
         MoveCount = new Dictionary<Piece.PieceColour, int>
         {
@@ -92,21 +94,21 @@ public class GameManager : MonoBehaviour
         UpdateMoves(false);
         var isInCheck = Kings[Piece.Next(turnOf)].checkingEnemies.Count > 0;
 
-        if (Kings[Piece.PieceColour.white].checkingEnemies.Count > 0 || 
-            Kings[Piece.PieceColour.black].checkingEnemies.Count > 0)
-        {
-            if (isInCheck)
-            {
-                ui.statusBarText.text += "+"; // LAN
-            }
-        }
-
         foreach (var king in Kings.Values)
         {
             king.RemoveIllegalMoves();
         }
         
         turnOf = Piece.Next(turnOf);
+        
+        if (Kings[turnOf].checkingEnemies.Count > 0)
+        {
+            if (isInCheck)
+            {
+                ui.statusBarText.text += new string('+', Kings[turnOf].checkingEnemies.Count); // LAN
+            }
+        }
+        
         if (MoveCount[turnOf] == 0)
         {
             // declare checkmate or stalemate
@@ -302,6 +304,7 @@ public class GameManager : MonoBehaviour
     
     // this block handles piece selection
     private Piece _selectedPiece;
+    private Collider _selectedPieceCollider;
     
     void HandleSelection()
     {
@@ -316,6 +319,7 @@ public class GameManager : MonoBehaviour
                 ToggleOutline(); // off
                 _selectedPiece.StartTurn(clickedObject.gameObject);
                 _selectedPiece = null;
+                _selectedPieceCollider.enabled = true;
                 Debug.Log(clickedObject.name);
             }
             else if (clickedObject.parent.CompareTag("Piece"))
@@ -328,18 +332,23 @@ public class GameManager : MonoBehaviour
                     ToggleOutline(); // off
                     _selectedPiece.StartTurn(square.gameObject);
                     _selectedPiece = null;
+                    _selectedPieceCollider.enabled = true;
                     Debug.Log(square.name);
                     return;
                 }
                 
-                var piece = clickedObject.parent.GetComponent<Piece>();
+                var piece = clickedObject.GetComponentInParent<Piece>();
                 if (piece.pieceColour == turnOf)
                 {
                     if (_selectedPiece != null)
                     {
+                        // change the toggled piece
                         ToggleOutline();
+                        _selectedPieceCollider.enabled = true;
                     }
                     _selectedPiece = piece;
+                    _selectedPieceCollider = clickedObject.GetComponent<Collider>();
+                    _selectedPieceCollider.enabled = false;
                     ToggleOutline(); // on
                     Debug.Log(piece.name + piece.transform.position);
                 }

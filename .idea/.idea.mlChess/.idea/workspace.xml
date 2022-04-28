@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8c687816-200a-4861-b89e-c38515377fe9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.mlChess/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.mlChess/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Bishop.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Bishop.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/King.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/King.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Knight.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Knight.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Pawn.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Pawn.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Queen.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Queen.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Rook.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Rook.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +36,14 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/Builds/macOS/v0.1.1.app/Contents/MacOS/Chess" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Builds/macOS/v0.1.1.app/Contents/MacOS" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
     <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
@@ -108,6 +110,9 @@
       <workItem from="1650812393785" duration="5263000" />
       <workItem from="1650829255852" duration="422000" />
       <workItem from="1651150122333" duration="5945000" />
+      <workItem from="1651165034478" duration="2276000" />
+      <workItem from="1651168019768" duration="1020000" />
+      <workItem from="1651174991848" duration="3349000" />
     </task>
     <servers />
   </component>

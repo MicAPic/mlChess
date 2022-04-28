@@ -71,16 +71,19 @@ namespace Pieces.SteppingPieces
         public override void RemoveIllegalMoves()
         {
             // don't get in check
-            for (int i = possibleDestinations.Count - 1; i >= 0; i--)
+            foreach (var pinDirection in pinDirections)
             {
-                var square = possibleDestinations[i].GetComponent<Square>();
-                var direction = GameManager.squareList.IndexOf(possibleDestinations[i]) - CurrentPos; 
-                if (square.AttackedBy[Next(pieceColour)] || 
-                    (Math.Abs(pinDirection) > 1 || Math.Abs(pinDirection) == 1 && Math.Abs(direction) < 8) &&
-                    direction % pinDirection == 0 && square.transform.childCount == 0) 
+                for (int i = possibleDestinations.Count - 1; i >= 0; i--)
                 {
-                    possibleDestinations.RemoveAt(i);
-                    GameManager.MoveCount[pieceColour]--;
+                    var square = possibleDestinations[i].GetComponent<Square>();
+                    var direction = GameManager.squareList.IndexOf(possibleDestinations[i]) - CurrentPos;
+                    if (square.AttackedBy[Next(pieceColour)] ||
+                        (Math.Abs(pinDirection) > 1 || Math.Abs(pinDirection) == 1 && Math.Abs(direction) < 8) &&
+                        direction % pinDirection == 0 && square.transform.childCount == 0)
+                    {
+                        possibleDestinations.RemoveAt(i);
+                        GameManager.MoveCount[pieceColour]--;
+                    }
                 }
             }
         }

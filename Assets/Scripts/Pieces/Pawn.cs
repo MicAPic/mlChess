@@ -100,7 +100,7 @@ namespace Pieces
                     if (pawn != null && pawn.pieceColour != pieceColour)
                     {
                         // check if pawn is pinned:
-                        if (pawn.pinDirection % (GameManager.squareList.IndexOf(square) - CurrentPos) == 0 && 
+                        if (pawn.pinDirections[0] % (GameManager.squareList.IndexOf(square) - CurrentPos) == 0 && 
                             pawn.canEnPassant)
                         {
                             pawn.possibleDestinations.Add(square);
