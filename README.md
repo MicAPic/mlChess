@@ -5,5 +5,5 @@ Current version: **v0.1-beta**
 
 ## Known bugs:
 - Double check breaks king move generation;
-- Piece outline shader doesn't look the way it's intended in the builds;
+- Borders in the main menu are too short;
 - Sometime toggled pieces remain floating in the air. 

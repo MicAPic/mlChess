@@ -3,9 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="8c687816-200a-4861-b89e-c38515377fe9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.mlChess/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.mlChess/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pieces/Pawn.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pieces/Pawn.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pieces/SlidingPiece.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pieces/SlidingPiece.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Bishop.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Bishop.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/King.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/King.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Knight.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Knight.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Pawn.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Pawn.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Queen.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Queen.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Rook.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Rook.fbx.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +107,7 @@
       <workItem from="1650639864908" duration="1974000" />
       <workItem from="1650812393785" duration="5263000" />
       <workItem from="1650829255852" duration="422000" />
-      <workItem from="1651150122333" duration="5275000" />
+      <workItem from="1651150122333" duration="5945000" />
     </task>
     <servers />
   </component>
