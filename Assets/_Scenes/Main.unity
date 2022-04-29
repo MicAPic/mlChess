@@ -408,7 +408,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 0
-  destinationMaterial: {fileID: 2100000, guid: d14907905b2ed4745956819ab36a82f1, type: 2}
 --- !u!4 &71802139 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 719354374437797874, guid: d69b1b2ef061d4dbdb9dd4cb0d2c4d44, type: 3}
@@ -525,7 +524,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 1
-  destinationMaterial: {fileID: 2100000, guid: 18709268f821d44a991da2da11c22fa0, type: 2}
 --- !u!1 &74679991
 GameObject:
   m_ObjectHideFlags: 0
@@ -730,7 +728,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 1
   squareColour: 0
-  destinationMaterial: {fileID: 2100000, guid: d14907905b2ed4745956819ab36a82f1, type: 2}
 --- !u!1 &95064958
 GameObject:
   m_ObjectHideFlags: 0
@@ -1239,7 +1236,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 0
-  destinationMaterial: {fileID: 2100000, guid: d14907905b2ed4745956819ab36a82f1, type: 2}
 --- !u!1 &151996266
 GameObject:
   m_ObjectHideFlags: 0
@@ -1350,7 +1346,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 0
-  destinationMaterial: {fileID: 2100000, guid: d14907905b2ed4745956819ab36a82f1, type: 2}
 --- !u!1 &156829863
 GameObject:
   m_ObjectHideFlags: 0
@@ -1555,7 +1550,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 0
-  destinationMaterial: {fileID: 2100000, guid: d14907905b2ed4745956819ab36a82f1, type: 2}
 --- !u!1001 &195630945
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1950,7 +1944,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 0
-  destinationMaterial: {fileID: 2100000, guid: d14907905b2ed4745956819ab36a82f1, type: 2}
 --- !u!1001 &266931409
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2119,7 +2112,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 0
-  destinationMaterial: {fileID: 2100000, guid: d14907905b2ed4745956819ab36a82f1, type: 2}
 --- !u!1001 &280850311
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2367,7 +2359,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 1
   squareColour: 1
-  destinationMaterial: {fileID: 2100000, guid: 18709268f821d44a991da2da11c22fa0, type: 2}
 --- !u!1 &312043179
 GameObject:
   m_ObjectHideFlags: 0
@@ -2613,7 +2604,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 1
   squareColour: 0
-  destinationMaterial: {fileID: 2100000, guid: d14907905b2ed4745956819ab36a82f1, type: 2}
 --- !u!1 &331608638
 GameObject:
   m_ObjectHideFlags: 0
@@ -2799,7 +2789,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 1
-  destinationMaterial: {fileID: 2100000, guid: 18709268f821d44a991da2da11c22fa0, type: 2}
 --- !u!1 &397388238
 GameObject:
   m_ObjectHideFlags: 0
@@ -3237,7 +3226,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 0
-  destinationMaterial: {fileID: 2100000, guid: d14907905b2ed4745956819ab36a82f1, type: 2}
 --- !u!1 &451072602
 GameObject:
   m_ObjectHideFlags: 0
@@ -3349,7 +3337,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 0
-  destinationMaterial: {fileID: 2100000, guid: d14907905b2ed4745956819ab36a82f1, type: 2}
 --- !u!1 &454462384
 GameObject:
   m_ObjectHideFlags: 0
@@ -3460,7 +3447,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 0
-  destinationMaterial: {fileID: 2100000, guid: d14907905b2ed4745956819ab36a82f1, type: 2}
 --- !u!1 &477544211
 GameObject:
   m_ObjectHideFlags: 0
@@ -3647,7 +3633,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 1
-  destinationMaterial: {fileID: 2100000, guid: 18709268f821d44a991da2da11c22fa0, type: 2}
 --- !u!1001 &499504374
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3816,7 +3801,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 1
   squareColour: 0
-  destinationMaterial: {fileID: 2100000, guid: d14907905b2ed4745956819ab36a82f1, type: 2}
 --- !u!1 &516624379
 GameObject:
   m_ObjectHideFlags: 0
@@ -4163,7 +4147,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 0
-  destinationMaterial: {fileID: 2100000, guid: d14907905b2ed4745956819ab36a82f1, type: 2}
 --- !u!1001 &611011367
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4562,7 +4545,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 0
-  destinationMaterial: {fileID: 2100000, guid: d14907905b2ed4745956819ab36a82f1, type: 2}
 --- !u!4 &716733930 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6801880983249341786, guid: 3dcd6032087204f98ac151555a34fa48, type: 3}
@@ -4678,7 +4660,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 1
-  destinationMaterial: {fileID: 2100000, guid: 18709268f821d44a991da2da11c22fa0, type: 2}
 --- !u!1 &744591882
 GameObject:
   m_ObjectHideFlags: 0
@@ -4950,7 +4931,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 0
-  destinationMaterial: {fileID: 2100000, guid: d14907905b2ed4745956819ab36a82f1, type: 2}
 --- !u!1 &776968457
 GameObject:
   m_ObjectHideFlags: 0
@@ -5062,7 +5042,49 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 0
-  destinationMaterial: {fileID: 2100000, guid: d14907905b2ed4745956819ab36a82f1, type: 2}
+--- !u!1 &793430392
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 793430394}
+  - component: {fileID: 793430393}
+  m_Layer: 0
+  m_Name: Material Pool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &793430393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 793430392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9417d31f4f4c042afa156d05405cebde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &793430394
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 793430392}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.5047016, y: 0.5011072, z: 3.7794347}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &795698102
 GameObject:
   m_ObjectHideFlags: 0
@@ -5786,7 +5808,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 1
-  destinationMaterial: {fileID: 2100000, guid: 18709268f821d44a991da2da11c22fa0, type: 2}
 --- !u!4 &984907844 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9066011546271170370, guid: 1343deeb24b554d47b710f5ac9478fee, type: 3}
@@ -5902,7 +5923,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 1
-  destinationMaterial: {fileID: 2100000, guid: 18709268f821d44a991da2da11c22fa0, type: 2}
 --- !u!1 &1004218186
 GameObject:
   m_ObjectHideFlags: 0
@@ -6056,7 +6076,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 1
   squareColour: 0
-  destinationMaterial: {fileID: 2100000, guid: d14907905b2ed4745956819ab36a82f1, type: 2}
 --- !u!4 &1077920894 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4818407064032897612, guid: 1fba6e72292b146cc84bce040e30a540, type: 3}
@@ -6292,7 +6311,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 1
   squareColour: 0
-  destinationMaterial: {fileID: 2100000, guid: d14907905b2ed4745956819ab36a82f1, type: 2}
 --- !u!1 &1103069933
 GameObject:
   m_ObjectHideFlags: 0
@@ -6404,7 +6422,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 0
-  destinationMaterial: {fileID: 2100000, guid: d14907905b2ed4745956819ab36a82f1, type: 2}
 --- !u!4 &1118429687 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9066011546271170370, guid: 1343deeb24b554d47b710f5ac9478fee, type: 3}
@@ -6634,7 +6651,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 1
-  destinationMaterial: {fileID: 2100000, guid: 18709268f821d44a991da2da11c22fa0, type: 2}
 --- !u!114 &1171214224 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3531889901772339991, guid: 8a920c0ed8b7a4121ac417748453b21d, type: 3}
@@ -6756,7 +6772,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 1
-  destinationMaterial: {fileID: 2100000, guid: 18709268f821d44a991da2da11c22fa0, type: 2}
 --- !u!1 &1198798501
 GameObject:
   m_ObjectHideFlags: 0
@@ -6868,7 +6883,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 1
   squareColour: 1
-  destinationMaterial: {fileID: 2100000, guid: 18709268f821d44a991da2da11c22fa0, type: 2}
 --- !u!1 &1236637172
 GameObject:
   m_ObjectHideFlags: 0
@@ -6980,7 +6994,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 0
-  destinationMaterial: {fileID: 2100000, guid: d14907905b2ed4745956819ab36a82f1, type: 2}
 --- !u!1 &1237749961
 GameObject:
   m_ObjectHideFlags: 0
@@ -7091,7 +7104,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 0
-  destinationMaterial: {fileID: 2100000, guid: d14907905b2ed4745956819ab36a82f1, type: 2}
 --- !u!1 &1278582110
 GameObject:
   m_ObjectHideFlags: 0
@@ -7570,7 +7582,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 1
-  destinationMaterial: {fileID: 2100000, guid: 18709268f821d44a991da2da11c22fa0, type: 2}
 --- !u!1 &1331556203
 GameObject:
   m_ObjectHideFlags: 0
@@ -7728,7 +7739,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 0
-  destinationMaterial: {fileID: 2100000, guid: d14907905b2ed4745956819ab36a82f1, type: 2}
 --- !u!1 &1342528985
 GameObject:
   m_ObjectHideFlags: 0
@@ -7966,7 +7976,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 1
   squareColour: 1
-  destinationMaterial: {fileID: 2100000, guid: 18709268f821d44a991da2da11c22fa0, type: 2}
 --- !u!1 &1354111660
 GameObject:
   m_ObjectHideFlags: 0
@@ -8239,7 +8248,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 1
   squareColour: 1
-  destinationMaterial: {fileID: 2100000, guid: 18709268f821d44a991da2da11c22fa0, type: 2}
 --- !u!1 &1397007539
 GameObject:
   m_ObjectHideFlags: 0
@@ -8350,7 +8358,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 0
-  destinationMaterial: {fileID: 2100000, guid: d14907905b2ed4745956819ab36a82f1, type: 2}
 --- !u!4 &1397520088 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6801880983249341786, guid: 3dcd6032087204f98ac151555a34fa48, type: 3}
@@ -8606,7 +8613,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 0
-  destinationMaterial: {fileID: 2100000, guid: d14907905b2ed4745956819ab36a82f1, type: 2}
 --- !u!1 &1452469576
 GameObject:
   m_ObjectHideFlags: 0
@@ -8717,7 +8723,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 1
-  destinationMaterial: {fileID: 2100000, guid: 18709268f821d44a991da2da11c22fa0, type: 2}
 --- !u!1 &1452629316
 GameObject:
   m_ObjectHideFlags: 0
@@ -8829,7 +8834,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 0
-  destinationMaterial: {fileID: 2100000, guid: d14907905b2ed4745956819ab36a82f1, type: 2}
 --- !u!4 &1457967794 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4818407064032897612, guid: 1fba6e72292b146cc84bce040e30a540, type: 3}
@@ -8945,7 +8949,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 0
-  destinationMaterial: {fileID: 2100000, guid: d14907905b2ed4745956819ab36a82f1, type: 2}
 --- !u!1 &1475427853
 GameObject:
   m_ObjectHideFlags: 0
@@ -9385,7 +9388,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 1
-  destinationMaterial: {fileID: 2100000, guid: 18709268f821d44a991da2da11c22fa0, type: 2}
 --- !u!1 &1530152438
 GameObject:
   m_ObjectHideFlags: 0
@@ -9496,7 +9498,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 1
-  destinationMaterial: {fileID: 2100000, guid: 18709268f821d44a991da2da11c22fa0, type: 2}
 --- !u!1 &1535777578
 GameObject:
   m_ObjectHideFlags: 0
@@ -9608,7 +9609,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 0
-  destinationMaterial: {fileID: 2100000, guid: d14907905b2ed4745956819ab36a82f1, type: 2}
 --- !u!1 &1564060675
 GameObject:
   m_ObjectHideFlags: 0
@@ -9720,7 +9720,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 1
-  destinationMaterial: {fileID: 2100000, guid: 18709268f821d44a991da2da11c22fa0, type: 2}
 --- !u!1 &1595870507
 GameObject:
   m_ObjectHideFlags: 0
@@ -9965,7 +9964,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 1
   squareColour: 0
-  destinationMaterial: {fileID: 2100000, guid: d14907905b2ed4745956819ab36a82f1, type: 2}
 --- !u!1001 &1600226410
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10273,7 +10271,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 1
-  destinationMaterial: {fileID: 2100000, guid: 18709268f821d44a991da2da11c22fa0, type: 2}
 --- !u!1001 &1674112135
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10894,7 +10891,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 1
   squareColour: 0
-  destinationMaterial: {fileID: 2100000, guid: d14907905b2ed4745956819ab36a82f1, type: 2}
 --- !u!4 &1831780330 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6655874730629647957, guid: 580a4461020ec4bc78816c52ed6108ee, type: 3}
@@ -11164,7 +11160,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 1
   squareColour: 0
-  destinationMaterial: {fileID: 2100000, guid: d14907905b2ed4745956819ab36a82f1, type: 2}
 --- !u!1 &1862143078
 GameObject:
   m_ObjectHideFlags: 0
@@ -11276,7 +11271,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 1
-  destinationMaterial: {fileID: 2100000, guid: 18709268f821d44a991da2da11c22fa0, type: 2}
 --- !u!1 &1869654232
 GameObject:
   m_ObjectHideFlags: 0
@@ -11388,7 +11382,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 1
   squareColour: 1
-  destinationMaterial: {fileID: 2100000, guid: 18709268f821d44a991da2da11c22fa0, type: 2}
 --- !u!1 &1882780188
 GameObject:
   m_ObjectHideFlags: 0
@@ -11499,7 +11492,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 1
-  destinationMaterial: {fileID: 2100000, guid: 18709268f821d44a991da2da11c22fa0, type: 2}
 --- !u!1001 &1883913498
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11815,7 +11807,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 1
-  destinationMaterial: {fileID: 2100000, guid: 18709268f821d44a991da2da11c22fa0, type: 2}
 --- !u!4 &1942123105 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9066011546271170370, guid: 1343deeb24b554d47b710f5ac9478fee, type: 3}
@@ -12006,7 +11997,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 1
-  destinationMaterial: {fileID: 2100000, guid: 18709268f821d44a991da2da11c22fa0, type: 2}
 --- !u!1 &1964822065
 GameObject:
   m_ObjectHideFlags: 0
@@ -12118,7 +12108,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 1
   squareColour: 1
-  destinationMaterial: {fileID: 2100000, guid: 18709268f821d44a991da2da11c22fa0, type: 2}
 --- !u!1 &1965911195
 GameObject:
   m_ObjectHideFlags: 0
@@ -12229,7 +12218,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 1
-  destinationMaterial: {fileID: 2100000, guid: 18709268f821d44a991da2da11c22fa0, type: 2}
 --- !u!4 &1966441687 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9066011546271170370, guid: 1343deeb24b554d47b710f5ac9478fee, type: 3}
@@ -12345,7 +12333,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 0
-  destinationMaterial: {fileID: 2100000, guid: d14907905b2ed4745956819ab36a82f1, type: 2}
 --- !u!1 &1984066189
 GameObject:
   m_ObjectHideFlags: 0
@@ -12456,7 +12443,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 1
-  destinationMaterial: {fileID: 2100000, guid: 18709268f821d44a991da2da11c22fa0, type: 2}
 --- !u!1 &1988239421
 GameObject:
   m_ObjectHideFlags: 0
@@ -12643,7 +12629,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 1
-  destinationMaterial: {fileID: 2100000, guid: 18709268f821d44a991da2da11c22fa0, type: 2}
 --- !u!4 &2002783348 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3215923078321343532, guid: 8a920c0ed8b7a4121ac417748453b21d, type: 3}
@@ -12907,7 +12892,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 1
-  destinationMaterial: {fileID: 2100000, guid: 18709268f821d44a991da2da11c22fa0, type: 2}
 --- !u!4 &2039302666 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3215923078321343532, guid: 8a920c0ed8b7a4121ac417748453b21d, type: 3}
@@ -13145,7 +13129,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 0
-  destinationMaterial: {fileID: 2100000, guid: d14907905b2ed4745956819ab36a82f1, type: 2}
 --- !u!1 &2077264588
 GameObject:
   m_ObjectHideFlags: 0
@@ -13257,7 +13240,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 1
   squareColour: 1
-  destinationMaterial: {fileID: 2100000, guid: 18709268f821d44a991da2da11c22fa0, type: 2}
 --- !u!1 &2083910602
 GameObject:
   m_ObjectHideFlags: 0
@@ -13368,7 +13350,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 1
-  destinationMaterial: {fileID: 2100000, guid: 18709268f821d44a991da2da11c22fa0, type: 2}
 --- !u!4 &2099029312 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8533010641615547276, guid: 0b9d78784ef1f459d9ff36aa8f3f6cc4, type: 3}
@@ -13522,7 +13503,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 0
   squareColour: 1
-  destinationMaterial: {fileID: 2100000, guid: 18709268f821d44a991da2da11c22fa0, type: 2}
 --- !u!1001 &2130373864
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13691,7 +13671,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promotionSquare: 1
   squareColour: 1
-  destinationMaterial: {fileID: 2100000, guid: 18709268f821d44a991da2da11c22fa0, type: 2}
 --- !u!1 &2140799013
 GameObject:
   m_ObjectHideFlags: 0
