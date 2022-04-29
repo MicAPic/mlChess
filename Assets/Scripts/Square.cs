@@ -6,10 +6,8 @@ public class Square : MonoBehaviour
     public bool promotionSquare;
     public Piece.PieceColour squareColour;
     public Dictionary<Piece.PieceColour, bool> AttackedBy;
-
-    [SerializeField] 
-    private Material destinationMaterial;
-    private Material defaultMaterial;
+    
+    private MaterialPool _materialPool;
     private Renderer _renderer;
     
     void Awake()
@@ -21,19 +19,14 @@ public class Square : MonoBehaviour
         };
 
         _renderer = GetComponent<Renderer>();
-        defaultMaterial = _renderer.material;
+        _materialPool = GameObject.Find("Material Pool").GetComponent<MaterialPool>();
+        _renderer.sharedMaterial = _materialPool.DefaultMaterials[squareColour];
     }
 
     public void Next()
     {
-        var currentMaterial = _renderer.material;
-        if (currentMaterial == defaultMaterial)
-        {
-            _renderer.material = destinationMaterial;
-        }
-        else
-        {
-            _renderer.material = defaultMaterial;
-        }
+        var currentMaterial = _renderer.sharedMaterial;
+        _renderer.material = currentMaterial == _materialPool.DefaultMaterials[squareColour] ?
+            _materialPool.DestinationMaterials[squareColour] : _materialPool.DefaultMaterials[squareColour];
     }
 }
