@@ -106,13 +106,13 @@ namespace Pieces
                         {
                             TogglePin(target, index);
                             _pinningDirection = index;
+                            pinnedPieceSet = true;
+                            continue;
                         }
                         pinnedPieceSet = true;
                     }
-                    else
-                    {
-                        _piecesAhead.Clear();
-                    }
+                    
+                    _piecesAhead.Clear();
                 }
             }
             
