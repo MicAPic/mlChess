@@ -71,6 +71,11 @@ namespace Pieces.SteppingPieces
         public override void RemoveIllegalMoves()
         {
             // don't get in check
+            if (pinDirections.Count == 0)
+            {
+                pinDirections.Add(0);
+            }
+            
             foreach (var pinDirection in pinDirections)
             {
                 for (int i = possibleDestinations.Count - 1; i >= 0; i--)
@@ -86,6 +91,8 @@ namespace Pieces.SteppingPieces
                     }
                 }
             }
+
+            pinDirections.Remove(0);
         }
         
         protected internal override void MakeMove(GameObject destination, bool changeTurnAfterwards)

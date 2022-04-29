@@ -10,7 +10,7 @@ public class Square : MonoBehaviour
     private MaterialPool _materialPool;
     private Renderer _renderer;
     
-    void Awake()
+    void Start()
     {
         AttackedBy = new Dictionary<Piece.PieceColour, bool>
         {

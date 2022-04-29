@@ -154,6 +154,7 @@ public class GameManager : MonoBehaviour
         // this is required because the new piece can give check
         piece.Start();
         piece.GenerateMoves();
+        Kings[turnOf].GenerateMoves();
         //
         Destroy(_pawnToPromote.gameObject);
         

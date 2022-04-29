@@ -74,18 +74,15 @@ public abstract class Piece : MonoBehaviour
     {
         foreach (var pinDirection in pinDirections)
         {
-            if (pinDirection != 0)
+            for (int i = possibleDestinations.Count - 1; i >= 0; i--)
             {
-                for (int i = possibleDestinations.Count - 1; i >= 0; i--)
+                var direction = GameManager.squareList.IndexOf(possibleDestinations[i]) - CurrentPos;
+                if (direction % pinDirection != 0 ||
+                    Math.Abs(pinDirection) == 1 && Math.Abs(direction) >= 8)
                 {
-                    var direction = GameManager.squareList.IndexOf(possibleDestinations[i]) - CurrentPos;
-                    if (direction % pinDirection != 0 ||
-                        Math.Abs(pinDirection) == 1 && Math.Abs(direction) >= 8)
-                    {
-                        // remove moves that leave the king in check
-                        possibleDestinations.RemoveAt(i);
-                        GameManager.MoveCount[pieceColour]--;
-                    }
+                    // remove moves that leave the king in check
+                    possibleDestinations.RemoveAt(i);
+                    GameManager.MoveCount[pieceColour]--;
                 }
             }
         }
