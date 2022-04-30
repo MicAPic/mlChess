@@ -7,7 +7,7 @@ public class Square : MonoBehaviour
     public Piece.PieceColour squareColour;
     public Dictionary<Piece.PieceColour, bool> AttackedBy;
     
-    public Renderer squareRenderer;
+    protected internal Renderer SquareRenderer;
     
     void Start()
     {
@@ -17,6 +17,6 @@ public class Square : MonoBehaviour
             {Piece.PieceColour.black, false}
         };
 
-        squareRenderer = GetComponent<Renderer>();
+        SquareRenderer = GetComponent<Renderer>();
     }
 }

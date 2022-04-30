@@ -98,7 +98,7 @@ public abstract class Piece : MonoBehaviour
         }
     }
     
-    public virtual void ToggleSelection()
+    public void ToggleSelection()
     {
         outline.OutlineColor = GameManager.toggleColour;
         outline.enabled = !outline.enabled;
@@ -109,7 +109,7 @@ public abstract class Piece : MonoBehaviour
         {
             var squareComponent = square.GetComponent<Square>(); 
             _materialPool.SwitchMaterial("destination", 
-                squareComponent.squareRenderer, squareComponent.squareColour);
+                squareComponent.SquareRenderer, squareComponent.squareColour);
             
             var piece = square.GetComponentInChildren<Piece>();
             if (piece != null && piece.pieceColour != pieceColour)

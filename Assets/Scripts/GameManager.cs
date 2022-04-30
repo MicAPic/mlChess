@@ -43,8 +43,6 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        Application.targetFrameRate = 30; // prevent the game from targeting billion fps 
-
         GenerateBoard();
         MoveCount = new Dictionary<Piece.PieceColour, int>
         {

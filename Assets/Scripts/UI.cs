@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -22,6 +23,13 @@ public class UI : MonoBehaviour
         {Piece.PieceColour.black, new List<char>()}
     };
 
+    private Resolution _systemResolution;
+
+    void Start()
+    {
+        Application.targetFrameRate = 30; // prevent the game from targeting billion fps 
+    }
+
     public void SceneLoad(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
@@ -39,6 +47,26 @@ public class UI : MonoBehaviour
     public void ToggleSubmenu(GameObject submenu)
     {
         submenu.SetActive(!submenu.activeInHierarchy);
+    }
+
+    public void ToggleFullscreen()
+    {
+        if (Screen.fullScreen)
+        {
+            Screen.fullScreenMode = FullScreenMode.Windowed;
+        }
+        else
+        {
+            StartCoroutine(SetFullscreen());
+        }
+    }
+
+    IEnumerator SetFullscreen()
+    {
+        _systemResolution = Screen.currentResolution;
+        Screen.SetResolution(_systemResolution.width, _systemResolution.height, true);
+        yield return new WaitForEndOfFrame(); // wait for a frame to prevent bugs
+        Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
     }
 
     public IEnumerator ShowEndgameScreen(string titleText, string statusText)
