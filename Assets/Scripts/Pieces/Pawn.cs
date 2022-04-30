@@ -84,7 +84,7 @@ namespace Pieces
                                            // it also means that previous positions can't be repeated:
             GameManager.positionHistory.RemoveRange(0, GameManager.positionHistory.Count - 1); 
 
-            var square = GameManager.squareList[CurrentPos - Pattern[2]]; // ±10, one square behind
+            var enPassantSquare = GameManager.squareList[CurrentPos - Pattern[2]]; // ±10, one square behind
             if (!_madeFirstMove) // this makes the pawn's initial double-square move possible
             {
                 _madeFirstMove = true;
@@ -100,10 +100,11 @@ namespace Pieces
                     if (pawn != null && pawn.pieceColour != pieceColour)
                     {
                         // check if pawn is pinned:
-                        if (pawn.pinDirections[0] % (GameManager.squareList.IndexOf(square) - CurrentPos) == 0 && 
+                        if ((pawn.pinDirections.Count == 0 || 
+                             pawn.pinDirections[0] % (GameManager.squareList.IndexOf(enPassantSquare) - CurrentPos) == 0) && 
                             pawn.canEnPassant)
                         {
-                            pawn.possibleDestinations.Add(square);
+                            pawn.possibleDestinations.Add(enPassantSquare);
                             // denote that en passant was possible on this turn:
                             GameManager.positionHistory[GameManager.positionHistory.Count - 1] += "ep"; 
                         }
@@ -115,14 +116,14 @@ namespace Pieces
                 // promotion
                 GameManager.StartPromotion(this, destination);
             }
-            else if (square.GetComponentInChildren<Pawn>())
+            else if (enPassantSquare.GetComponentInChildren<Pawn>())
             {
                 // en passant BABY
-                var pawn = square.GetComponentInChildren<Pawn>();
+                var pawn = enPassantSquare.GetComponentInChildren<Pawn>();
                 if (pawn.pieceColour != pieceColour &&
                     Mathf.Abs(pawn.CurrentPos - pawn.PreviousPos) == 20) // if the enemy pawn just made the double move
                 {
-                    StartCoroutine(AttemptCapture(square, false));
+                    StartCoroutine(AttemptCapture(enPassantSquare, false));
                 }
             }
         }

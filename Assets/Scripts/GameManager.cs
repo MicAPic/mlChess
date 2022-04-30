@@ -304,6 +304,9 @@ public class GameManager : MonoBehaviour
     }
     
     // this block handles piece selection
+    public readonly Color toggleColour = new Color(0.62f, 0.44f, 0.36f); // brown
+    public readonly Color attackedColour = new Color(0.8f, 0.3f, 0.24f); // red-ish
+    
     private Piece _selectedPiece;
     private Collider _selectedPieceCollider;
     
@@ -317,7 +320,7 @@ public class GameManager : MonoBehaviour
 
             if (clickedObject.CompareTag("Square") && _selectedPiece)
             {
-                ToggleOutline(); // off
+                _selectedPiece.ToggleSelection(); // off
                 _selectedPiece.StartTurn(clickedObject.gameObject);
                 _selectedPiece = null;
                 _selectedPieceCollider.enabled = true;
@@ -330,7 +333,7 @@ public class GameManager : MonoBehaviour
                     _selectedPiece.pieceColour != clickedObject.parent.GetComponent<Piece>().pieceColour) 
                 {
                     var square = clickedObject.parent.parent;
-                    ToggleOutline(); // off
+                    _selectedPiece.ToggleSelection(); // off
                     _selectedPiece.StartTurn(square.gameObject);
                     _selectedPiece = null;
                     _selectedPieceCollider.enabled = true;
@@ -344,25 +347,16 @@ public class GameManager : MonoBehaviour
                     if (_selectedPiece != null)
                     {
                         // change the toggled piece
-                        ToggleOutline();
+                        _selectedPiece.ToggleSelection();
                         _selectedPieceCollider.enabled = true;
                     }
                     _selectedPiece = piece;
                     _selectedPieceCollider = clickedObject.GetComponent<Collider>();
                     _selectedPieceCollider.enabled = false;
-                    ToggleOutline(); // on
+                    _selectedPiece.ToggleSelection(); // on
                     Debug.Log(piece.name + piece.transform.position);
                 }
             }
-        }
-    }
-
-    void ToggleOutline()
-    {
-        _selectedPiece.GetComponent<Outline>().enabled = !_selectedPiece.GetComponent<Outline>().enabled;
-        foreach (var square in _selectedPiece.possibleDestinations)
-        {
-            square.GetComponent<Square>().Next();
         }
     }
     //

@@ -6,6 +6,7 @@ public class MaterialPool : MonoBehaviour
 {
     public Dictionary<Piece.PieceColour, Material> DefaultMaterials;
     public Dictionary<Piece.PieceColour, Material> DestinationMaterials;
+    public Dictionary<Piece.PieceColour, Material> TransparentMaterials;
 
     void Awake()
     {
@@ -20,5 +21,24 @@ public class MaterialPool : MonoBehaviour
             {Piece.PieceColour.white, Resources.Load<Material>("White (Dotted)")},
             {Piece.PieceColour.black, Resources.Load<Material>("Black (Dotted)")}
         };
+        
+        TransparentMaterials = new Dictionary<Piece.PieceColour, Material>
+        {
+            {Piece.PieceColour.white, Resources.Load<Material>("White (Transparent)")},
+            {Piece.PieceColour.black, Resources.Load<Material>("Black (Transparent)")}
+        };
+    }
+    
+    public void SwitchMaterial(string type, Renderer currentRenderer, Piece.PieceColour colour)
+    {
+        var materialType = type switch
+        {
+            "transparent" => TransparentMaterials,
+            _ => DestinationMaterials
+        };
+        
+        var currentMaterial = currentRenderer.sharedMaterial;
+        currentRenderer.material = currentMaterial == DefaultMaterials[colour] ?
+            materialType[colour] : DefaultMaterials[colour];
     }
 }

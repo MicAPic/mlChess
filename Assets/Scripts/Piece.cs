@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Pieces.SteppingPieces;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public abstract class Piece : MonoBehaviour
 {
@@ -40,10 +41,15 @@ public abstract class Piece : MonoBehaviour
     protected internal bool IsGivingCheck;
     protected GameManager GameManager { get; private set; }
     public List<GameObject> possibleDestinations;
-    
+
     [Header("Kings")]
     protected King HisMajesty;
     protected King PeskyEnemyKing;
+
+    [Header("Selection")] 
+    public Outline outline;
+    private Renderer _renderer;
+    private MaterialPool _materialPool;
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -54,6 +60,10 @@ public abstract class Piece : MonoBehaviour
         
         HisMajesty = GameManager.Kings[pieceColour];
         PeskyEnemyKing = GameManager.Kings[Next(pieceColour)];
+
+        _materialPool = GameObject.Find("Material Pool").GetComponent<MaterialPool>();
+        _renderer = GetComponentInChildren<Renderer>();
+        outline = GetComponent<Outline>();
     }
 
     // generates pseudo-legal moves, which ideally should be checked in MakeMove
@@ -88,6 +98,29 @@ public abstract class Piece : MonoBehaviour
         }
     }
     
+    public virtual void ToggleSelection()
+    {
+        outline.OutlineColor = GameManager.toggleColour;
+        outline.enabled = !outline.enabled;
+        
+        _materialPool.SwitchMaterial("transparent", _renderer, pieceColour);
+        
+        foreach (var square in possibleDestinations)
+        {
+            var squareComponent = square.GetComponent<Square>(); 
+            _materialPool.SwitchMaterial("destination", 
+                squareComponent.squareRenderer, squareComponent.squareColour);
+            
+            var piece = square.GetComponentInChildren<Piece>();
+            if (piece != null && piece.pieceColour != pieceColour)
+            {
+                // outline pieces that can be attacked
+                piece.outline.OutlineColor = GameManager.attackedColour;
+                piece.outline.enabled = !piece.outline.enabled;
+            }
+        }
+    }
+
     protected IEnumerator AttemptCapture(GameObject destination, bool moveAfterwards)
     {
         if (destination.transform.childCount != 0)

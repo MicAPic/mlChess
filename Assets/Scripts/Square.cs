@@ -7,8 +7,7 @@ public class Square : MonoBehaviour
     public Piece.PieceColour squareColour;
     public Dictionary<Piece.PieceColour, bool> AttackedBy;
     
-    private MaterialPool _materialPool;
-    private Renderer _renderer;
+    public Renderer squareRenderer;
     
     void Start()
     {
@@ -18,15 +17,6 @@ public class Square : MonoBehaviour
             {Piece.PieceColour.black, false}
         };
 
-        _renderer = GetComponent<Renderer>();
-        _materialPool = GameObject.Find("Material Pool").GetComponent<MaterialPool>();
-        _renderer.sharedMaterial = _materialPool.DefaultMaterials[squareColour];
-    }
-
-    public void Next()
-    {
-        var currentMaterial = _renderer.sharedMaterial;
-        _renderer.material = currentMaterial == _materialPool.DefaultMaterials[squareColour] ?
-            _materialPool.DestinationMaterials[squareColour] : _materialPool.DefaultMaterials[squareColour];
+        squareRenderer = GetComponent<Renderer>();
     }
 }
