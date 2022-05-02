@@ -29,11 +29,11 @@ public class MaterialPool : MonoBehaviour
         };
     }
     
-    public void SwitchMaterial(string type, Renderer currentRenderer, Piece.PieceColour colour)
+    public void SwitchMaterial(char type, Renderer currentRenderer, Piece.PieceColour colour)
     {
         var materialType = type switch
         {
-            "transparent" => TransparentMaterials,
+            't' => TransparentMaterials,
             _ => DestinationMaterials
         };
         

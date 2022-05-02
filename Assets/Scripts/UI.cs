@@ -60,13 +60,30 @@ public class UI : MonoBehaviour
             StartCoroutine(SetFullscreen());
         }
     }
-
+    
     IEnumerator SetFullscreen()
     {
         _systemResolution = Screen.currentResolution;
         Screen.SetResolution(_systemResolution.width, _systemResolution.height, true);
         yield return new WaitForEndOfFrame(); // wait for a frame to prevent bugs
         Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
+    }
+
+    public void ToggleSFX()
+    {
+        AudioListener.volume = 1 - AudioListener.volume; // mutes, if the audio is on; unmutes otherwise
+    }
+
+    public void PlaySFX(GameObject sfx)
+    {
+        var instance = Instantiate(sfx);
+        StartCoroutine(DestroySFX(instance, 1));
+    }
+
+    IEnumerator DestroySFX(GameObject instance, float length)
+    {
+        yield return new WaitForSeconds(length);
+        Destroy(instance);
     }
 
     public IEnumerator ShowEndgameScreen(string titleText, string statusText)

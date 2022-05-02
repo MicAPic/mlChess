@@ -103,13 +103,12 @@ public abstract class Piece : MonoBehaviour
         outline.OutlineColor = GameManager.toggleColour;
         outline.enabled = !outline.enabled;
         
-        _materialPool.SwitchMaterial("transparent", _renderer, pieceColour);
+        _materialPool.SwitchMaterial('t', _renderer, pieceColour);
         
         foreach (var square in possibleDestinations)
         {
             var squareComponent = square.GetComponent<Square>(); 
-            _materialPool.SwitchMaterial("destination", 
-                squareComponent.SquareRenderer, squareComponent.squareColour);
+            _materialPool.SwitchMaterial('d', squareComponent.SquareRenderer, squareComponent.squareColour);
             
             var piece = square.GetComponentInChildren<Piece>();
             if (piece != null && piece.pieceColour != pieceColour)
