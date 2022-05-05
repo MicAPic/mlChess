@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8c687816-200a-4861-b89e-c38515377fe9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.mlChess/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.mlChess/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MaterialPool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MaterialPool.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Piece.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Piece.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI.cs" afterDir="false" />
-    </list>
+    <list default="true" id="8c687816-200a-4861-b89e-c38515377fe9" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -122,7 +117,8 @@
       <workItem from="1651265579332" duration="1750000" />
       <workItem from="1651305445545" duration="6212000" />
       <workItem from="1651341372518" duration="3537000" />
-      <workItem from="1651485098027" duration="1529000" />
+      <workItem from="1651485098027" duration="1627000" />
+      <workItem from="1651753929274" duration="1313000" />
     </task>
     <servers />
   </component>

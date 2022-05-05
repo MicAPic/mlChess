@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -60,11 +61,18 @@ public class UI : MonoBehaviour
             StartCoroutine(SetFullscreen());
         }
     }
+
+    public void SetFullscreenToggle(Toggle toggle)
+    {
+        toggle.isOn = Screen.fullScreen;
+    }
     
     IEnumerator SetFullscreen()
     {
+        // remember current resolution
         _systemResolution = Screen.currentResolution;
         Screen.SetResolution(_systemResolution.width, _systemResolution.height, true);
+        
         yield return new WaitForEndOfFrame(); // wait for a frame to prevent bugs
         Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
     }

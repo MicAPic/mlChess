@@ -170,6 +170,11 @@ public abstract class Piece : MonoBehaviour
             Uncheck(PeskyEnemyKing);
         }
 
+        if (HisMajesty.checkingEnemies.Count > 0)
+        {
+            Uncheck(HisMajesty);
+        }
+
         PreviousPos = CurrentPos;
         CurrentPos = GameManager.squareList.IndexOf(destination);
         // move the piece object in the game world
