@@ -44,6 +44,9 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         GenerateBoard();
+        FindObjectOfType<MaterialPool>().SwitchTheme();
+        // Resources.UnloadUnusedAssets();
+        
         MoveCount = new Dictionary<Piece.PieceColour, int>
         {
             {Piece.PieceColour.white, 0},

@@ -54,15 +54,16 @@ public abstract class Piece : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
-        GameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        GameManager = FindObjectOfType<GameManager>();
         CurrentPos = GameManager.squareList.IndexOf(transform.parent.gameObject);
         pinDirections = new List<int>();
         
         HisMajesty = GameManager.Kings[pieceColour];
         PeskyEnemyKing = GameManager.Kings[Next(pieceColour)];
 
-        _materialPool = GameObject.Find("Material Pool").GetComponent<MaterialPool>();
+        _materialPool = FindObjectOfType<MaterialPool>();
         _renderer = GetComponentInChildren<Renderer>();
+        _renderer.material = _materialPool.DefaultPieceMaterials[pieceColour];
         outline = GetComponent<Outline>();
     }
 
@@ -103,12 +104,12 @@ public abstract class Piece : MonoBehaviour
         outline.OutlineColor = GameManager.toggleColour;
         outline.enabled = !outline.enabled;
         
-        _materialPool.SwitchMaterial('t', _renderer, pieceColour);
+        _materialPool.SwitchMaterial(true, _renderer, pieceColour);
         
         foreach (var square in possibleDestinations)
         {
             var squareComponent = square.GetComponent<Square>(); 
-            _materialPool.SwitchMaterial('d', squareComponent.SquareRenderer, squareComponent.squareColour);
+            _materialPool.SwitchMaterial(false, squareComponent.SquareRenderer, squareComponent.squareColour);
             
             var piece = square.GetComponentInChildren<Piece>();
             if (piece != null && piece.pieceColour != pieceColour)

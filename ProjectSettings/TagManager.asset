@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Piece
   - Square
+  - Material Pool
+  - Game Manager
+  - UI
+  - Border
   layers:
   - Default
   - TransparentFX
