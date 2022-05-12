@@ -17,6 +17,8 @@ public class UI : MonoBehaviour
     public GameObject pauseScreen;
     
     [SerializeField]
+    private Slider evaluationSlider;
+    [SerializeField]
     private TMP_Dropdown pieceDropdown;
     private Dictionary<Piece.PieceColour, List<char>> _takenPiecesLists = new Dictionary<Piece.PieceColour, List<char>>
     {
@@ -161,5 +163,27 @@ public class UI : MonoBehaviour
         _takenPiecesLists[thisPieceColour].Add(takenPieceIcon);
         _takenPiecesLists[thisPieceColour].Sort();
         TakenPiecesListsUI[thisPieceColour].text = string.Join("", _takenPiecesLists[thisPieceColour]);
+    }
+
+    private bool _canAnimate = true;
+    public IEnumerator WaitUntilCanAnimate(float targetValue)
+    {
+        yield return new WaitUntil(() => _canAnimate);
+        StartCoroutine(LarpSlider(targetValue));
+    }
+
+    IEnumerator LarpSlider(float targetValue)
+    {
+        _canAnimate = false;
+        
+        float timeElapsed = 0;
+        while (timeElapsed < 1)
+        {
+            evaluationSlider.value = Mathf.Lerp(evaluationSlider.value, targetValue, timeElapsed / 1);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        _canAnimate = true;
     }
 }

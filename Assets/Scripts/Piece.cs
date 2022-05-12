@@ -101,7 +101,7 @@ public abstract class Piece : MonoBehaviour
     
     public void ToggleSelection()
     {
-        outline.OutlineColor = GameManager.toggleColour;
+        outline.OutlineColor = GameManager.ToggleColour;
         outline.enabled = !outline.enabled;
         
         _materialPool.SwitchMaterial(true, _renderer, pieceColour);
@@ -115,7 +115,7 @@ public abstract class Piece : MonoBehaviour
             if (piece != null && piece.pieceColour != pieceColour)
             {
                 // outline pieces that can be attacked
-                piece.outline.OutlineColor = GameManager.attackedColour;
+                piece.outline.OutlineColor = GameManager.AttackedColour;
                 piece.outline.enabled = !piece.outline.enabled;
             }
         }
@@ -139,6 +139,7 @@ public abstract class Piece : MonoBehaviour
             {
                 GameManager.whitePieces.Remove(target);
             }
+            GameManager.PiecesByType[target.pieceColour][target.pieceIcon]--;
 
             GameManager.ui.UpdateTakenPiecesList(pieceColour, target.pieceIcon[target.pieceIcon.Length - 1]);
             GameManager.ui.statusBarText.text += "x"; // LAN

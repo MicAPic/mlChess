@@ -3,26 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="8c687816-200a-4861-b89e-c38515377fe9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.mlChess/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.mlChess/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Textures/Wood Textures.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Textures/Wood Textures/wood1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Textures/Wood Textures/wood1.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Textures/Wood Textures/wood2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Textures/Wood Textures/wood2.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Textures/Wood Textures/wood3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Textures/Wood Textures/wood3.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Textures/Wood Textures/wood4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Textures/Wood Textures/wood4.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Textures/Wood Textures/wood5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Textures/Wood Textures/wood5.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Plum (Paws).mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Plum (Paws).mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Wood.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Wood.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MaterialPool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MaterialPool.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Piece.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Piece.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Square.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Square.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scenes/Main.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Scenes/Menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scenes/Menu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +131,8 @@
       <workItem from="1651485098027" duration="1627000" />
       <workItem from="1651753929274" duration="1313000" />
       <workItem from="1651773428502" duration="7252000" />
-      <workItem from="1651856351088" duration="4688000" />
+      <workItem from="1651856351088" duration="4922000" />
+      <workItem from="1652371912806" duration="6093000" />
     </task>
     <servers />
   </component>

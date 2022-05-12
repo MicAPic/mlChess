@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> squareList;
     public List<Piece> whitePieces;
     public List<Piece> blackPieces;
+    public Dictionary<Piece.PieceColour, Dictionary<string, int>> PiecesByType;
     public Dictionary<Piece.PieceColour, King> Kings;
     public Dictionary<Piece.PieceColour, int> MoveCount; // amount of moves available for each side
 
@@ -45,14 +46,33 @@ public class GameManager : MonoBehaviour
     {
         GenerateBoard();
         FindObjectOfType<MaterialPool>().SwitchTheme();
-        // Resources.UnloadUnusedAssets();
-        
+
         MoveCount = new Dictionary<Piece.PieceColour, int>
         {
             {Piece.PieceColour.white, 0},
             {Piece.PieceColour.black, 0}
         };
-        
+
+        PiecesByType = new Dictionary<Piece.PieceColour, Dictionary<string, int>>
+        {
+            [Piece.PieceColour.white] = new Dictionary<string, int>
+            {
+                {" ♙", 8},
+                {"♖", 2},
+                {"♘", 2},
+                {"♗", 2},
+                {"♕", 1}
+            },
+            [Piece.PieceColour.black] = new Dictionary<string, int>
+            {
+                {" ♟", 8},
+                {"♜", 2},
+                {"♞", 2},
+                {"♝", 2},
+                {"♛", 1}
+            }
+        };
+
         Kings = new Dictionary<Piece.PieceColour, King>
         {
             {Piece.PieceColour.white, GameObject.Find("wKing").GetComponent<King>()},
@@ -90,6 +110,7 @@ public class GameManager : MonoBehaviour
 
     public void ChangeTurn()
     {
+        PositionEvaluation();
         UpdateSquares();
         UpdateMoves(true);
         UpdateMoves(false);
@@ -155,7 +176,7 @@ public class GameManager : MonoBehaviour
         // this is required because the new piece can give check
         piece.Start();
         piece.GenerateMoves();
-        Kings[turnOf].GenerateMoves();
+        UpdateMoves(false);
         //
         Destroy(_pawnToPromote.gameObject);
         
@@ -169,6 +190,8 @@ public class GameManager : MonoBehaviour
             whitePieces.Remove(_pawnToPromote);
             whitePieces.Add(piece);
         }
+        PiecesByType[_pawnToPromote.pieceColour][_pawnToPromote.pieceIcon]--;
+        PiecesByType[piece.pieceColour][piece.pieceIcon]++;
 
         ui.statusBarText.text += piece.pieceIcon;
         isPaused = false;
@@ -283,7 +306,7 @@ public class GameManager : MonoBehaviour
             squareList.Add(child.gameObject);
             if (child.childCount != 0)
             {
-                var piece = child.GetChild(0).GetComponent<Piece>(); // child[0] is always a piece 
+                var piece = child.GetComponentInChildren<Piece>(); 
                 if (piece.pieceColour == Piece.PieceColour.white)
                 {
                     whitePieces.Add(piece);
@@ -305,8 +328,8 @@ public class GameManager : MonoBehaviour
     }
     
     // this block handles piece selection
-    public readonly Color toggleColour = new Color(0.62f, 0.44f, 0.36f); // brown
-    public readonly Color attackedColour = new Color(0.8f, 0.3f, 0.24f); // red-ish
+    public readonly Color ToggleColour = new Color(0.62f, 0.44f, 0.36f); // brown
+    public readonly Color AttackedColour = new Color(0.8f, 0.3f, 0.24f); // red-ish
     
     private Piece _selectedPiece;
     private Collider _selectedPieceCollider;
@@ -379,5 +402,23 @@ public class GameManager : MonoBehaviour
         }
 
         return repeatedRecords.ContainsValue(3);
+    }
+
+    void PositionEvaluation()
+    {
+        var evaluation = 9 * (PiecesByType[Piece.PieceColour.white]["♕"] - 
+                              PiecesByType[Piece.PieceColour.black]["♛"]) + 
+                         5 * (PiecesByType[Piece.PieceColour.white]["♖"] - 
+                              PiecesByType[Piece.PieceColour.black]["♜"]) + 
+                         3 * (PiecesByType[Piece.PieceColour.white]["♗"] - 
+                             PiecesByType[Piece.PieceColour.black]["♝"] + 
+                             PiecesByType[Piece.PieceColour.white]["♘"] - 
+                             PiecesByType[Piece.PieceColour.black]["♞"]) + 
+                         (PiecesByType[Piece.PieceColour.white][" ♙"] - PiecesByType[Piece.PieceColour.black][" ♟"]) + 
+                         0.1f * (MoveCount[Piece.PieceColour.white] - 
+                                 MoveCount[Piece.PieceColour.black]);
+        
+        evaluation = (evaluation / 60 + 1) / 2; // mapping from [-60; 60] to [0; 1]
+        StartCoroutine(ui.WaitUntilCanAnimate(evaluation));
     }
 }
