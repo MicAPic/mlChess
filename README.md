@@ -1,4 +1,4 @@
 # Chess
-Unity 3D chess game. When everything will be working properly, I will start adding ML to it.
+Unity 3D chess game. Uses simple static position evaluation obtained through linear regression.
 
-Current version: **v0.2.3-beta**
+Current version: **v0.3-beta**

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Pieces;
@@ -34,7 +35,10 @@ public class GameManager : MonoBehaviour
     internal Camera activeCamera;
     [SerializeField] 
     private GameObject promotionPopup;
-    
+
+    [Header("SFX")] 
+    public List<GameObject> sfx;
+
     [Header("Screenshot Management")]
     public string screenshotKey = "s";
     public int imageScale = 1;
@@ -49,6 +53,7 @@ public class GameManager : MonoBehaviour
         {Piece.PieceColour.white, "0–1"},
         {Piece.PieceColour.black, "1–0"}
     };
+    
 
     void Awake()
     {
@@ -128,6 +133,7 @@ public class GameManager : MonoBehaviour
 
     public void ChangeTurn()
     {
+        ui.PlaySFX(sfx[0]);
         PositionEvaluation();
         UpdateSquares();
         UpdateMoves(true);
@@ -153,6 +159,7 @@ public class GameManager : MonoBehaviour
         {
             // declare checkmate or stalemate
             isPaused = true;
+            ui.PlaySFX(sfx[2]);
             if (isInCheck)
             {
                 var statusText = ui.statusBarText.text;
@@ -181,6 +188,7 @@ public class GameManager : MonoBehaviour
         {
             // declare a draw 
             isPaused = true;
+            ui.PlaySFX(sfx[2]);
             StartCoroutine(ui.ShowEndgameScreen("Draw", "½–½"));
         }
     }
@@ -308,6 +316,12 @@ public class GameManager : MonoBehaviour
             isPaused = true;
             StartCoroutine(ui.ShowEndgameScreen("Draw", "½–½"));
         }
+    }
+    
+    public IEnumerator DelayCastlingSFX(float delay, int sfxIndex)
+    {
+        yield return new WaitForSeconds(delay);
+        ui.PlaySFX(sfx[sfxIndex]);
     }
 
     void UpdateSquares()

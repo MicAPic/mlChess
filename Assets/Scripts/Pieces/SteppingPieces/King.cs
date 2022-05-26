@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Pieces.SlidingPieces;
 using UnityEngine;
@@ -117,7 +118,8 @@ namespace Pieces.SteppingPieces
                     leftRook.MakeMove(square, true);
                     GameManager.ui.statusBarText.text = "0-0-0";
                 }
-                
+
+                StartCoroutine(GameManager.DelayCastlingSFX(0.09f, 0));
                 GameManager.positionHistory.Clear(); // castling also means that previous positions can't be repeated
             }
             

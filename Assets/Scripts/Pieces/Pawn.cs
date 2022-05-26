@@ -124,6 +124,7 @@ namespace Pieces
                     Mathf.Abs(pawn.CurrentPos - pawn.PreviousPos) == 20) // if the enemy pawn just made the double move
                 {
                     StartCoroutine(AttemptCapture(enPassantSquare, false));
+                    StartCoroutine(GameManager.DelayCastlingSFX(0.2f, 1));
                 }
             }
         }
