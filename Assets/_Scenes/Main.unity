@@ -5462,6 +5462,9 @@ MonoBehaviour:
   ui: {fileID: 1094604976}
   activeCamera: {fileID: 689863203}
   promotionPopup: {fileID: 2044065083}
+  screenshotKey: s
+  imageScale: 1
+  imageCount: 0
 --- !u!4 &796271163
 Transform:
   m_ObjectHideFlags: 0

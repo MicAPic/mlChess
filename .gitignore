@@ -73,3 +73,6 @@ crashlytics-build.properties
 
 # macOS stuff
 .DS_Store
+
+# Screenshots directory
+Screenshots/

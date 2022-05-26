@@ -34,6 +34,14 @@ public class GameManager : MonoBehaviour
     internal Camera activeCamera;
     [SerializeField] 
     private GameObject promotionPopup;
+    
+    [Header("Screenshot Management")]
+    public string screenshotKey = "s";
+    public int imageScale = 1;
+    [SerializeField]
+    private int imageCount = 0;
+    // The key used to get/set the number of images
+    private const string ImageCntKey = "IMAGE_CNT";
 
     private readonly Dictionary<Piece.PieceColour, string> _winText = new Dictionary<Piece.PieceColour, string>
     {
@@ -46,6 +54,8 @@ public class GameManager : MonoBehaviour
     {
         GenerateBoard();
         FindObjectOfType<MaterialPool>().SwitchTheme();
+        
+        imageCount = PlayerPrefs.GetInt(ImageCntKey);
 
         MoveCount = new Dictionary<Piece.PieceColour, int>
         {
@@ -106,6 +116,14 @@ public class GameManager : MonoBehaviour
             isPaused = !isPaused;
             ui.ToggleSubmenu(ui.pauseScreen);
         }
+        
+        if (Input.GetKeyDown(screenshotKey.ToLower()))
+
+            // But, we will use the new Unity Input System to check for input on the Keyboard
+            // if (Keyboard.current.FindKeyOnCurrentKeyboardLayout(m_ScreenshotKey).wasPressedThisFrame)
+        {
+            TakeScreenshot();
+        }
     }
 
     public void ChangeTurn()
@@ -140,10 +158,22 @@ public class GameManager : MonoBehaviour
                 var statusText = ui.statusBarText.text;
                 // LAN; substitute "+" (check sign) for "#" (checkmate sign)
                 ui.statusBarText.text = statusText.Remove(statusText.Length - 1, 1) + "#";
+                
+                // set the eval slider to reflect the checkmate
+                if (turnOf == Piece.PieceColour.black)
+                {
+                    StartCoroutine(ui.WaitUntilCanAnimate(1));
+                }
+                else
+                {
+                    StartCoroutine(ui.WaitUntilCanAnimate(0));
+                }
+                
                 StartCoroutine(ui.ShowEndgameScreen("Checkmate", _winText[turnOf]));
             }
             else
             {
+                StartCoroutine(ui.WaitUntilCanAnimate(0.5f));
                 StartCoroutine(ui.ShowEndgameScreen("Stalemate", "½–½"));
             }
         }
@@ -420,5 +450,24 @@ public class GameManager : MonoBehaviour
         
         evaluation = (evaluation / 60 + 1) / 2; // mapping from [-60; 60] to [0; 1]
         StartCoroutine(ui.WaitUntilCanAnimate(evaluation));
+    }
+
+    void TakeScreenshot()
+    {
+        // Saves the current image count
+        PlayerPrefs.SetInt(ImageCntKey, ++imageCount);
+
+        // Adjusts the height and width for the file name
+        int width = Screen.width * imageScale;
+        int height = Screen.height * imageScale;
+
+        // Determine the pathname/filename for the file
+        string pathname = "Screenshots/Screenshot_";
+
+        pathname += width + "x" + height + "_" + imageCount + ".png";
+
+        // Take the actual screenshot and save it
+        ScreenCapture.CaptureScreenshot(pathname, imageScale);
+        Debug.Log("Screenshot captured at " + pathname);
     }
 }

@@ -183,6 +183,7 @@ public class UI : MonoBehaviour
             timeElapsed += Time.deltaTime;
             yield return null;
         }
+        evaluationSlider.value = targetValue;
 
         _canAnimate = true;
     }
