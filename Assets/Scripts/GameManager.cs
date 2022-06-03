@@ -58,7 +58,8 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         GenerateBoard();
-        FindObjectOfType<MaterialPool>().SwitchTheme();
+        SettingsManager.Instance.SwitchTheme();
+        SettingsManager.Instance.ToggleAntiAliasing(activeCamera);
         
         imageCount = PlayerPrefs.GetInt(ImageCntKey);
 

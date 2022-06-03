@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.Serialization;
 
-public class MaterialPool : MonoBehaviour
+public class SettingsManager : MonoBehaviour
 {
-    public static MaterialPool Instance;
+    public static SettingsManager Instance;
     public string theme;
+    public bool isAntiAliased = true;
     
     public Dictionary<Piece.PieceColour, Material> DefaultSquareMaterials;
     public Dictionary<Piece.PieceColour, Material> DefaultPieceMaterials;
@@ -36,6 +39,11 @@ public class MaterialPool : MonoBehaviour
         };
         
         FindObjectOfType<UI>().LoadSettings();
+    }
+    
+    public void ToggleAntiAliasing(Camera mainCamera)
+    {
+        mainCamera.GetComponent<PostProcessLayer>().enabled = isAntiAliased;
     }
     
     public void SwitchMaterial(bool isPiece, Renderer objectRenderer, Piece.PieceColour colour)

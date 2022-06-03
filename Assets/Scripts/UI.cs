@@ -39,13 +39,18 @@ public class UI : MonoBehaviour
     class SettingsData
     {
         public string theme;
+        public bool antiAliasing;
     }
 
-    public void SaveSettings(TMP_Dropdown themeDropdown)
+    public void SaveSettings(GameObject uiGroup)
     {
+        var themeDropdown = uiGroup.GetComponentInChildren<TMP_Dropdown>();
+        var antiAliasingToggle = uiGroup.transform.Find("Toggle (FXAA)").GetComponent<Toggle>();
+        
         SettingsData data = new SettingsData
         {
             theme = themeDropdown.options[themeDropdown.value].text,
+            antiAliasing = antiAliasingToggle.isOn 
         };
 
         string json = JsonUtility.ToJson(data);
@@ -61,12 +66,13 @@ public class UI : MonoBehaviour
             string json = File.ReadAllText(serializationFileName);
             SettingsData data = JsonUtility.FromJson<SettingsData>(json);
 
-            MaterialPool.Instance.theme = data.theme;
+            SettingsManager.Instance.theme = data.theme;
+            SettingsManager.Instance.isAntiAliased = data.antiAliasing;
         }
         else
         {
             Debug.Log("Loading failed");
-            MaterialPool.Instance.theme = "Classic";
+            SettingsManager.Instance.theme = "Classic";
         }
     }
 
@@ -101,15 +107,16 @@ public class UI : MonoBehaviour
         }
     }
 
-    public void SetToggles(GameObject UIGroup)
+    public void SetToggles(GameObject uiGroup)
     {
-        var toggles = UIGroup.GetComponentsInChildren<Toggle>();
+        var toggles = uiGroup.GetComponentsInChildren<Toggle>();
         toggles[0].isOn = Screen.fullScreen;
         toggles[1].isOn = Convert.ToBoolean(AudioListener.volume);
+        toggles[2].isOn = SettingsManager.Instance.isAntiAliased;
         
-        var dropdown = UIGroup.GetComponentInChildren<TMP_Dropdown>();
-        dropdown.value = dropdown.options.FindIndex(option => option.text == MaterialPool.Instance.theme);
-        dropdown.itemText.text = MaterialPool.Instance.theme;
+        var dropdown = uiGroup.GetComponentInChildren<TMP_Dropdown>();
+        dropdown.value = dropdown.options.FindIndex(option => option.text == SettingsManager.Instance.theme);
+        dropdown.itemText.text = SettingsManager.Instance.theme;
     }
     
     IEnumerator SetFullscreen()

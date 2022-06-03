@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Pieces.SteppingPieces;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public abstract class Piece : MonoBehaviour
 {
@@ -49,7 +48,6 @@ public abstract class Piece : MonoBehaviour
     [Header("Selection")] 
     public Outline outline;
     private Renderer _renderer;
-    private MaterialPool _materialPool;
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -60,10 +58,9 @@ public abstract class Piece : MonoBehaviour
         
         HisMajesty = GameManager.Kings[pieceColour];
         PeskyEnemyKing = GameManager.Kings[Next(pieceColour)];
-
-        _materialPool = FindObjectOfType<MaterialPool>();
+        
         _renderer = GetComponentInChildren<Renderer>();
-        _renderer.material = _materialPool.DefaultPieceMaterials[pieceColour];
+        _renderer.material = SettingsManager.Instance.DefaultPieceMaterials[pieceColour];
         outline = GetComponent<Outline>();
     }
 
@@ -104,12 +101,12 @@ public abstract class Piece : MonoBehaviour
         outline.OutlineColor = GameManager.ToggleColour;
         outline.enabled = !outline.enabled;
         
-        _materialPool.SwitchMaterial(true, _renderer, pieceColour);
+        SettingsManager.Instance.SwitchMaterial(true, _renderer, pieceColour);
         
         foreach (var square in possibleDestinations)
         {
             var squareComponent = square.GetComponent<Square>(); 
-            _materialPool.SwitchMaterial(false, squareComponent.SquareRenderer, squareComponent.squareColour);
+            SettingsManager.Instance.SwitchMaterial(false, squareComponent.SquareRenderer, squareComponent.squareColour);
             
             var piece = square.GetComponentInChildren<Piece>();
             if (piece != null && piece.pieceColour != pieceColour)
