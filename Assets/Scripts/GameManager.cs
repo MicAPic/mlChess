@@ -121,6 +121,7 @@ public class GameManager : MonoBehaviour
         {
             isPaused = !isPaused;
             ui.ToggleSubmenu(ui.pauseScreen);
+            ui.ToggleSubmenu(ui.playIcon);
         }
         
         if (Input.GetKeyDown(screenshotKey.ToLower()))

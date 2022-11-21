@@ -15,6 +15,7 @@ public class UI : MonoBehaviour
     public Dictionary<Piece.PieceColour, TMP_Text> TakenPiecesListsUI;
     public TMP_Text statusBarText;
     public GameObject pauseScreen;
+    public GameObject playIcon;
     
     [SerializeField]
     private Slider evaluationSlider;
@@ -150,6 +151,7 @@ public class UI : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         pauseScreen.SetActive(true);
+        playIcon.SetActive(true);
         pauseScreen.GetComponentsInChildren<TMP_Text>()[0].text = titleText;
         pauseScreen.GetComponentsInChildren<TMP_Text>()[1].text = "New Game"; // instead of "resign"
         statusBarText.text = statusText;
