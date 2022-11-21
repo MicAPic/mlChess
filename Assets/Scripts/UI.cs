@@ -89,8 +89,8 @@ public class UI : MonoBehaviour
         #else
         Application.Quit();
         #endif
-    } 
-    
+    }
+
     public void ToggleSubmenu(GameObject submenu)
     {
         submenu.SetActive(!submenu.activeInHierarchy);

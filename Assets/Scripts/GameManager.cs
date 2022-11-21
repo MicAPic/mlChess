@@ -119,9 +119,7 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            isPaused = !isPaused;
-            ui.ToggleSubmenu(ui.pauseScreen);
-            ui.ToggleSubmenu(ui.playIcon);
+            PauseGame();
         }
         
         if (Input.GetKeyDown(screenshotKey.ToLower()))
@@ -326,6 +324,13 @@ public class GameManager : MonoBehaviour
         ui.PlaySFX(sfx[sfxIndex]);
     }
 
+    public void PauseGame()
+    {
+        isPaused = !isPaused;
+        ui.ToggleSubmenu(ui.pauseScreen);
+        ui.ToggleSubmenu(ui.playIcon);
+    }
+
     void UpdateSquares()
     {
         // resets the properties of board squares
@@ -346,7 +351,7 @@ public class GameManager : MonoBehaviour
         squareList.AddRange(Enumerable.Repeat<GameObject>(null, 21)); //adds a bottom border
 
         var counter = 0;
-        var chessBoard = GameObject.Find("Chess Board");
+        var chessBoard = GameObject.Find("Tiles");
         foreach (Transform child in chessBoard.transform)
         {
             squareList.Add(child.gameObject);
