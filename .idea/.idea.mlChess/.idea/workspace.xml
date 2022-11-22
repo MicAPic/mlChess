@@ -6,10 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="8c687816-200a-4861-b89e-c38515377fe9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.mlChess/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.mlChess/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Scenes/Main/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scenes/Main/Main.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Scenes/Menu/Menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scenes/Menu/Menu.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,6 +160,7 @@
       <workItem from="1669029932955" duration="804000" />
       <workItem from="1669034613398" duration="4978000" />
       <workItem from="1669064515770" duration="843000" />
+      <workItem from="1669114898404" duration="596000" />
     </task>
     <servers />
   </component>

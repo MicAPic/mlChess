@@ -12,11 +12,16 @@ using UnityEditor;
 
 public class UI : MonoBehaviour
 {
-    public Dictionary<Piece.PieceColour, TMP_Text> TakenPiecesListsUI;
+    [Header("Animation")]
+    [SerializeField]
+    private Animator transition;
+    
+    [Header("In-Game Stuff")]
     public TMP_Text statusBarText;
     public GameObject pauseScreen;
     public GameObject playIcon;
-    
+    public Dictionary<Piece.PieceColour, TMP_Text> TakenPiecesListsUI;
+
     [SerializeField]
     private Slider evaluationSlider;
     [SerializeField]
@@ -79,7 +84,7 @@ public class UI : MonoBehaviour
 
     public void SceneLoad(string sceneName)
     {
-        SceneManager.LoadScene(sceneName);
+        StartCoroutine(SceneTransition(sceneName));
     }
 
     public void GameQuit()
@@ -118,6 +123,13 @@ public class UI : MonoBehaviour
         var dropdown = uiGroup.GetComponentInChildren<TMP_Dropdown>();
         dropdown.value = dropdown.options.FindIndex(option => option.text == SettingsManager.Instance.theme);
         dropdown.itemText.text = SettingsManager.Instance.theme;
+    }
+
+    IEnumerator SceneTransition(string sceneName)
+    {
+        transition.SetTrigger("Transition");
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(sceneName);
     }
     
     IEnumerator SetFullscreen()
