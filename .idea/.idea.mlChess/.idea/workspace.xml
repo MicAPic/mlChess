@@ -6,9 +6,26 @@
   <component name="ChangeListManager">
     <list default="true" id="8c687816-200a-4861-b89e-c38515377fe9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.mlChess/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.mlChess/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Animation/Fade_In.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Animation/Fade_In.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Animation/Fade_Out.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Animation/Fade_Out.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Animation/Transition Overlay.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Animation/Transition Overlay.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Transition Overlay.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Transition Overlay.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SettingsManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SettingsManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/NotoSans SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/NotoSans SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/NotoSans/NotoSans-BoldItalic SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/NotoSans/NotoSans-BoldItalic SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/NotoSans/NotoSans-Italic SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/NotoSans/NotoSans-Italic SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/NotoSans/NotoSansSymbols2-Chess SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/NotoSans/NotoSansSymbols2-Chess SDF.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Scenes/Main/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scenes/Main/Main.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Scenes/Menu/Menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scenes/Menu/Menu.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,8 +50,11 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Swipe/SwipeDetectionMode.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Swipe/SwipeListener.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Swipe/SwipesToVectorEvents.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/InGameUI.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/VertexModifiers/Shadow.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0c36f9c3bf224cbca6496dc87e21b730f200/c5/54abdcc2/AudioListener.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7c2cc12a836b439890b203ff62f5f82d13a800/71/74e75a21/GameObject.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ff33ef4d15af4b21939284be593d47da159a00/e6/649d7314/Component.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -67,7 +87,7 @@
       <method v="2" />
     </configuration>
     <configuration name="UnitTests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/2020.3.7f1/Unity.app/Contents/MacOS/Unity" />
+      <option name="EXE_PATH" value="/Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/MacOS/Unity" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath $PROJECT_DIR$ -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -161,6 +181,8 @@
       <workItem from="1669034613398" duration="4978000" />
       <workItem from="1669064515770" duration="843000" />
       <workItem from="1669114898404" duration="596000" />
+      <workItem from="1687941305586" duration="5395000" />
+      <workItem from="1687965739944" duration="3251000" />
     </task>
     <servers />
   </component>

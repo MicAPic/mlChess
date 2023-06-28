@@ -6,6 +6,7 @@ using Pieces;
 using Pieces.SlidingPieces;
 using Pieces.SteppingPieces;
 using TMPro;
+using UI;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -30,7 +31,7 @@ public class GameManager : MonoBehaviour
     public Dictionary<Piece.PieceColour, King> Kings;
     public Dictionary<Piece.PieceColour, int> MoveCount; // amount of moves available for each side
 
-    public UI ui;
+    public InGameUI ui;
     [SerializeField]
     internal Camera activeCamera;
     [SerializeField] 
@@ -123,9 +124,6 @@ public class GameManager : MonoBehaviour
         }
         
         if (Input.GetKeyDown(screenshotKey.ToLower()))
-
-            // But, we will use the new Unity Input System to check for input on the Keyboard
-            // if (Keyboard.current.FindKeyOnCurrentKeyboardLayout(m_ScreenshotKey).wasPressedThisFrame)
         {
             TakeScreenshot();
         }

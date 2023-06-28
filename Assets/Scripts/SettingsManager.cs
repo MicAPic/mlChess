@@ -1,8 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
+using UI;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
-using UnityEngine.Serialization;
 
 public class SettingsManager : MonoBehaviour
 {
@@ -38,7 +37,7 @@ public class SettingsManager : MonoBehaviour
             {Piece.PieceColour.black, Resources.Load<Material>("Black (Transparent)")}
         };
         
-        FindObjectOfType<UI>().LoadSettings();
+        FindObjectOfType<UserInterface>().LoadSettings();
     }
     
     public void ToggleAntiAliasing(Camera mainCamera)
