@@ -20,6 +20,7 @@ public class SettingsManager : MonoBehaviour
         if (Instance != null)
         {
             Destroy(gameObject);
+            FindObjectOfType<UserInterface>().LoadSettings();
             return;
         }
 
@@ -125,6 +126,7 @@ public class SettingsManager : MonoBehaviour
                     {Piece.PieceColour.black, Resources.Load<Material>("Black (Dotted)")}
                 };
                 
+                SetBorderMaterial(Resources.Load<Material>("Wood"));
                 FindObjectOfType<Camera>().backgroundColor = new Color(0.55f, 0.57f, 0.67f);
                 
                 break;

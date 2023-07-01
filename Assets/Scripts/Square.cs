@@ -18,6 +18,11 @@ public class Square : MonoBehaviour
         };
 
         SquareRenderer = GetComponent<Renderer>();
+        SetMaterial();
+    }
+
+    public void SetMaterial()
+    {
         SquareRenderer.material = SettingsManager.Instance.DefaultSquareMaterials[squareColour];
     }
 }

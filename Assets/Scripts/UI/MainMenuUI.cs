@@ -101,6 +101,14 @@ namespace UI
             dropdown.value = dropdown.options.FindIndex(option => option.text == SettingsManager.Instance.theme);
             dropdown.itemText.text = SettingsManager.Instance.theme;
         }
+        
+        public void SetSquareMaterials()
+        {
+            foreach (var square in FindObjectsOfType<Square>())
+            {
+                square.SetMaterial();
+            }
+        }
 
         protected override IEnumerator SceneTransition(string sceneName)
         {

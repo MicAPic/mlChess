@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         GenerateBoard();
-        SettingsManager.Instance.SwitchTheme();
+        // SettingsManager.Instance.SwitchTheme();
         SettingsManager.Instance.ToggleAntiAliasing(activeCamera);
         SettingsManager.Instance.ToggleSFX(activeCamera);
         

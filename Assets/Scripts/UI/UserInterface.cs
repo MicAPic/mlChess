@@ -51,6 +51,7 @@ namespace UI
                 SettingsData data = JsonUtility.FromJson<SettingsData>(json);
 
                 SettingsManager.Instance.theme = data.theme;
+                SettingsManager.Instance.SwitchTheme();
                 SettingsManager.Instance.isAntiAliased = data.antiAliasing;
                 SettingsManager.Instance.sfxOn = data.sfxOn;
             }
