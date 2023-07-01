@@ -94,7 +94,7 @@ namespace UI
         {
             var toggles = uiGroup.GetComponentsInChildren<Toggle>();
             toggles[0].isOn = Screen.fullScreen;
-            toggles[1].isOn = Convert.ToBoolean(AudioListener.volume);
+            toggles[1].isOn = SettingsManager.Instance.sfxOn;
             toggles[2].isOn = SettingsManager.Instance.isAntiAliased;
         
             var dropdown = uiGroup.GetComponentInChildren<TMP_Dropdown>();

@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
         GenerateBoard();
         SettingsManager.Instance.SwitchTheme();
         SettingsManager.Instance.ToggleAntiAliasing(activeCamera);
+        SettingsManager.Instance.ToggleSFX(activeCamera);
         
         imageCount = PlayerPrefs.GetInt(ImageCntKey);
 

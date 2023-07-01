@@ -21,17 +21,20 @@ namespace UI
         {
             public string theme;
             public bool antiAliasing;
+            public bool sfxOn;
         }
 
         public void SaveSettings(GameObject uiGroup)
         {
             var themeDropdown = uiGroup.GetComponentInChildren<TMP_Dropdown>();
             var antiAliasingToggle = uiGroup.transform.Find("Toggle (FXAA)").GetComponent<Toggle>();
+            var sfxToggle = uiGroup.transform.Find("Toggle (SFX)").GetComponent<Toggle>();
         
             SettingsData data = new SettingsData
             {
                 theme = themeDropdown.options[themeDropdown.value].text,
-                antiAliasing = antiAliasingToggle.isOn 
+                antiAliasing = antiAliasingToggle.isOn, 
+                sfxOn = sfxToggle.isOn
             };
 
             string json = JsonUtility.ToJson(data);
@@ -49,6 +52,7 @@ namespace UI
 
                 SettingsManager.Instance.theme = data.theme;
                 SettingsManager.Instance.isAntiAliased = data.antiAliasing;
+                SettingsManager.Instance.sfxOn = data.sfxOn;
             }
             else
             {
@@ -65,11 +69,6 @@ namespace UI
         public void ToggleSubmenu(GameObject submenu)
         {
             submenu.SetActive(!submenu.activeInHierarchy);
-        }
-
-        public void ToggleSFX()
-        {
-            AudioListener.volume = 1 - AudioListener.volume; // mutes, if the audio is on; unmutes otherwise
         }
 
         public void PlaySFX(GameObject sfx)

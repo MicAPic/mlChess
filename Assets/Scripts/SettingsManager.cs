@@ -8,6 +8,7 @@ public class SettingsManager : MonoBehaviour
     public static SettingsManager Instance;
     public string theme;
     public bool isAntiAliased = true;
+    public bool sfxOn = true;
     
     public Dictionary<Piece.PieceColour, Material> DefaultSquareMaterials;
     public Dictionary<Piece.PieceColour, Material> DefaultPieceMaterials;
@@ -43,6 +44,11 @@ public class SettingsManager : MonoBehaviour
     public void ToggleAntiAliasing(Camera mainCamera)
     {
         mainCamera.GetComponent<PostProcessLayer>().enabled = isAntiAliased;
+    }
+    
+    public void ToggleSFX(Camera mainCamera)
+    {
+        mainCamera.GetComponent<AudioListener>().enabled = sfxOn;
     }
     
     public void SwitchMaterial(bool isPiece, Renderer objectRenderer, Piece.PieceColour colour)
