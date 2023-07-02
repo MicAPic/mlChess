@@ -12,6 +12,7 @@ public class SettingsManager : MonoBehaviour
     
     public Dictionary<Piece.PieceColour, Material> DefaultSquareMaterials;
     public Dictionary<Piece.PieceColour, Material> DefaultPieceMaterials;
+    public Dictionary<Piece.PieceColour, Material> GlowMaterials;
     private Dictionary<Piece.PieceColour, Material> _destinationMaterials;
     private Dictionary<Piece.PieceColour, Material> _transparentMaterials;
 
@@ -31,6 +32,12 @@ public class SettingsManager : MonoBehaviour
         {
             {Piece.PieceColour.white, Resources.Load<Material>("White")},
             {Piece.PieceColour.black, Resources.Load<Material>("Black")}
+        };
+        
+        GlowMaterials = new Dictionary<Piece.PieceColour, Material>
+        {
+            {Piece.PieceColour.white, Resources.Load<Material>("White (Glow)")},
+            {Piece.PieceColour.black, Resources.Load<Material>("Black (Glow)")}
         };
         
         _transparentMaterials = new Dictionary<Piece.PieceColour, Material>

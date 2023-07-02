@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Pieces.SlidingPieces;
 using UnityEngine;
@@ -17,6 +16,7 @@ namespace Pieces.SteppingPieces
         //             So
         // based on the source from: https://www.chessprogramming.org/
         public List<Piece> checkingEnemies;
+        public MeshRenderer meshRenderer;
         
         // the following is used in castling
         [SerializeField]
@@ -32,6 +32,8 @@ namespace Pieces.SteppingPieces
             base.Start();
             Pattern = new[] {-11, -10, -9, -1, 1, 9, 10, 11};
             checkingEnemies = new List<Piece>();
+
+            meshRenderer = GetComponentInChildren<MeshRenderer>();
         }
 
         public override void GenerateMoves()

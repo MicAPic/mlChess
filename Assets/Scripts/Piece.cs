@@ -202,7 +202,12 @@ public abstract class Piece : MonoBehaviour
             var king = square.GetComponentInChildren<King>();
             if (king.pieceColour != pieceColour && !IsGivingCheck)
             {
-                king.checkingEnemies.Add(this); 
+                king.checkingEnemies.Add(this);
+                
+                var kingMaterials = king.meshRenderer.materials;
+                kingMaterials[1] = SettingsManager.Instance.GlowMaterials[king.pieceColour];
+                king.meshRenderer.materials = kingMaterials;
+                
                 IsGivingCheck = true;
             }
         }
@@ -217,6 +222,10 @@ public abstract class Piece : MonoBehaviour
 
         king.checkingEnemies.Clear();
         king.pinDirections.Clear();
+        
+        var kingMaterials = king.meshRenderer.materials;
+        kingMaterials[1] = null;
+        king.meshRenderer.materials = kingMaterials;
     }
 
     protected void TogglePin(Piece target, int direction)
