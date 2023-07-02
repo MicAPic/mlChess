@@ -10,13 +10,20 @@ namespace UI
     public class InGameUI : UserInterface
     {
         [Header("Animation")]
+        public float pauseAnimationDuration = 0.25f;
         [SerializeField]
         private Animator transition;
+
+        [Header("Utility")]
+        public bool canPause = true;
     
         [Header("Interface Elements")]
         public TMP_Text statusBarText;
         public GameObject pauseScreen;
         public GameObject playIcon;
+        public GameObject pauseBackground;
+        public RectTransform retireButton;
+        public RectTransform menuButton;
         public Dictionary<Piece.PieceColour, TMP_Text> TakenPiecesListsUI;
         [SerializeField]
         private Slider evaluationSlider;
@@ -29,9 +36,11 @@ namespace UI
             {Piece.PieceColour.white, new List<char>()},
             {Piece.PieceColour.black, new List<char>()}
         };
-    
+
         public IEnumerator ShowEndgameScreen(string titleText, string statusText)
         {
+            canPause = false;
+            
             yield return new WaitForSeconds(1.5f);
             pauseScreen.SetActive(true);
             playIcon.SetActive(true);

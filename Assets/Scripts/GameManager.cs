@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using Pieces;
 using Pieces.SlidingPieces;
 using Pieces.SteppingPieces;
@@ -20,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Utility")]
     public bool isPaused;
-    
+
     public string currentPosition;
     public List<string> positionHistory;
     
@@ -325,9 +326,22 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
+        if (!ui.canPause) return;
+        
         isPaused = !isPaused;
-        ui.ToggleSubmenu(ui.pauseScreen);
+        ui.ToggleSubmenu(ui.pauseBackground);
         ui.ToggleSubmenu(ui.playIcon);
+
+        if (isPaused)
+        {
+            ui.retireButton.DOAnchorPosY(-27.3f, ui.pauseAnimationDuration);
+            ui.menuButton.DOAnchorPosY(-27.3f * 2f, ui.pauseAnimationDuration);
+        }
+        else
+        {
+            ui.retireButton.DOAnchorPosY(0.0f, ui.pauseAnimationDuration);
+            ui.menuButton.DOAnchorPosY(0.0f, ui.pauseAnimationDuration);
+        }
     }
 
     void UpdateSquares()
