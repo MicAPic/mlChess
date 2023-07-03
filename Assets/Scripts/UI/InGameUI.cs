@@ -22,6 +22,8 @@ namespace UI
         [Header("Interface Elements")]
         public TMP_Text statusBarText;
         public GameObject pauseScreen;
+        public TooltipTrigger pauseButtonTooltipTrigger;
+        public TooltipTrigger cameraButtonTooltipTrigger;
         public GameObject playIcon;
         public GameObject pauseBackground;
         public Button pauseButton;
@@ -74,6 +76,15 @@ namespace UI
         {
             yield return new WaitUntil(() => _canAnimate);
             StartCoroutine(LerpSlider(targetValue));
+        }
+
+        private readonly string[] _tipContents = {"Unlocked", "Locked"};
+        private int _tipIndex;
+        public void ChangeCameraButtonTooltip()
+        {
+            var currentTip = "Camera: " + _tipContents[++_tipIndex % _tipContents.Length];
+            TooltipSystem.Instance.tooltip.SetText(currentTip);
+            cameraButtonTooltipTrigger.content = currentTip;
         }
 
         protected override IEnumerator SceneTransition(string sceneName)

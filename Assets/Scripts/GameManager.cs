@@ -347,11 +347,18 @@ public class GameManager : MonoBehaviour
         {
             ui.retireButton.DOAnchorPosY(-27.3f, ui.pauseAnimationDuration);
             ui.menuButton.DOAnchorPosY(-27.3f * 2f, ui.pauseAnimationDuration);
+            
+            
+            TooltipSystem.Instance.tooltip.SetText("Unpause");
+            ui.pauseButtonTooltipTrigger.content = "Unpause";
         }
         else
         {
             ui.retireButton.DOAnchorPosY(0.0f, ui.pauseAnimationDuration);
             ui.menuButton.DOAnchorPosY(0.0f, ui.pauseAnimationDuration);
+            
+            TooltipSystem.Instance.tooltip.SetText("Pause");
+            ui.pauseButtonTooltipTrigger.content = "Pause";
         }
     }
     

@@ -6,22 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="8c687816-200a-4861-b89e-c38515377fe9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.mlChess/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.mlChess/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/bBishop.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/bBishop.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/bKing.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/bKing.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/bKnight.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/bKnight.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/bPawn.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/bPawn.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/bQueen.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/bQueen.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/bRook.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/bRook.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/UI_Blur.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/UI_Blur.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interactable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Piece.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Piece.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pieces/SteppingPieces/King.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pieces/SteppingPieces/King.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/InGameUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/InGameUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/UserInterface.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/UserInterface.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Scenes/Main/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scenes/Main/Main.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Scenes/Menu/Menu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scenes/Menu/Menu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,7 +172,8 @@
       <workItem from="1688202266993" duration="3459000" />
       <workItem from="1688302833876" duration="4936000" />
       <workItem from="1688315598295" duration="6777000" />
-      <workItem from="1688388130399" duration="2374000" />
+      <workItem from="1688388130399" duration="2847000" />
+      <workItem from="1688411572272" duration="4264000" />
     </task>
     <servers />
   </component>
