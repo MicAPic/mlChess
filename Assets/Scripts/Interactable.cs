@@ -18,8 +18,6 @@ public class Interactable : MonoBehaviour
         _asleepPos = transform.localPosition;
         _awakePos = _asleepPos + Vector3.up * VerticalMovementDistance;
         _pieceColour = GetComponentInParent<Piece>().pieceColour;
-        
-        
     }
 
     private void OnMouseEnter()

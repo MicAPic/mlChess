@@ -12,6 +12,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
+    
     [Header("Game Rules & Logic")]
     public Piece.PieceColour turnOf = Piece.PieceColour.white;
     public int halfmoveClock;
@@ -31,6 +33,8 @@ public class GameManager : MonoBehaviour
     public Dictionary<Piece.PieceColour, Dictionary<string, int>> PiecesByType;
     public Dictionary<Piece.PieceColour, King> Kings;
     public Dictionary<Piece.PieceColour, int> MoveCount; // amount of moves available for each side
+    
+    public float currentDelay;
 
     public InGameUI ui;
     [SerializeField]
@@ -59,6 +63,8 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        Instance = this;
+
         GenerateBoard();
         // SettingsManager.Instance.SwitchTheme();
         SettingsManager.Instance.ToggleAntiAliasing(activeCamera);
@@ -103,6 +109,11 @@ public class GameManager : MonoBehaviour
             {Piece.PieceColour.white, GameObject.Find("Pieces taken by White").GetComponent<TMP_Text>()},
             {Piece.PieceColour.black, GameObject.Find("Pieces taken by Black").GetComponent<TMP_Text>()}
         };
+    }
+
+    void Start()
+    {
+        AnimatePieces(1.0f);
     }
 
     // Update is called once per frame
@@ -329,8 +340,8 @@ public class GameManager : MonoBehaviour
         if (!ui.canPause) return;
         
         isPaused = !isPaused;
-        ui.ToggleSubmenu(ui.pauseBackground);
-        ui.ToggleSubmenu(ui.playIcon);
+        ui.ToggleObject(ui.pauseBackground);
+        ui.ToggleObject(ui.playIcon);
 
         if (isPaused)
         {
@@ -342,6 +353,28 @@ public class GameManager : MonoBehaviour
             ui.retireButton.DOAnchorPosY(0.0f, ui.pauseAnimationDuration);
             ui.menuButton.DOAnchorPosY(0.0f, ui.pauseAnimationDuration);
         }
+    }
+    
+    public void AnimatePieces(float modifier)
+    {
+        currentDelay = 0.0f;
+        const float delay = 1.0f / 32.0f;
+        
+        for (var i = 0; i < whitePieces.Count - 1; i++)
+        {
+            whitePieces[i].transform.DOLocalMove(Vector3.up * modifier, .75f).SetDelay(currentDelay);
+            blackPieces[i].transform.DOLocalMove(Vector3.up * modifier, .75f).SetDelay(currentDelay);
+
+            currentDelay += delay;
+        }
+
+        blackPieces[^1].transform.DOLocalMove(Vector3.up * modifier, .75f).SetDelay(currentDelay);
+        whitePieces[^1].transform.DOLocalMove(Vector3.up * modifier, .75f).SetDelay(currentDelay)
+                                 .OnComplete(() => 
+                                 {
+                                     isPaused = false; 
+                                     ui.pauseButton.interactable = true;
+                                 });
     }
 
     void UpdateSquares()

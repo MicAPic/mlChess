@@ -51,8 +51,8 @@ MonoBehaviour:
   pinDirections: 
   possibleDestinations: []
   outline: {fileID: 0}
+  pieceRenderer: {fileID: 0}
   checkingEnemies: []
-  meshRenderer: {fileID: 0}
   leftRook: {fileID: 0}
   rightRook: {fileID: 0}
 --- !u!114 &7858566706190592217
@@ -130,7 +130,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 94f88d6706ea24662bc4455a71cb4a64, type: 3}
       propertyPath: m_Materials.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 94f88d6706ea24662bc4455a71cb4a64, type: 3}
       propertyPath: m_Materials.Array.data[0]

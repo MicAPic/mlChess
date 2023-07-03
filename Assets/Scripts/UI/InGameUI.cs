@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -22,6 +24,7 @@ namespace UI
         public GameObject pauseScreen;
         public GameObject playIcon;
         public GameObject pauseBackground;
+        public Button pauseButton;
         public RectTransform retireButton;
         public RectTransform menuButton;
         public Dictionary<Piece.PieceColour, TMP_Text> TakenPiecesListsUI;
@@ -42,7 +45,7 @@ namespace UI
             canPause = false;
             
             yield return new WaitForSeconds(1.5f);
-            pauseScreen.SetActive(true);
+            ToggleSubmenu(pauseScreen);
             playIcon.SetActive(true);
             pauseScreen.GetComponentsInChildren<TMP_Text>()[0].text = titleText;
             pauseScreen.GetComponentsInChildren<TMP_Text>()[1].text = "New Game"; // instead of "resign"
@@ -75,13 +78,35 @@ namespace UI
 
         protected override IEnumerator SceneTransition(string sceneName)
         {
+            var sceneLoadOperation = SceneManager.LoadSceneAsync(sceneName);
+            sceneLoadOperation.allowSceneActivation = false;
+            
+            GameManager.Instance.isPaused = true;
+            pauseButton.interactable = false;
+
+            if (pauseScreen.activeInHierarchy)
+            {
+                ToggleSubmenu(pauseScreen);
+            }
+
+            float duration;
             if (sceneName == "Menu")
             {
                 transition.enabled = true;
+                duration = 1.0f;
             }
-            // TODO: load a scene only after all animations are finished
-            yield return new WaitForSeconds(1);
-            SceneManager.LoadScene(sceneName);
+            else
+            {
+                duration = GameManager.Instance.currentDelay + .75f;
+            }
+            
+            foreach (var takenPiecesList in TakenPiecesListsUI)
+            {
+                takenPiecesList.Value.DOColor(Color.clear, duration);
+            }
+            yield return new WaitForSeconds(duration);
+            
+            sceneLoadOperation.allowSceneActivation = true;
         }
 
         IEnumerator LerpSlider(float targetValue)

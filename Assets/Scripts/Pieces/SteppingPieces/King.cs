@@ -16,8 +16,7 @@ namespace Pieces.SteppingPieces
         //             So
         // based on the source from: https://www.chessprogramming.org/
         public List<Piece> checkingEnemies;
-        public MeshRenderer meshRenderer;
-        
+
         // the following is used in castling
         [SerializeField]
         private Rook leftRook;
@@ -33,7 +32,7 @@ namespace Pieces.SteppingPieces
             Pattern = new[] {-11, -10, -9, -1, 1, 9, 10, 11};
             checkingEnemies = new List<Piece>();
 
-            meshRenderer = GetComponentInChildren<MeshRenderer>();
+            pieceRenderer = GetComponentInChildren<MeshRenderer>();
         }
 
         public override void GenerateMoves()

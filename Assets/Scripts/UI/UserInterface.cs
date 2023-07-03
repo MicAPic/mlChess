@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.IO;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -69,8 +70,23 @@ namespace UI
 
         public void ToggleSubmenu(GameObject submenu)
         {
-            submenu.SetActive(!submenu.activeInHierarchy);
+            var group = submenu.GetComponent<CanvasGroup>();
+            if (submenu.activeInHierarchy)
+            {
+                group.DOFade(0.0f, 0.25f).OnComplete(() => submenu.SetActive(false));
+            }
+            else
+            {
+                submenu.SetActive(true);
+                group.alpha = 0.0f;
+                group.DOFade(1.0f, 0.25f);
+            }
         }
+        
+        public void ToggleObject(GameObject objectToToggle)
+        {
+            objectToToggle.SetActive(!objectToToggle.activeInHierarchy);
+        }   
 
         public void PlaySFX(GameObject sfx)
         {

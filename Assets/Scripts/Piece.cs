@@ -47,7 +47,13 @@ public abstract class Piece : MonoBehaviour
 
     [Header("Selection")] 
     public Outline outline;
-    private Renderer _renderer;
+    public Renderer pieceRenderer;
+
+    void Awake()
+    {
+        pieceRenderer = GetComponentInChildren<Renderer>();
+        outline = GetComponent<Outline>();
+    }
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -59,9 +65,7 @@ public abstract class Piece : MonoBehaviour
         HisMajesty = GameManager.Kings[pieceColour];
         PeskyEnemyKing = GameManager.Kings[Next(pieceColour)];
         
-        _renderer = GetComponentInChildren<Renderer>();
-        _renderer.material = SettingsManager.Instance.DefaultPieceMaterials[pieceColour];
-        outline = GetComponent<Outline>();
+        pieceRenderer.material = SettingsManager.Instance.DefaultPieceMaterials[pieceColour];
     }
 
     // generates pseudo-legal moves, which ideally should be checked in MakeMove
@@ -101,7 +105,7 @@ public abstract class Piece : MonoBehaviour
         outline.OutlineColor = GameManager.ToggleColour;
         outline.enabled = !outline.enabled;
         
-        SettingsManager.Instance.SwitchMaterial(true, _renderer, pieceColour);
+        SettingsManager.Instance.SwitchMaterial(true, pieceRenderer, pieceColour);
         
         foreach (var square in possibleDestinations)
         {
@@ -204,9 +208,10 @@ public abstract class Piece : MonoBehaviour
             {
                 king.checkingEnemies.Add(this);
                 
-                var kingMaterials = king.meshRenderer.materials;
+                var kingMaterials = king.pieceRenderer.materials;
+                Array.Resize(ref kingMaterials, 2);
                 kingMaterials[1] = SettingsManager.Instance.GlowMaterials[king.pieceColour];
-                king.meshRenderer.materials = kingMaterials;
+                king.pieceRenderer.materials = kingMaterials;
                 
                 IsGivingCheck = true;
             }
@@ -223,9 +228,8 @@ public abstract class Piece : MonoBehaviour
         king.checkingEnemies.Clear();
         king.pinDirections.Clear();
         
-        var kingMaterials = king.meshRenderer.materials;
-        kingMaterials[1] = null;
-        king.meshRenderer.materials = kingMaterials;
+        Material[] kingMaterials = {SettingsManager.Instance.DefaultPieceMaterials[king.pieceColour]};
+        king.pieceRenderer.materials = kingMaterials;
     }
 
     protected void TogglePin(Piece target, int direction)
