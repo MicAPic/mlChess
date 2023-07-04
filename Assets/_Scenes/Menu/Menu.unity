@@ -396,6 +396,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   content: Local Play
+  changesOffset: 0
 --- !u!1 &68583034
 GameObject:
   m_ObjectHideFlags: 0
@@ -2000,6 +2001,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   content: Settings
+  changesOffset: 0
 --- !u!1 &327188662
 GameObject:
   m_ObjectHideFlags: 0
@@ -7150,7 +7152,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1094049384
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7635,6 +7637,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   content: Credits
+  changesOffset: 0
 --- !u!1 &1192503880
 GameObject:
   m_ObjectHideFlags: 0
@@ -10412,6 +10415,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   content: Quit
+  changesOffset: 0
 --- !u!1 &1709118748
 GameObject:
   m_ObjectHideFlags: 0
