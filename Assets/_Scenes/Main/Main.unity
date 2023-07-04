@@ -430,6 +430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   content: Exit
+  changesOffset: 0
 --- !u!1 &43701696
 GameObject:
   m_ObjectHideFlags: 0
@@ -1628,6 +1629,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   content: Retire
+  changesOffset: 0
 --- !u!4 &142097314 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6655874730629647957, guid: 580a4461020ec4bc78816c52ed6108ee, type: 3}
@@ -3517,6 +3519,7 @@ GameObject:
   - component: {fileID: 426481859}
   - component: {fileID: 426481861}
   - component: {fileID: 426481860}
+  - component: {fileID: 426481862}
   m_Layer: 5
   m_Name: Pieces taken by Black
   m_TagString: Untagged
@@ -3641,6 +3644,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 426481858}
   m_CullTransparentMesh: 1
+--- !u!114 &426481862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 426481858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1045b53fdd3fa4a4299e31a47c92f4b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  content: 'Score: 0'
+  changesOffset: 1
 --- !u!1 &433896936
 GameObject:
   m_ObjectHideFlags: 0
@@ -5513,6 +5530,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   content: Pause
+  changesOffset: 0
 --- !u!4 &716733930 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6801880983249341786, guid: 3dcd6032087204f98ac151555a34fa48, type: 3}
@@ -6790,6 +6808,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   content: 'Camera: Unlocked'
+  changesOffset: 0
 --- !u!1 &913372014
 GameObject:
   m_ObjectHideFlags: 0
@@ -8018,6 +8037,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   content: Evaluation
+  changesOffset: 0
 --- !u!1001 &1137373790
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9019,6 +9039,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   content: Last Move
+  changesOffset: 0
 --- !u!1 &1293759288
 GameObject:
   m_ObjectHideFlags: 0
@@ -16528,6 +16549,7 @@ GameObject:
   - component: {fileID: 2140799014}
   - component: {fileID: 2140799016}
   - component: {fileID: 2140799015}
+  - component: {fileID: 2140799017}
   m_Layer: 5
   m_Name: Pieces taken by White
   m_TagString: Untagged
@@ -16652,6 +16674,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2140799013}
   m_CullTransparentMesh: 1
+--- !u!114 &2140799017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2140799013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1045b53fdd3fa4a4299e31a47c92f4b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  content: 'Score: 0'
+  changesOffset: 1
 --- !u!1001 &372971485472753152
 PrefabInstance:
   m_ObjectHideFlags: 0

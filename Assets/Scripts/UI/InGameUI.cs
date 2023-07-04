@@ -30,6 +30,7 @@ namespace UI
         public RectTransform retireButton;
         public RectTransform menuButton;
         public Dictionary<Piece.PieceColour, TMP_Text> TakenPiecesListsUI;
+        public Dictionary<Piece.PieceColour, TooltipTrigger> TakenPiecesListsTooltipTriggers;
         [SerializeField]
         private Slider evaluationSlider;
         [SerializeField]
@@ -40,6 +41,13 @@ namespace UI
             // Set of pieces taken
             {Piece.PieceColour.white, new List<char>()},
             {Piece.PieceColour.black, new List<char>()}
+        };
+        
+        private Dictionary<Piece.PieceColour, int> _scores = new()
+        {
+            // Set of pieces taken
+            {Piece.PieceColour.white, 0},
+            {Piece.PieceColour.black, 0}
         };
 
         public IEnumerator ShowEndgameScreen(string titleText, string statusText)
@@ -69,6 +77,9 @@ namespace UI
             _takenPiecesLists[thisPieceColour].Add(takenPieceIcon);
             _takenPiecesLists[thisPieceColour].Sort();
             TakenPiecesListsUI[thisPieceColour].text = string.Join("", _takenPiecesLists[thisPieceColour]);
+
+            _scores[thisPieceColour] += IconToScore(takenPieceIcon);
+            TakenPiecesListsTooltipTriggers[thisPieceColour].content = "Score: " + _scores[thisPieceColour];
         }
 
         private bool _canAnimate = true;
@@ -134,6 +145,18 @@ namespace UI
             evaluationSlider.value = targetValue;
 
             _canAnimate = true;
+        }
+
+        int IconToScore(char pieceIcon)
+        {
+            return pieceIcon switch
+            {
+                '♟' or '♙' => 1,
+                '♞' or '♝' or '♘' or '♗' => 3,
+                '♜' or '♖' => 5,
+                '♛' or '♕' => 9,
+                _ => 0
+            };
         }
     }
 }

@@ -104,10 +104,17 @@ public class GameManager : MonoBehaviour
             {Piece.PieceColour.black, GameObject.Find("bKing").GetComponent<King>()}
         };
 
+        var whitePieceList = GameObject.Find("Pieces taken by White");
+        var blackPieceList = GameObject.Find("Pieces taken by Black");
         ui.TakenPiecesListsUI = new Dictionary<Piece.PieceColour, TMP_Text>
         {
-            {Piece.PieceColour.white, GameObject.Find("Pieces taken by White").GetComponent<TMP_Text>()},
-            {Piece.PieceColour.black, GameObject.Find("Pieces taken by Black").GetComponent<TMP_Text>()}
+            {Piece.PieceColour.white, whitePieceList.GetComponent<TMP_Text>()},
+            {Piece.PieceColour.black, blackPieceList.GetComponent<TMP_Text>()}
+        };
+        ui.TakenPiecesListsTooltipTriggers = new Dictionary<Piece.PieceColour, TooltipTrigger>
+        {
+            {Piece.PieceColour.white, whitePieceList.GetComponent<TooltipTrigger>()},
+            {Piece.PieceColour.black, blackPieceList.GetComponent<TooltipTrigger>()}
         };
     }
 
@@ -367,10 +374,16 @@ public class GameManager : MonoBehaviour
         currentDelay = 0.0f;
         const float delay = 1.0f / 32.0f;
         
-        for (var i = 0; i < whitePieces.Count - 1; i++)
+        for (var i = 0; i < Mathf.Max(whitePieces.Count - 1, blackPieces.Count - 1); i++)
         {
-            whitePieces[i].transform.DOLocalMove(Vector3.up * modifier, .75f).SetDelay(currentDelay);
-            blackPieces[i].transform.DOLocalMove(Vector3.up * modifier, .75f).SetDelay(currentDelay);
+            if (i < whitePieces.Count - 1)
+            {
+                whitePieces[i].transform.DOLocalMove(Vector3.up * modifier, .75f).SetDelay(currentDelay);
+            }
+            if (i < blackPieces.Count - 1)
+            {
+                blackPieces[i].transform.DOLocalMove(Vector3.up * modifier, .75f).SetDelay(currentDelay);
+            }
 
             currentDelay += delay;
         }

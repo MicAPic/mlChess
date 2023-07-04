@@ -142,7 +142,7 @@ public abstract class Piece : MonoBehaviour
             }
             GameManager.PiecesByType[target.pieceColour][target.pieceIcon]--;
 
-            GameManager.ui.UpdateTakenPiecesList(pieceColour, target.pieceIcon[target.pieceIcon.Length - 1]);
+            GameManager.ui.UpdateTakenPiecesList(pieceColour, target.pieceIcon[^1]);
             GameManager.ui.statusBarText.text += "x"; // LAN
             GameManager.halfmoveClock = 0; // capturing resets the halfmove clock
             GameManager.positionHistory.Clear(); // it also means that previous positions can't be repeated

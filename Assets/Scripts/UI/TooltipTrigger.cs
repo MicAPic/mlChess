@@ -7,6 +7,8 @@ namespace UI
     public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         public string content;
+        [SerializeField] 
+        private bool changesOffset;
         private Coroutine _delay;
         
         public void OnPointerEnter(PointerEventData eventData)
@@ -23,7 +25,7 @@ namespace UI
         private IEnumerator DelayToggle()
         {
             yield return new WaitForSeconds(0.5f);
-            TooltipSystem.Instance.Show(content);
+            TooltipSystem.Instance.Show(content, changesOffset);
         }
     }
 }
