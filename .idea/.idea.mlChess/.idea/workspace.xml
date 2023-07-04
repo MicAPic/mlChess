@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8c687816-200a-4861-b89e-c38515377fe9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.mlChess/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.mlChess/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Scenes/Main/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scenes/Main/Main.unity" afterDir="false" />
-    </list>
+    <list default="true" id="8c687816-200a-4861-b89e-c38515377fe9" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -170,6 +167,7 @@
       <workItem from="1688388130399" duration="2847000" />
       <workItem from="1688411572272" duration="4357000" />
       <workItem from="1688472544898" duration="2764000" />
+      <workItem from="1688480895664" duration="250000" />
     </task>
     <servers />
   </component>
