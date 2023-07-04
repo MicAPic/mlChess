@@ -60,6 +60,7 @@ namespace UI
             {
                 Debug.Log("Loading failed");
                 SettingsManager.Instance.theme = "Classic";
+                SettingsManager.Instance.SwitchTheme();
             }
         }
 
