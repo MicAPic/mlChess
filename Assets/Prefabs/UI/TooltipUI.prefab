@@ -247,6 +247,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   group: {fileID: 816889434630292204}
+  changeOffset: 0
+  defaultOffset: {x: 0, y: 1.25}
   contentText: {fileID: 816889434774113717}
 --- !u!225 &816889434630292204
 CanvasGroup:
@@ -328,8 +330,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Tooltip
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f5bb83f121d854e27ab52c4ba87afce4, type: 2}
+  m_sharedMaterial: {fileID: 6276479973138435380, guid: f5bb83f121d854e27ab52c4ba87afce4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
